@@ -10,12 +10,20 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
+  tailwindcss: {
+    config: {
+      theme: {
+        fontFamily: {
+          alex: ['Alexandria', 'sans-serif'],
+        }
+      }
+    }
+  },
   googleFonts: {
     families: {
-      Alexandria: {
-        wght: '100..900', // Specifies the variable font range
-      },
+      Alexandria: [100, 200, 300, 400, 500, 600, 700, 800, 900]
     },
     display: 'swap', // Recommended for performance
+    download: true,
   },
 })
