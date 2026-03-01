@@ -1,15 +1,38 @@
 ---
-title: "تشكن ألفريدو 52ج بروتين"
-category: "رئيسي"
-duration: "45"
-difficulty: "سهل"
-servings: "6"
-image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6995c6318428af29708ac071_notext.jpg"
+title: "Et tempora aute sapi"
+category: "Qui dolor eaque aut "
+description: "Magni corrupti cons"
+videoUrl: "Est velit aut neque "
+prepTime: 10
+servings: 75
+difficulty: "Qui sed ducimus rei"
+image: "/food-images/S91zhLMDrnMv.jpg"
+
 macros:
-  calories: 450
-  protein: 18
-  carbs: 60
-  fat: 10
-videoUrl: "https://youtu..."
-date: 2025-01-28
+  calories: 85
+  protein: 27
+  carbs: 79
+  fat: 34
+
+ingredients:
+  - "Unde sit qui id in"
+  - "Est dicta nobis volu"
+  - "Sit quos ut accusamu"
+  - "Inventore corrupti "
+
+steps:
+  - title: "Sed ad praesentium e"
+    content: |
+      Dicta quis cupiditat
+
+  - title: "Deserunt elit dolor"
+    content: |
+      Laudantium libero n
+
+  - title: "Ut libero fuga Enim"
+    content: |
+      Voluptas sed cum seq
+
+chefTip: |
+  Cumque dolores persp
 ---
