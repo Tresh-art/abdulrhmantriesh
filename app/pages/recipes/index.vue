@@ -30,11 +30,11 @@ const filteredRecipes = computed(() => {
 
 <template>
   <!-- dir="rtl" handles the Arabic layout flow (icons on right, text alignment) -->
-  <div class="min-h-screen bg-white pb-12" dir="rtl">
+  <div class="min-h-screen bg-accent pb-12" dir="rtl">
     
     <!-- Top Section: Search & Filter -->
-    <header class="p-4 md:px-8 lg:px-16 pt-8 max-w-7xl mx-auto">
-      <div class="flex items-center gap-3">
+    <header class="m-4 md:px-8 lg:px-16 lg:max-w-7xl max-w-full mx-auto sm:max-w-full">
+      <div class="flex items-center gap-3 p-4">
         <!-- Search Bar (85%) -->
         <div class="relative w-[85%]">
           <input 
@@ -61,16 +61,16 @@ const filteredRecipes = computed(() => {
       </div>
 
       <!-- Sideway Scrollable Categories -->
-      <div class="mt-6 flex gap-3 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
+      <div class="mt-2 pr-4 flex gap-3 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
         <button 
           v-for="cat in categories" 
           :key="cat"
           @click="selectedCategory = cat"
           :class="[
-            'px-5 py-2 rounded-full text-sm font-bold transition-colors border',
+            'px-5 py-2 rounded-md text-sm font-bold transition-colors ',
             selectedCategory === cat 
-              ? 'bg-primary text-white border-primary' 
-              : 'bg-gray-100 text-gray-600 border-transparent'
+              ? 'bg-primary text-hardwhite ' 
+              : 'bg-hardwhite text-gray-600 border-transparent'
           ]"
         >
           {{ cat }}
@@ -83,7 +83,7 @@ const filteredRecipes = computed(() => {
       <hr class="border-gray-100 my-4" />
 
       <!-- Subtitle -->
-      <h2 class="text-xl font-bold text-gray-900 mb-6">الوصفات</h2>
+      <h2 class="text-3xl font-bold text-primary my-6">الوصفات</h2>
 
       <!-- Recipes Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

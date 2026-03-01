@@ -7,7 +7,7 @@
     ]">
       <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12">
         <!-- Desktop/Mobile: Right Side (Logo) -->
-        <NuxtLink to="/" class="font-bold text-2xl lg:text-3xl transition-colors duration-300"
+        <NuxtLink to="/" class="font-bold text-sm lg:text-xl transition-colors duration-300"
           :class="navbarSolid || !isHomePage ? 'text-primary' : 'text-hardwhite'">
 
           <span :class="navbarSolid ? 'text-secondary' : 'text-hardwhite'">عبدالرحمن</span><span
