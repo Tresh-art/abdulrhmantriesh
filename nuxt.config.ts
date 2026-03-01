@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // devServer: {
+  //   port: 3000, // Change this to your desired port
+  //   host: '192.168.1.27'
+  // },
   modules: [
     '@nuxt/content',
     '@nuxt/icon',
@@ -20,6 +24,7 @@ export default defineNuxtConfig({
           'softblack':'#1B1B1B',
           'accent':'#F9F4F3',
           'hardwhite':'#FFFFFF',
+          'graytext':'#BABABA'
 
         },
         fontFamily: {

@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen flex flex-col font-alex" dir="rtl">
     <!-- Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3" :class="[
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-1 md:py-3 lg:py-4" :class="[
       navbarSolid ? 'bg-hardwhite shadow-md ' : 'bg-transparent',
       !isHomePage ? 'bg-hardwhite shadow-sm ' : ''
     ]">
       <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12">
         <!-- Desktop/Mobile: Right Side (Logo) -->
-        <NuxtLink to="/" class="font-bold text-sm lg:text-xl transition-colors duration-300"
+        <NuxtLink to="/" class="font-bold text-sm md:text-sm lg:text-xl transition-colors duration-300"
           :class="navbarSolid || !isHomePage ? 'text-primary' : 'text-hardwhite'">
 
           <span :class="navbarSolid ? 'text-secondary' : 'text-hardwhite'">عبدالرحمن</span><span
@@ -17,7 +17,7 @@
         <!-- Desktop: Center (Horizontal Links) -->
         <div class="hidden md:flex items-center gap-10">
           <NuxtLink v-for="link in menuLinks" :key="link.to" :to="link.to"
-            class="font-bold transition-all hover:text-highlight relative group"
+            class="font-semibold transition-all hover:text-highlight relative group"
             :class="navbarSolid || !isHomePage ? 'text-gray-700' : 'text-hardwhite'">
             {{ link.label }}
             <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-highlight transition-all group-hover:w-full"></span>
@@ -60,11 +60,11 @@
           </div>
 
           <!-- Staggered Mobile Links -->
-          <nav class="flex flex-col gap-8 flex-1 justify-center items-center">
-            <div v-for="(link, index) in menuLinks" :key="link.to" class="overflow-hidden">
+          <nav class="flex flex-col gap-16 flex-1 justify-center items-center">
+            <div v-for="(link, index) in menuLinks" :key="link.to" >
               <Transition name="link-pop" appear>
                 <NuxtLink v-show="isMenuOpen" :to="link.to" @click="closeMenu"
-                  class="block text-4xl font-black text-gray-900 hover:text-primary transition-colors text-center"
+                  class="block text-4xl font-black font-alex text-gray-900 hover:text-primary transition-colors text-center"
                   :style="{ transitionDelay: `${200 + index * 100}ms` }">
                   {{ link.label }}
                 </NuxtLink>
@@ -75,17 +75,19 @@
 
           <!-- Socials at bottom of menu -->
           <div class="flex justify-center gap-8 mt-auto pb-10">
-            <Icon v-for="s in ['instagram', 'youtube', 'tiktok']" :key="s" :name="`simple-icons:${s}`"
-              class="w-7 h-7 text-primary/30" />
-          </div>
+          <a v-for="social in socialLinks" :key="social.name" :href="social.url"
+            class="text-hardwhite hover:scale-125 transition-transform">
+            <Icon :name="social.icon" class="w-7 h-7 text-primary/30" />
+          </a>
+        </div>
         </aside>
       </Transition>
     </div>
 
     <!-- Main Content -->
-    <main class="flex-1">
+    <main class="flex-1 bg-accent">
       <!-- Spacer for non-home pages so content doesn't hide under fixed navbar -->
-      <div :class="{ 'h-20': !isHomePage }"></div>
+      <div :class="{ 'h-16': !isHomePage }"></div>
       <slot />
     </main>
 
@@ -96,7 +98,7 @@
         style="background-image: url('/images/footer-bg.jpg')" />
 
       <div class="relative z-10 py-16 px-6 md:px-12 flex flex-col items-center text-center">
-        <nav class="flex flex-wrap justify-center gap-8 mb-8">
+        <nav class="flex flex-col flex-wrap justify-center gap-8 mb-8">
           <NuxtLink v-for="link in menuLinks" :key="link.to" :to="link.to"
             class="text-hardwhite/90 font-bold hover:text-highlight transition-colors">
             {{ link.label }}
@@ -108,7 +110,7 @@
         <div class="flex items-center gap-6 mb-8">
           <a v-for="social in socialLinks" :key="social.name" :href="social.url"
             class="text-hardwhite hover:scale-125 transition-transform">
-            <Icon :name="social.icon" class="w-6 h-6 text-highlight" />
+            <Icon :name="social.icon" class="w-6 h-6 text-hardwhite" />
           </a>
         </div>
 
@@ -138,6 +140,7 @@ const menuLinks = [
 const socialLinks = [
   { name: 'Instagram', url: '#', icon: 'simple-icons:instagram' },
   { name: 'YouTube', url: '#', icon: 'simple-icons:youtube' },
+  { name: 'facebook', url: '#', icon: 'simple-icons:facebook' },
   { name: 'TikTok', url: '#', icon: 'simple-icons:tiktok' }
 ]
 

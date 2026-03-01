@@ -1,10 +1,10 @@
 ---
-title: "الفريدو"
+title: "تشكن ألفريدو 52ج بروتين"
 category: "رئيسي"
 duration: "45"
 difficulty: "سهل"
 servings: "6"
-image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/699e6decf14d3883cfda70e6_notext%20(1).jpg"
+image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6995c6318428af29708ac071_notext.jpg"
 macros:
   calories: 450
   protein: 18
