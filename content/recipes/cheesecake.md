@@ -1,6 +1,6 @@
 ---
-title: "الفريدو"
-category: "رئيسي"
+title: "كيكة الشوكولاتة"
+category: "حلويات"
 duration: "45"
 difficulty: "سهل"
 servings: "6"
@@ -11,5 +11,5 @@ macros:
   carbs: 60
   fat: 10
 videoUrl: "https://youtu..."
-date: 2025-01-28
+date: 2025-02-28
 ---

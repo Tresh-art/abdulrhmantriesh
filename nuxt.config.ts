@@ -13,6 +13,15 @@ export default defineNuxtConfig({
   tailwindcss: {
     config: {
       theme: {
+        colors:{
+          'primary': '#3F3128',
+          'secondary':'#51594C',
+          'highlight':'#CABB6B',
+          'softblack':'#1B1B1B',
+          'accent':'#F9F4F3',
+          'hardwhite':'#FFFFFF',
+
+        },
         fontFamily: {
           alex: ['Alexandria', 'sans-serif'],
         }

@@ -1,5 +1,7 @@
 <template>
-  <div>home?</div>
+  <div class="bg-softblack">
+    <img src="/assets/site/abdu.png" alt="abdu">
+  </div>
 </template>
 
 <script>
