@@ -61,7 +61,7 @@
 
           <!-- Staggered Mobile Links -->
           <nav class="flex flex-col gap-16 flex-1 justify-center items-center">
-            <div v-for="(link, index) in menuLinks" :key="link.to" >
+            <div v-for="(link, index) in menuLinks" :key="link.to">
               <Transition name="link-pop" appear>
                 <NuxtLink v-show="isMenuOpen" :to="link.to" @click="closeMenu"
                   class="block text-4xl font-black font-alex text-gray-900 hover:text-primary transition-colors text-center"
@@ -75,11 +75,11 @@
 
           <!-- Socials at bottom of menu -->
           <div class="flex justify-center gap-8 mt-auto pb-10">
-          <a v-for="social in socialLinks" :key="social.name" :href="social.url"
-            class="text-hardwhite hover:scale-125 transition-transform">
-            <Icon :name="social.icon" class="w-7 h-7 text-primary/30" />
-          </a>
-        </div>
+            <a v-for="social in socialLinks" :key="social.name" :href="social.url"
+              class="text-hardwhite hover:scale-125 transition-transform">
+              <Icon :name="social.icon" class="w-7 h-7 text-primary/30" />
+            </a>
+          </div>
         </aside>
       </Transition>
     </div>
@@ -97,7 +97,7 @@
       <div class="absolute inset-0 bg-cover bg-center opacity-[0.04] pointer-events-none"
         style="background-image: url('/images/footer-bg.jpg')" />
 
-      <div class="relative z-10 py-16 px-6 md:px-12 flex flex-col items-center text-center">
+      <div class="relative z-10 py-16 pb-6 px-6 md:px-12 flex flex-col items-center text-center">
         <nav class="flex flex-col flex-wrap justify-center gap-8 mb-8">
           <NuxtLink v-for="link in menuLinks" :key="link.to" :to="link.to"
             class="text-hardwhite/90 font-bold hover:text-highlight transition-colors">
@@ -115,7 +115,10 @@
         </div>
 
         <p class="text-hardwhite/40 text-sm">
-          © {{ currentYear }} عبدالرحمن. جميع الحقوق محفوظة.
+          © {{ currentYear }} . جميع الحقوق محفوظة.
+        </p>
+        <p class="text-hardwhite/40 text-sm mt-2">
+          Developed by <a href="https://www.ItsMsalati.ly" target="_blank" class="text-hardwhite">ItsMsalati</a>
         </p>
       </div>
     </footer>

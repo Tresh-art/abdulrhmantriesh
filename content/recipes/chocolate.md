@@ -1,7 +1,7 @@
 ---
 title: "كيكة شوكلاته صحية"
 category: "صحي"
-duration: "15"
+prepTime: "15"
 difficulty: "سهل"
 servings: "2"
 image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6876b0b9008c38e183909b6d_Screenshot%202025-07-15%20at%2012.19.38%E2%80%AFPM-p-2000.png"

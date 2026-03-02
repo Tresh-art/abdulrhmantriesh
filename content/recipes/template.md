@@ -1,35 +1,38 @@
 ---
-title: 'تشكن ألفريدو 52ج بروتين'
-description: 'وصفة تشكن ألفريدو الغنية بالبروتين، مثالية للرياضيين والذين يتبعون حمية غذائية صحية مع طعم لذيذ لا يُقاوم'
-category: 'رئيسي'
-image: '/food-images/S91zhLMDrnMv.jpg'
-videoUrl: 'https://youtu.be/...'
-duration: '45'
-servings: 4
-difficulty: 'متوسط'
+title: "Et tempora aute sapi"
+category: "Qui dolor eaque aut "
+description: "Magni corrupti cons"
+videoUrl: "Est velit aut neque "
+prepTime: 10
+servings: 75
+difficulty: "Qui sed ducimus rei"
+image: "/food-images/S91zhLMDrnMv.jpg"
+
 macros:
-  calories: 450
-  protein: 52
-  carbs: 60
-  fat: 10
+  calories: 85
+  protein: 27
+  carbs: 79
+  fat: 34
+
 ingredients:
-  - 500g صدور دجاج مقطعة مكعبات
-  - 400g معكرونة بيني أو فوسيلي
-  - 2 كوب كريمة خفيفة
-  - 1 كوب جبن بارميزان مبشور
-  - 3 فصوص ثوم مهروس
-  - 2 ملعقة كبيرة زبدة
-  - ملح وفلفل حسب الرغبة
-  - رشة جوزة الطيب
-  - بقدونس مفروم للتزيين
+  - "Unde sit qui id in"
+  - "Est dicta nobis volu"
+  - "Sit quos ut accusamu"
+  - "Inventore corrupti "
+
 steps:
-  - title: 'سلق الماكرونة'
-    content: 'في قدر كبير، اغلي الماء مع ملعقة ملح. أضيفي المعكرونة واتركيها حتى تنضج (حوالي 10-12 دقيقة). صفيها واحتفظي بكوب من ماء السلق جانباً.'
-  - title: 'طهي الدجاج'
-    content: 'في مقلاة كبيرة على نار متوسطة، ذوبي الزبدة. أضيفي مكعبات الدجاج مع التوابل (ملح، فلفل، جوزة الطيب). حركي حتى يصبح لونها ذهبياً من جميع الجهات (حوالي 8-10 دقيقة).'
-  - title: 'تحضير الصلصة'
-    content: 'أضيفي الثوم المهروس للدجاج وقلبي لمدة دقيقة حتى يفوح رائحته. صبي الكريمة ببطء مع التحريك المستمر. اتركيها على نار هادئة حتى تتكاثف قليلاً.'
-  - title: 'الجمع والتقديم'
-    content: 'أضيفي المعكرونة المسلوقة إلى الصلصة مع نصف كوب من ماء السلق. رشي الجبن البارميزان وقلبي حتى يذوب. قدميها ساخنة مع البقدونس المفروم.'
-chefTip: 'لتحصلي على قوام كريمي مثالي، لا تغسلي المعكرونة بعد سلقها - النشا المتبقي يساعد على التصاق الصلصة بالمعكرونة. يمكنك إضافة بروكلي مسلوق للحصول على وجبة متكاملة.'
+  - title: "Sed ad praesentium e"
+    content: |
+      Dicta quis cupiditat
+
+  - title: "Deserunt elit dolor"
+    content: |
+      Laudantium libero n
+
+  - title: "Ut libero fuga Enim"
+    content: |
+      Voluptas sed cum seq
+
+chefTip: |
+  Cumque dolores persp
 ---

@@ -1,12 +1,12 @@
 ---
-title: "Et tempora aute sapi"
-category: "Qui dolor eaque aut "
+title: "كيكة شوكلاته صحية 44غ بروتين"
+category: "صحية"
 description: "Magni corrupti cons"
 videoUrl: "Est velit aut neque "
-prepTime: 10
-servings: 75
-difficulty: "Qui sed ducimus rei"
-image: "/food-images/S91zhLMDrnMv.jpg"
+prepTime: 12
+servings: 4
+difficulty: "صعب"
+image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6876b0b9008c38e183909b6d_Screenshot%202025-07-15%20at%2012.19.38%E2%80%AFPM-p-2000.png"
 
 macros:
   calories: 85

@@ -98,7 +98,7 @@ const filteredRecipes = computed(() => {
               <!-- Duration -->
               <div class="flex items-center gap-1">
                 <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
-                <span class="text-sm text-graytext font-normal">{{ recipe.meta?.duration }} دقيقة</span>
+                <span class="text-sm text-graytext font-normal">{{ recipe.meta?.prepTime }} دقيقة</span>
               </div>
 
               <!-- Difficulty (Signal Icon) -->
