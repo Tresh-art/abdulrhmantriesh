@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // devServer: {
-  //   port: 3000, // Change this to your desired port
-  //   host: '192.168.1.27'
-  // },
+  devServer: {
+    port: 3000, // Change this to your desired port
+    host: '192.168.1.27'
+  },
   modules: [
     '@nuxt/content',
     '@nuxt/icon',
@@ -12,24 +12,39 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
   ],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   compatibilityDate: '2024-04-03',
   tailwindcss: {
     config: {
       theme: {
-        colors:{
+        colors: {
           'primary': '#3F3128',
-          'secondary':'#51594C',
-          'highlight':'#CABB6B',
-          'softblack':'#1B1B1B',
-          'accent':'#F9F4F3',
-          'hardwhite':'#FFFFFF',
-          'graytext':'#BABABA'
+          'secondary': '#51594C',
+          'highlight': '#CABB6B',
+          'softblack': '#1B1B1B',
+          'accent': '#F9F4F3',
+          'hardwhite': '#FFFFFF',
+          'graytext': '#BABABA'
 
         },
         fontFamily: {
           alex: ['Alexandria', 'sans-serif'],
-        }
+        },
+        keyframes: {
+          'fade-in-up-custom': {
+            '0%': {
+              opacity: '0',
+              transform: 'translateY(20px)', // Starts 20px down
+            },
+            '100%': {
+              opacity: '1',
+              transform: 'translateY(0)', // Ends at original position
+            },
+          },
+        },
+        animation: {
+          'fade-in-up-custom': 'fade-in-up 0.5s ease-out forwards', // 0.5s duration, ease-out timing, stays at the end state
+        },
       }
     }
   },
