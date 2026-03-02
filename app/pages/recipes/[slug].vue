@@ -2,12 +2,15 @@
 const isPageReady = ref(false)
 const route = useRoute()
 
+// Normalize path to remove trailing slashes for accurate comparison
 const cleanPath = computed(() => route.path.replace(/\/$/, '') || '/')
 
+// 1. Fetch the specific recipe
 const { data: recipe } = await useAsyncData(`recipe-${cleanPath.value}`, () => {
   return queryCollection('recipes').path(cleanPath.value).first()
 })
 
+// 2. Fetch suggested recipes (excluding the current one)
 const { data: suggested } = await useAsyncData(`suggested-${cleanPath.value}`, () => {
   return queryCollection('recipes')
     .where('path', '<>', cleanPath.value)
@@ -15,12 +18,15 @@ const { data: suggested } = await useAsyncData(`suggested-${cleanPath.value}`, (
     .all()
 })
 
+// 3. Observer for Macros
 const macrosCard = ref(null)
+const macrosCardDesktop = ref(null)
 const isVisible = ref(false)
 const isImgModalOpen = ref(false)
 
 onMounted(() => {
   isPageReady.value = true
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -29,10 +35,13 @@ onMounted(() => {
       }
     })
   }, { threshold: 0.3 })
+
   if (macrosCard.value) observer.observe(macrosCard.value)
+  if (macrosCardDesktop.value) observer.observe(macrosCardDesktop.value)
 })
 
 const macros = computed(() => recipe.value?.meta?.macros || null)
+
 const chartData = computed(() => {
   if (!macros.value) return null
   const p = Number(macros.value.protein) || 0
@@ -40,6 +49,7 @@ const chartData = computed(() => {
   const f = Number(macros.value.fat) || 0
   const total = p + c + f
   if (total === 0) return null
+
   return {
     protein: (p / total) * 100,
     carbs: (c / total) * 100,
@@ -51,147 +61,192 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div v-if="recipe" class="min-h-screen bg-accent pb-20 pt-24 md:pt-32" dir="rtl">
-    <div :class="[isPageReady ? 'opacity-100' : 'opacity-0', 'transition-all duration-500']">
+  <div v-if="recipe" class="min-h-screen bg-accent pb-20 pt-24 lg:pt-32" dir="rtl">
+    <!-- Initial fade-in to prevent flashing -->
+    <div :class="[isPageReady ? 'opacity-100' : 'opacity-0', 'duration-500 transition-all']">
 
-      <!-- Main Container: Unlocked for Desktop -->
-      <div class="max-w-[390px] md:max-w-6xl mx-auto px-[26px] md:px-12">
+      <!-- Mobile Container (max-w-[390px]) / Desktop Container (max-w-7xl) -->
+      <div class="max-w-[390px] lg:max-w-7xl mx-auto px-[26px] lg:px-12">
 
-        <!-- Responsive Grid Wrapper -->
-        <div class="lg:flex lg:flex-row lg:gap-16 lg:items-start">
+        <!-- Desktop: Two Column Layout -->
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24">
 
-          <!-- RIGHT COLUMN (Text Content) -->
-          <div class="lg:flex-1">
-            <!-- Category Pill -->
-            <div class="flex justify-start animate-reveal-right">
+          <!-- Left Column: Image & Quick Stats (Desktop) -->
+          <div class="lg:order-2 lg:sticky lg:top-32 lg:self-start space-y-6">
+
+            <!-- Category Pill - Desktop Top Right -->
+            <div class="hidden lg:flex justify-start animate-reveal-right">
+              <span
+                class="bg-primary text-hardwhite px-6 py-2 rounded-md text-sm font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-shadow">
+                {{ recipe.meta?.category }}
+              </span>
+            </div>
+
+            <!-- Main Image - Desktop Large Version -->
+            <div
+              class="hidden lg:block relative h-[500px] xl:h-[600px] w-full bg-hardwhite/40 rounded-[16px] overflow-hidden shadow-2xl fade-in-up-custom group cursor-pointer"
+              @click="isImgModalOpen = true">
+              <img :src="recipe.meta?.image"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                alt="Recipe Image" loading="eager" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              </div>
+              <div
+                class="absolute bottom-6 right-6 left-6 text-hardwhite opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                <p class="text-sm font-medium">اضغط للتكبير</p>
+              </div>
+            </div>
+
+            <!-- Desktop: Horizontal Info Cards -->
+            <div class="hidden lg:grid grid-cols-3 gap-4 fade-in-up-custom">
+              <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الكمية', difficulty: 'المستوى' }"
+                :key="idx"
+                class="bg-hardwhite rounded-[16px] p-5 flex flex-col items-center text-center shadow-[0_0_8px_4px_rgba(0,0,0,0.05)] hover:shadow-[0_0_16px_8px_rgba(63,49,40,0.1)] transition-all duration-300 hover:-translate-y-1 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-highlight/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                  <Icon :name="idx === 0 ? 'heroicons:clock' : idx === 1 ? 'heroicons:users' : 'heroicons:signal'"
+                    class="w-6 h-6 text-highlight" />
+                </div>
+                <span class="text-sm text-graytext font-medium mb-1">{{ val }}</span>
+                <span class="text-lg text-softblack font-bold">{{ recipe.meta?.[label] }}{{ idx === 0 ? ' دقيقة' : ''
+                }}</span>
+              </div>
+            </div>
+
+            <!-- Desktop: Macros Card (Large) -->
+            <div v-if="macros && chartData" ref="macrosCardDesktop"
+              class="hidden lg:block bg-hardwhite rounded-[16px] p-8 shadow-[0px_0px_8px_4px_rgba(0,0,0,0.05)]">
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col gap-4 text-right flex-1">
+                  <h4 class="text-2xl font-black text-softblack mb-2">القيمة الغذائية</h4>
+                  <div v-for="(val, label) in { carbs: 'كربوهيدرات', protein: 'بروتين', fat: 'دهون' }" :key="label"
+                    class="flex flex-row justify-between items-center py-2 border-b border-accent last:border-0">
+                    <div class="flex items-center gap-3">
+                      <div class="w-4 h-4 rounded-full"
+                        :class="{ 'bg-[#606C38]': label === 'carbs', 'bg-[#B25B42]': label === 'protein', 'bg-[#D9B650]': label === 'fat' }">
+                      </div>
+                      <span class="text-lg font-bold"
+                        :class="{ 'text-secondary': label === 'carbs', 'text-[#B25B42]': label === 'protein', 'text-[#D9B650]': label === 'fat' }">
+                        {{ val }}
+                      </span>
+                    </div>
+                    <span class="text-xl font-bold text-primary">{{ macros[label] }} غرام</span>
+                  </div>
+                </div>
+
+                <div class="relative w-40 h-40 flex items-center justify-center mr-8">
+                  <svg viewBox="0 0 120 120" class="w-full h-full transform -rotate-90">
+                    <circle cx="60" cy="60" r="50" fill="transparent" stroke="#F9F4F3" stroke-width="10" />
+                    <circle cx="60" cy="60" r="50" fill="transparent" stroke="#B25B42" stroke-width="10"
+                      stroke-linecap="round" pathLength="100"
+                      :stroke-dasharray="isVisible ? `${chartData.protein} 100` : '0 100'" class="chart-segment" />
+                    <circle cx="60" cy="60" r="50" fill="transparent" stroke="#606C38" stroke-width="10"
+                      stroke-linecap="round" pathLength="100"
+                      :stroke-dasharray="isVisible ? `${chartData.carbs} 100` : '0 100'"
+                      :stroke-dashoffset="chartData.carbsOffset" class="chart-segment delay-200" />
+                    <circle cx="60" cy="60" r="50" fill="transparent" stroke="#D9B650" stroke-width="10"
+                      stroke-linecap="round" pathLength="100"
+                      :stroke-dasharray="isVisible ? `${chartData.fat} 100` : '0 100'"
+                      :stroke-dashoffset="chartData.fatOffset" class="chart-segment delay-500" />
+                  </svg>
+                  <div
+                    class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-1000"
+                    :class="isVisible ? 'opacity-100' : 'opacity-0'">
+                    <span class="text-3xl font-black text-softblack">{{ macros.calories }}</span>
+                    <span class="text-sm text-graytext">سعرة حرارية</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Content -->
+          <div class="lg:order-1 space-y-6 lg:space-y-8">
+
+            <!-- Mobile Category Pill -->
+            <div class="lg:hidden flex justify-start animate-reveal-right">
               <span class="bg-primary text-hardwhite px-4 py-1 rounded-md text-xs font-bold shadow-sm">
                 {{ recipe.meta?.category }}
               </span>
             </div>
 
             <!-- Title & Description -->
-            <header class="mt-4 text-right">
+            <header class="mt-4 lg:mt-0 text-right">
               <h1
-                class="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] font-black text-primary animate-reveal-right">
+                class="text-[40px] lg:text-[56px] xl:text-[64px] leading-[1.1] font-black text-primary animate-reveal-right">
                 {{ recipe.title }}
               </h1>
               <p
-                class="text-highlight mt-[26px] text-lg md:text-xl font-normal animate-reveal-right delay-100 lg:max-w-2xl">
+                class="text-highlight mt-[26px] lg:mt-8 text-lg lg:text-xl xl:text-2xl font-normal leading-relaxed animate-reveal-right delay-100">
                 {{ recipe.description }}
               </p>
             </header>
 
             <!-- Action Buttons -->
-            <div class="flex items-center gap-4 mt-8 animate-fade-in-up justify-between md:justify-start">
+            <div class="flex items-center gap-4 lg:gap-6 mt-8 animate-fade-in-up">
               <a href="#ingredients"
-                class="border-2 border-primary text-primary px-8 py-3 rounded-[6px] font-bold text-sm hover:bg-primary hover:text-hardwhite transition-all">
+                class="border-2 border-primary text-primary px-8 lg:px-10 py-3 lg:py-4 rounded-[6px] font-bold text-sm lg:text-base hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
                 انتقل للوصفة
               </a>
               <a v-if="recipe.meta?.videoUrl" :href="recipe.meta.videoUrl" target="_blank"
-                class="text-primary font-normal text-sm border-b-2 border-primary pb-0.5">
+                class="text-primary font-normal text-sm lg:text-base border-b-2 border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors relative group">
                 مشاهدة الفيديو
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary group-hover:w-full transition-all duration-300"></span>
               </a>
             </div>
 
-            <div class="w-[166px] h-[1px] bg-primary mt-8 mb-8 animate-scale-x" />
+            <!-- Divider Line -->
+            <div class="w-[166px] lg:w-[200px] h-[1px] bg-primary mt-8 mb-8 animate-scale-x" />
 
-            <!-- Info Grid (Always 3 columns) -->
-            <div class="grid grid-cols-3 gap-3 md:gap-6 fade-in-up-custom lg:max-w-lg">
+            <!-- Mobile Info Grid -->
+            <div class="lg:hidden grid grid-cols-3 gap-3 fade-in-up-custom">
               <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الكمية', difficulty: 'المستوى' }"
                 :key="idx"
-                class="bg-hardwhite rounded-[12px] p-4 flex flex-col items-center text-center shadow-[0_0_4px_2px_rgba(0,0,0,0.05)]">
+                class="bg-hardwhite rounded-[12px] p-3 flex flex-col items-center text-center shadow-[0_0_4px_2px_rgba(0,0,0,0.05)]">
                 <Icon :name="idx === 0 ? 'heroicons:clock' : idx === 1 ? 'heroicons:users' : 'heroicons:signal'"
-                  class="w-6 h-6 text-highlight mb-1" />
-                <span class="text-[10px] md:text-xs text-graytext font-normal">{{ val }}</span>
-                <span class="text-[14px] md:text-base text-softblack font-bold">{{ recipe.meta?.[label] }}{{ idx === 0 ?
-                  ' د' : '' }}</span>
+                  class="w-5 h-5 text-highlight mb-1" />
+                <span class="text-[10px] text-graytext font-normal">{{ val }}</span>
+                <span class="text-[14px] text-softblack font-normal">{{ recipe.meta?.[label] }}{{ idx === 0 ? ' د' : ''
+                }}</span>
               </div>
             </div>
 
-            <!-- Mobile Only: Image and Macros move here on mobile, but are hidden on desktop column -->
-            <div class="lg:hidden">
-              <div
-                class="mt-8 relative h-[190px] w-full bg-hardwhite/40 rounded-[8px] overflow-hidden shadow-lg group cursor-pointer"
-                @click="isImgModalOpen = true">
-                <img :src="recipe.meta?.image" class="w-full h-full object-cover" alt="Recipe Image" />
-              </div>
-              <!-- Macros inserted here for mobile flow -->
-              <div v-if="macros" class="mt-6">
-                <!-- (Macro card code same as below) -->
-              </div>
-            </div>
-
-            <!-- Ingredients Section -->
-            <section id="ingredients"
-              class="mt-12 bg-hardwhite rounded-[12px] p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
-              <h2 class="text-2xl font-bold text-primary mb-6">المقادير</h2>
-              <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <li v-for="item in recipe.meta?.ingredients" :key="item"
-                  class="flex items-center gap-3 text-highlight font-bold text-base">
-                  <div class="w-2.5 h-2.5 rounded-full bg-highlight" /> {{ item }}
-                </li>
-              </ul>
-            </section>
-
-            <!-- Preparation Steps -->
-            <section
-              class="mt-8 bg-hardwhite rounded-[12px] p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
-              <h2 class="text-2xl font-bold text-primary mb-8">طريقة التحضير</h2>
-              <div class="space-y-10">
-                <div v-for="(step, idx) in recipe.meta?.steps" :key="idx" class="flex items-start gap-6">
-                  <div
-                    class="w-8 h-8 min-w-[32px] rounded-full bg-primary text-hardwhite flex items-center justify-center text-sm font-black shadow-sm">
-                    {{ idx + 1 }}
-                  </div>
-                  <div>
-                    <h3 class="text-primary font-black text-xl mb-2">{{ step.title }}</h3>
-                    <p class="text-highlight text-base leading-relaxed font-medium">{{ step.content }}</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <!-- LEFT COLUMN (Sticky Sidebar for Image, Socials, Macros) -->
-          <div class="hidden lg:block lg:w-[420px] lg:sticky lg:top-32">
-
-            <!-- Main Image (Larger on Desktop) -->
+            <!-- Mobile Image -->
             <div
-              class="relative h-[300px] w-full bg-hardwhite/40 rounded-[12px] overflow-hidden shadow-xl group cursor-pointer"
+              class="lg:hidden relative h-[190px] w-full bg-hardwhite/40 rounded-[8px] overflow-hidden shadow-lg fade-in-up-custom group cursor-pointer"
               @click="isImgModalOpen = true">
               <img :src="recipe.meta?.image"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                alt="Recipe Image" />
-              <div
-                class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <Icon name="heroicons:magnifying-glass-plus" class="text-hardwhite w-10 h-10" />
-              </div>
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                alt="Recipe Image" loading="eager" />
             </div>
 
             <!-- Socials -->
-            <div class="mt-6 bg-hardwhite rounded-[12px] p-5 flex justify-around shadow-[0_0_4px_2px_rgba(0,0,0,0.05)]">
-              <Icon v-for="icon in ['instagram', 'youtube', 'tiktok', 'facebook']" :key="icon"
-                :name="`simple-icons:${icon}`"
-                class="w-6 h-6 text-primary hover:text-highlight cursor-pointer transition-colors" />
+            <div id="ingredients"
+              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              <a v-for="icon in ['instagram', 'youtube', 'tiktok', 'facebook']" :key="icon" href="#"
+                class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:scale-110 hover:rotate-6">
+                <Icon :name="`simple-icons:${icon}`" class="w-6 h-6 lg:w-7 lg:h-7" />
+              </a>
             </div>
 
-            <!-- Macros Card (Desktop Integrated) -->
+            <!-- Mobile Macros Card -->
             <div v-if="macros && chartData" ref="macrosCard"
-              class="mt-6 bg-hardwhite rounded-[12px] p-8 shadow-[0px_0px_4px_2px_rgba(0,0,0,0.05)] flex items-center justify-between transition-all duration-700">
-
-              <div class="flex flex-col gap-4 text-right">
-                <h4 class="text-xl font-black text-softblack">القيمة الغذائية</h4>
+              class="lg:hidden bg-hardwhite rounded-[12px] p-6 shadow-[0px_0px_4px_2px_rgba(0,0,0,0.05)] flex items-center justify-between transition-all duration-700"
+              :class="isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-4'">
+              <div class="flex flex-col gap-3 text-right">
+                <h4 class="text-xl font-black text-softblack mb-1">القيمة الغذائية</h4>
                 <div v-for="(val, label) in { carbs: 'كربوهيدرات', protein: 'بروتين', fat: 'دهون' }" :key="label"
-                  class="flex flex-row justify-between gap-6">
-                  <span class="text-base font-black"
+                  class="flex flex-row justify-between">
+                  <span class="text-[14px] font-black"
                     :class="{ 'text-secondary': label === 'carbs', 'text-[#B25B42]': label === 'protein', 'text-[#D9B650]': label === 'fat' }">
                     {{ val }}
                   </span>
-                  <span class="text-lg font-normal text-primary">{{ macros[label] }} غ</span>
+                  <span class="text-base font-normal text-primary leading-none">{{ macros[label] }} غ</span>
                 </div>
               </div>
-
-              <div class="relative w-32 h-32 flex items-center justify-center">
+              <div class="relative w-28 h-28 flex items-center justify-center mt-2">
                 <svg viewBox="0 0 120 120" class="w-full h-full transform -rotate-90">
                   <circle cx="60" cy="60" r="50" fill="transparent" stroke="#F9F4F3" stroke-width="12" />
                   <circle cx="60" cy="60" r="50" fill="transparent" stroke="#B25B42" stroke-width="12"
@@ -206,98 +261,156 @@ const chartData = computed(() => {
                     :stroke-dasharray="isVisible ? `${chartData.fat} 100` : '0 100'"
                     :stroke-dashoffset="chartData.fatOffset" class="chart-segment delay-500" />
                 </svg>
-                <div class="absolute inset-0 flex flex-col items-center justify-center pt-1">
-                  <span class="text-xl font-black text-softblack">{{ macros.calories }}</span>
-                  <span class="text-xs text-graytext font-bold">سعرة</span>
+                <div
+                  class="absolute inset-0 flex flex-col items-center justify-center pt-1 transition-opacity duration-1000"
+                  :class="isVisible ? 'opacity-100' : 'opacity-0'">
+                  <span class="text-base font-bold text-softblack leading-none">{{ macros.calories }}</span>
+                  <span class="text-sm text-graytext">سعرة</span>
                 </div>
               </div>
             </div>
 
-            <!-- Chef Tip (Desktop Position) -->
-            <section v-if="recipe.meta?.chefTip"
-              class="mt-8 relative bg-hardwhite border-[5px] border-secondary rounded-[12px] p-8">
-              <h2 class="text-xl font-bold text-secondary mb-4">نصائح الشيف</h2>
-              <div
-                class="absolute -top-5 -right-5 w-12 h-12 bg-secondary rounded-full flex items-center justify-center shadow-lg rotate-[45deg]">
-                <Icon name="heroicons:light-bulb" class="w-6 h-6 text-highlight" />
+            <!-- Ingredients -->
+            <section
+              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                المقادير
+              </h2>
+              <ul class="space-y-4">
+                <li v-for="(item) in recipe.meta?.ingredients" :key="item"
+                  class="flex items-center gap-4 text-highlight font-bold text-sm lg:text-base group cursor-default">
+                  <div
+                    class="w-3 h-3 rounded-full bg-highlight group-hover:scale-150 transition-transform duration-300" />
+                  <span class="group-hover:translate-x-2 transition-transform duration-300">{{ item }}</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- Steps -->
+            <section
+              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+                طريقة التحضير
+              </h2>
+              <div class="space-y-8 lg:space-y-10">
+                <div v-for="(step, idx) in recipe.meta?.steps" :key="idx"
+                  class="flex items-start gap-4 lg:gap-6 group relative pb-8 lg:pb-10">
+                  <div class="relative z-10">
+                    <div
+                      class="w-[28px] h-[28px] lg:w-[32px] lg:h-[32px] rounded-full bg-primary text-hardwhite flex items-center justify-center text-sm lg:text-base font-black shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
+                      {{ idx + 1 }}
+                    </div>
+                  </div>
+                  <!-- Line that stretches to next step using absolute positioning -->
+                  <div v-if="idx < recipe.meta?.steps.length - 1"
+                    class="absolute right-[14px] lg:right-[16px] top-[32px] lg:top-[36px] bottom-0 w-0.5 bg-primary/10 group-hover:bg-primary/30 transition-colors">
+                  </div>
+                  <div class="flex-1">
+                    <h3
+                      class="text-primary font-black text-lg lg:text-xl mb-2 group-hover:text-secondary transition-colors">
+                      {{ step.title }}</h3>
+                    <p class="text-highlight text-sm lg:text-base leading-relaxed font-medium whitespace-pre-line">{{
+                      step.content }}</p>
+                  </div>
+                </div>
               </div>
-              <p class="text-secondary font-medium leading-relaxed text-sm">{{ recipe.meta.chefTip }}</p>
+            </section>
+
+            <!-- Chef Tip -->
+            <section v-if="recipe.meta?.chefTip"
+              class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-hidden">
+              <div
+                class="absolute -top-6 -right-6 w-16 h-16 lg:w-20 lg:h-20 bg-secondary rounded-full flex items-center justify-center shadow-xl rotate-[45deg] hover:rotate-[90deg] transition-transform duration-500">
+                <Icon name="heroicons:light-bulb" class="w-8 h-8 lg:w-10 lg:h-10 text-highlight -rotate-[45deg]" />
+              </div>
+              <h2 class="text-xl lg:text-2xl font-bold text-secondary mb-4 mt-2">نصائح الشيف</h2>
+              <p class="text-secondary font-normal leading-relaxed text-sm lg:text-base whitespace-pre-line">{{
+                recipe.meta.chefTip }}</p>
             </section>
           </div>
-
         </div>
 
-        <!-- Suggestions (Full Width Bottom) -->
-        <!-- Suggestions Section -->
-<section class="mt-24 pb-10">
-  <h2 class="text-2xl md:text-3xl font-bold text-primary mb-10">وصفات قد تعجبك</h2>
-  
-  <!-- Scroll Container: -mx-[26px] allows edge-to-edge scrolling on mobile -->
-  <div class="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar pb-8 -mx-[26px] px-[26px] md:mx-0 md:px-0 scroll-smooth">
-    <NuxtLink 
-      v-for="item in suggested" 
-      :key="item.id" 
-      :to="item.path"
-      class="min-w-[300px] md:min-w-[340px] bg-hardwhite rounded-[15px] overflow-hidden shadow-lg flex flex-col h-[340px] transition-all hover:-translate-y-2 group"
-    >
-      <!-- Image Section (65% height) -->
-      <div class="h-[65%] w-full bg-accent/20 overflow-hidden">
-        <img 
-          :src="item.meta?.image" 
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-          :alt="item.title" 
-          loading="lazy" 
-        />
-      </div>
+        <!-- Suggestions Section - Full Width -->
+        <section class="mt-16 lg:mt-24 pb-10">
+          <h2 class="text-xl lg:text-3xl font-bold text-primary mb-8 lg:mb-10 flex items-center gap-3">
+            <span class="w-1 h-8 bg-highlight rounded-full"></span>
+            وصفات قد تعجبك
+          </h2>
 
-      <!-- Text Section -->
-      <div class="p-5 flex flex-col justify-between flex-grow text-right">
-        <!-- Title: font-black as requested -->
-        <h3 class="text-xl font-black text-softblack truncate leading-tight">
-          {{ item.title }}
-        </h3>
-
-        <!-- Metadata Icons -->
-        <div class="flex items-center justify-between">
-          <!-- Duration -->
-          <div class="flex items-center gap-2 text-graytext font-bold text-sm">
-            <Icon name="heroicons:clock" class="w-5 h-5 text-highlight" /> 
-            <span>{{ item.meta?.prepTime }} د</span>
-          </div>
-          <!-- Duration -->
-          <div class="flex items-center gap-2 text-graytext font-bold text-sm">
-            <Icon name="heroicons:users" class="w-5 h-5 text-highlight" /> 
-            <span>{{ item.meta?.servings }} أشخاص</span>
+          <!-- Desktop Grid -->
+          <div class="hidden lg:grid lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <NuxtLink v-for="(item, idx) in suggested" :key="item.id" :to="item.path"
+              class="bg-hardwhite rounded-[16px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[380px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)] group"
+              :style="{ animationDelay: `${idx * 0.1}s` }">
+              <div class="h-[60%] w-full overflow-hidden">
+                <img :src="item.meta?.image"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  :alt="item.title" loading="lazy" />
+              </div>
+              <div class="p-5 flex flex-col justify-between flex-grow">
+                <h3 class="text-lg font-black text-softblack line-clamp-2 group-hover:text-primary transition-colors">{{
+                  item.title }}</h3>
+                <div class="flex items-center justify-between mt-4 text-xs">
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.prepTime }} د</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.difficulty }}</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.servings }}</span>
+                  </div>
+                </div>
+              </div>
+            </NuxtLink>
           </div>
 
-          <!-- Difficulty -->
-          <div class="flex items-center gap-2 text-graytext font-bold text-sm">
-            <Icon name="heroicons:signal" class="w-5 h-5 text-highlight" /> 
-            <span>{{ item.meta?.difficulty }}</span>
+          <!-- Mobile Scroll -->
+          <div class="lg:hidden flex gap-5 overflow-x-auto no-scrollbar pb-8 px-1 scroll-smooth">
+            <NuxtLink v-for="item in suggested" :key="item.id" :to="item.path"
+              class="min-w-[260px] bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[290px] transition-all hover:scale-[1.02]">
+              <div class="h-[65%] w-full bg-hardwhite/50">
+                <img :src="item.meta?.image" class="w-full h-full object-cover" :alt="item.title" loading="lazy" />
+              </div>
+              <div class="p-3 pb-4 flex flex-col justify-between flex-grow">
+                <h3 class="text-lg font-black text-gray-800 truncate">{{ item.title }}</h3>
+                <div class="flex items-center justify-between mt-1">
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.prepTime }} د</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.difficulty }}</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.servings }}</span>
+                  </div>
+                </div>
+              </div>
+            </NuxtLink>
           </div>
-        </div>
-      </div>
-    </NuxtLink>
-  </div>
-</section>
-
+        </section>
       </div>
     </div>
 
     <!-- Image Modal -->
     <Transition name="fade">
       <div v-if="isImgModalOpen"
-        class="fixed inset-0 z-[100] bg-softblack/95 flex items-center justify-center p-12 backdrop-blur-md cursor-pointer"
+        class="fixed inset-0 z-[100] bg-softblack/95 flex items-center justify-center p-6 backdrop-blur-sm"
         @click="isImgModalOpen = false">
         <img :src="recipe.meta?.image"
-          class="max-w-7xl max-h-[85vh] rounded-xl shadow-2xl transition-transform animate-zoom-in" />
+          class="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-zoom-in lg:max-w-5xl" />
       </div>
     </Transition>
   </div>
 </template>
 
 <style scoped>
-/* Keeping all your existing styles exactly as they were */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -348,16 +461,40 @@ const chartData = computed(() => {
   }
 }
 
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up,
+.animate-reveal-right,
+.animate-fade-in-down,
+.animate-scale-x {
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+
 .animate-reveal-right {
-  animation: reveal-right 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: reveal-right 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .animate-scale-x {
-  animation: scale-x 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: scale-x 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.3s ease-out;
 }
 
 .delay-100 {
@@ -368,8 +505,12 @@ const chartData = computed(() => {
   animation-delay: 0.2s;
 }
 
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
 .delay-500 {
-  animation-delay: 0.45s;
+  animation-delay: 0.5s;
 }
 
 .fade-enter-active,
@@ -380,5 +521,18 @@ const chartData = computed(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .chart-segment {
+    transition: stroke-dasharray 2s cubic-bezier(0.34, 1.56, 0.64, 1), stroke-dashoffset 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
 }
 </style>

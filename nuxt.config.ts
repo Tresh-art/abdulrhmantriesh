@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devServer: {
-    port: 3000, // Change this to your desired port
-    host: '192.168.1.27'
-  },
+  // devServer: {
+  //   port: 3000, // Change this to your desired port
+  //   host: '192.168.1.27'
+  // },
   modules: [
     '@nuxt/content',
     '@nuxt/icon',
