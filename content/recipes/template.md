@@ -1,11 +1,11 @@
 ---
-title: "Et tempora aute sapi"
+title: "TEST TEMPLATE."
 category: "Qui dolor eaque aut "
 description: "Magni corrupti cons"
 videoUrl: "Est velit aut neque "
 prepTime: 10
 servings: 75
-difficulty: "Qui sed ducimus rei"
+difficulty: "رئيسي"
 image: "/food-images/S91zhLMDrnMv.jpg"
 
 macros:

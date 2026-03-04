@@ -14,7 +14,7 @@ const { data: recipe } = await useAsyncData(`recipe-${cleanPath.value}`, () => {
 const { data: suggested } = await useAsyncData(`suggested-${cleanPath.value}`, () => {
   return queryCollection('recipes')
     .where('path', '<>', cleanPath.value)
-    .limit(5)
+    .limit(3)
     .all()
 })
 
@@ -23,6 +23,7 @@ const macrosCard = ref(null)
 const macrosCardDesktop = ref(null)
 const isVisible = ref(false)
 const isImgModalOpen = ref(false)
+
 
 onMounted(() => {
   isPageReady.value = true
@@ -58,6 +59,16 @@ const chartData = computed(() => {
     fatOffset: -((p + c) / total * 100)
   }
 })
+// Function to trigger PDF Print
+const printRecipe = () => {
+  isVisible.value = true // Ensure macros are visible before printing
+  //if it is not visible, the chart will not render in the PDF, which looks unprofessional we will fix it with this:
+  //scroll down then up real quick to trigger the observer if it's not already visible
+  macrosCard.value?.classList.add('opacity-100', 'translate-y-0');
+  macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0');
+
+  window.print()
+}
 </script>
 
 <template>
@@ -75,20 +86,26 @@ const chartData = computed(() => {
           <div class="lg:order-2 lg:sticky lg:top-32 lg:self-start space-y-6">
 
             <!-- Category Pill - Desktop Top Right -->
-            <div class="hidden lg:flex justify-start animate-reveal-right">
+            <div class="hidden lg:flex justify-between animate-reveal-right">
               <span
                 class="bg-primary text-hardwhite px-6 py-2 rounded-md text-sm font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-shadow">
                 {{ recipe.meta?.category }}
               </span>
+
+              <button @click="printRecipe"
+                class="flex items-center gap-2 px-6 py-2 border-primary text-primary  rounded-[6px] font-bold text-sm lg:text-sm hover:bg-primary transition-all hover:text-hardwhite hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 no-print">
+                <Icon name="heroicons:printer" class="w-5 h-5" /> طباعة
+              </button>
             </div>
 
             <!-- Main Image - Desktop Large Version -->
             <div
               class="hidden lg:block relative h-[500px] xl:h-[600px] w-full bg-hardwhite/40 rounded-[16px] overflow-hidden shadow-2xl fade-in-up-custom group cursor-pointer"
               @click="isImgModalOpen = true">
-              <img :src="recipe.meta?.image"
+              <NuxtImg :src="recipe.meta?.image"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                alt="Recipe Image" loading="eager" />
+                alt="Recipe Image" format="webp" quality="90" width="720" loading="eager" preload
+                fetchpriority="high" />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               </div>
@@ -165,16 +182,20 @@ const chartData = computed(() => {
           <div class="lg:order-1 space-y-6 lg:space-y-8">
 
             <!-- Mobile Category Pill -->
-            <div class="lg:hidden flex justify-start animate-reveal-right">
+            <div class="lg:hidden flex justify-between animate-reveal-right">
               <span class="bg-primary text-hardwhite px-4 py-1 rounded-md text-xs font-bold shadow-sm">
                 {{ recipe.meta?.category }}
               </span>
+              <button @click="printRecipe"
+                class="flex items-center px-4 py-1 gap-2 border-primary text-primary lg:px-8 lg:py-4 rounded-[6px] font-bold text-sm lg:text-base transition-all    no-print">
+                <Icon name="heroicons:printer" class="w-5 h-5" /> طباعة
+              </button>
             </div>
 
             <!-- Title & Description -->
             <header class="mt-4 lg:mt-0 text-right">
               <h1
-                class="text-[40px] lg:text-[56px] xl:text-[64px] leading-[1.1] font-black text-primary animate-reveal-right">
+                class="text-[40px] lg:text-[56px] xl:text-[64px] leading-[1.4] font-black text-primary animate-reveal-right">
                 {{ recipe.title }}
               </h1>
               <p
@@ -182,9 +203,11 @@ const chartData = computed(() => {
                 {{ recipe.description }}
               </p>
             </header>
+            <!-- Premium Print Button -->
 
             <!-- Action Buttons -->
-            <div class="flex items-center gap-4 lg:gap-6 mt-8 animate-fade-in-up">
+            <div
+              class="flex items-center justify-between lg:justify-start gap-4 lg:gap-6 mt-8 animate-fade-in-up no-print">
               <a href="#ingredients"
                 class="border-2 border-primary text-primary px-8 lg:px-10 py-3 lg:py-4 rounded-[6px] font-bold text-sm lg:text-base hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
                 انتقل للوصفة
@@ -217,14 +240,15 @@ const chartData = computed(() => {
             <div
               class="lg:hidden relative h-[190px] w-full bg-hardwhite/40 rounded-[8px] overflow-hidden shadow-lg fade-in-up-custom group cursor-pointer"
               @click="isImgModalOpen = true">
-              <img :src="recipe.meta?.image"
+              <NuxtImg :src="recipe.meta?.image"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                alt="Recipe Image" loading="eager" />
+                alt="Recipe Image" format="webp" quality="90" width="720" loading="eager" preload
+                fetchpriority="high" />
             </div>
 
             <!-- Socials -->
             <div id="ingredients"
-              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              class="no-print bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
               <a v-for="icon in ['instagram', 'youtube', 'tiktok', 'facebook']" :key="icon" href="#"
                 class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:scale-110 hover:rotate-6">
                 <Icon :name="`simple-icons:${icon}`" class="w-6 h-6 lg:w-7 lg:h-7" />
@@ -318,10 +342,10 @@ const chartData = computed(() => {
 
             <!-- Chef Tip -->
             <section v-if="recipe.meta?.chefTip"
-              class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-hidden">
+              class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-visible">
               <div
-                class="absolute -top-6 -right-6 w-16 h-16 lg:w-20 lg:h-20 bg-secondary rounded-full flex items-center justify-center shadow-xl rotate-[45deg] hover:rotate-[90deg] transition-transform duration-500">
-                <Icon name="heroicons:light-bulb" class="w-8 h-8 lg:w-10 lg:h-10 text-highlight -rotate-[45deg]" />
+                class="no-print absolute -top-3 -right-3 w-8 h-8 lg:w-10 lg:h-10 bg-secondary rounded-full flex items-center justify-center shadow-xl rotate-45 hover:rotate-90 transition-transform duration-500 z-10">
+                <Icon name="heroicons:light-bulb" class="w-6 h-6 lg:w-8 lg:h-8 text-highlight rotate-25" />
               </div>
               <h2 class="text-xl lg:text-2xl font-bold text-secondary mb-4 mt-2">نصائح الشيف</h2>
               <p class="text-secondary font-normal leading-relaxed text-sm lg:text-base whitespace-pre-line">{{
@@ -331,37 +355,37 @@ const chartData = computed(() => {
         </div>
 
         <!-- Suggestions Section - Full Width -->
-        <section class="mt-16 lg:mt-24 pb-10">
+        <section class="mt-16 lg:mt-24 pb-10  no-print">
           <h2 class="text-xl lg:text-3xl font-bold text-primary mb-8 lg:mb-10 flex items-center gap-3">
             <span class="w-1 h-8 bg-highlight rounded-full"></span>
             وصفات قد تعجبك
           </h2>
 
           <!-- Desktop Grid -->
-          <div class="hidden lg:grid lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div class="hidden lg:grid lg:grid-cols-3  gap-6">
             <NuxtLink v-for="(item, idx) in suggested" :key="item.id" :to="item.path"
-              class="bg-hardwhite rounded-[16px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[380px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)] group"
+              class="bg-hardwhite  rounded-[16px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[380px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)] group"
               :style="{ animationDelay: `${idx * 0.1}s` }">
-              <div class="h-[60%] w-full overflow-hidden">
-                <img :src="item.meta?.image"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  :alt="item.title" loading="lazy" />
+              <div class="h-[70%] w-full overflow-hidden">
+                <NuxtImg :src="item.meta?.image" :alt="item.title" format="webp" quality="90" width="720" loading="lazy"
+                  fit="cover"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div class="p-5 flex flex-col justify-between flex-grow">
                 <h3 class="text-lg font-black text-softblack line-clamp-2 group-hover:text-primary transition-colors">{{
                   item.title }}</h3>
-                <div class="flex items-center justify-between mt-4 text-xs">
+                <div class="flex items-center justify-between mt-auto text-xs">
                   <div class="flex items-center gap-1">
                     <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
-                    <span class="text-graytext">{{ item.meta?.prepTime }} د</span>
+                    <span class="text-graytext">{{ item.meta?.prepTime }} دقائق</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.servings }} أشخاص</span>
                   </div>
                   <div class="flex items-center gap-1">
                     <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
                     <span class="text-graytext">{{ item.meta?.difficulty }}</span>
-                  </div>
-                  <div class="flex items-center gap-1">
-                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
-                    <span class="text-graytext">{{ item.meta?.servings }}</span>
                   </div>
                 </div>
               </div>
@@ -369,26 +393,27 @@ const chartData = computed(() => {
           </div>
 
           <!-- Mobile Scroll -->
-          <div class="lg:hidden flex gap-5 overflow-x-auto no-scrollbar pb-8 px-1 scroll-smooth">
+          <div class="lg:hidden flex gap-5 overflow-x-auto no-scrollbar pb-8 px-1 scroll-smooth no-print">
             <NuxtLink v-for="item in suggested" :key="item.id" :to="item.path"
-              class="min-w-[260px] bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[290px] transition-all hover:scale-[1.02]">
+              class="min-w-[280px] bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[290px] transition-all hover:scale-[1.02]">
               <div class="h-[65%] w-full bg-hardwhite/50">
-                <img :src="item.meta?.image" class="w-full h-full object-cover" :alt="item.title" loading="lazy" />
+                <NuxtImg :src="item.meta?.image" class="w-full h-full object-cover" :alt="item.title" loading="lazy"
+                  format="webp" quality="90" width="720" />
               </div>
               <div class="p-3 pb-4 flex flex-col justify-between flex-grow">
                 <h3 class="text-lg font-black text-gray-800 truncate">{{ item.title }}</h3>
                 <div class="flex items-center justify-between mt-1">
                   <div class="flex items-center gap-1">
                     <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
-                    <span class="text-xs text-graytext">{{ item.meta?.prepTime }} د</span>
+                    <span class="text-xs text-graytext">{{ item.meta?.prepTime }} دقيقة</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.servings }} أشخاص</span>
                   </div>
                   <div class="flex items-center gap-1">
                     <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
                     <span class="text-xs text-graytext">{{ item.meta?.difficulty }}</span>
-                  </div>
-                  <div class="flex items-center gap-1">
-                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
-                    <span class="text-xs text-graytext">{{ item.meta?.servings }}</span>
                   </div>
                 </div>
               </div>
@@ -403,8 +428,8 @@ const chartData = computed(() => {
       <div v-if="isImgModalOpen"
         class="fixed inset-0 z-[100] bg-softblack/95 flex items-center justify-center p-6 backdrop-blur-sm"
         @click="isImgModalOpen = false">
-        <img :src="recipe.meta?.image"
-          class="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-zoom-in lg:max-w-5xl" />
+        <NuxtImg :src="recipe.meta?.image" width="1600" format="webp" quality="80" :densities="undefined"
+          class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl animate-zoom-in" />
       </div>
     </Transition>
   </div>

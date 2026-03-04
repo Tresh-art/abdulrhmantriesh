@@ -92,7 +92,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="relative bg-primary overflow-hidden">
+    <footer class="relative bg-primary overflow-hidden no-print">
       <!-- Opacity background image -->
       <div class="absolute inset-0 bg-cover bg-center opacity-[0.04] pointer-events-none"
         style="background-image: url('/images/footer-bg.jpg')" />
@@ -114,11 +114,11 @@
           </a>
         </div>
 
-        <p class="text-hardwhite/40 text-sm">
-          © {{ currentYear }} . جميع الحقوق محفوظة.
-        </p>
-        <p class="text-hardwhite/40 text-sm mt-2">
+        <p class="text-hardwhite/40 text-sm mt-2 mb-2">
           Developed by <a href="https://www.ItsMsalati.ly" target="_blank" class="text-hardwhite">ItsMsalati</a>
+        </p>
+        <p class="text-hardwhite/40 text-sm" dir="">
+          © {{ currentYear }} جميع الحقوق محفوظة.
         </p>
       </div>
     </footer>
@@ -168,7 +168,74 @@ onMounted(() => {
   handleScroll()
 })
 </script>
+<style>
+/* PRINT STYLES - This makes it premium */
+@media print {
 
+  /* Hide UI elements that don't belong in a PDF */
+  .no-print,
+  nav,
+  footer,
+  .social-icons,
+  button,
+  #suggestions {
+    display: none !important;
+  }
+
+  /* Reset layout for paper */
+  .min-h-screen {
+    padding-top: 0 !important;
+    background-color: white !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Fix Grid for Print */
+  .lg\:grid-cols-2 {
+    display: block !important;
+  }
+
+  .lg\:sticky {
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  /* Ensure background colors and images show in PDF */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Add page margins */
+  @page {
+    margin: 1.5cm;
+  }
+
+  /* Force image size for print */
+  img {
+    max-width: 400px !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px;
+  }
+
+  /* Section breaks (prevent steps from splitting across pages) */
+  section {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    border: 1px solid #eee !important;
+    box-shadow: none !important;
+  }
+
+  h1 {
+    font-size: 32pt !important;
+    margin-bottom: 10px !important;
+  }
+}
+</style>
 <style scoped>
 /* Main Fade for Backdrop */
 .fade-enter-active,
