@@ -48,6 +48,19 @@ export default defineNuxtConfig({
       }
     }
   },
+  app: {
+    head: {
+      title: 'عبدالرحمن طريش',
+      meta: [
+        { name: 'description', content: 'عبدالرحمن طريش هو شيف ليبي محترف وصانع محتوى يقدّم نصائح ووصفات يومية. يسعى لجعل الطبخ عادة ممتعة وسهلة.' },
+        { name: 'keywords', content: 'عبدالرحمن طريش, شيف ليبي, صانع محتوى, وصفات طبخ, نصائح طبخ, طبخ ليبي' },
+        { name: 'author', content: 'عبدالرحمن طريش' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      ]
+    }
+  },
   googleFonts: {
     families: {
       Alexandria: [100, 200, 300, 400, 500, 600, 700, 800, 900]

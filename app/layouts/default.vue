@@ -26,9 +26,9 @@
 
         <!-- Desktop: Left Side (CTA Button) -->
         <div class="hidden md:block">
-          <NuxtLink to="/#contact" class="px-8 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-md"
+          <NuxtLink to="/#bio" class="px-8 py-2.5 rounded-md font-bold transition-all hover:scale-105 shadow-md"
             :class="navbarSolid || !isHomePage ? 'bg-primary text-hardwhite' : 'bg-hardwhite text-primary'">
-            تواصل معي
+            نبذة عني
           </NuxtLink>
         </div>
 

@@ -79,7 +79,7 @@ const toggleFilter = () => {
 
         <!-- Filter Toggle Button -->
         <button @click="toggleFilter" :class="isFilterOpen ? 'bg-secondary' : 'bg-primary'"
-          class="w-[15%] h-[50px] rounded-xl flex justify-center items-center text-hardwhite shadow-md transition-all active:scale-95">
+          class="w-[15%] h-[50px] rounded-md flex justify-center items-center text-hardwhite shadow-md transition-all active:scale-95">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="#fff" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -91,7 +91,7 @@ const toggleFilter = () => {
       </div>
 
       <!-- Quick Category Tabs -->
-      <div class="mt-4 pr-4 flex gap-3 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
+      <div class="mt-4 pr-4 flex gap-3 overflow-x-auto sm:no-scrollbar whitespace-nowrap pb-2 md:overflow-x-scroll">
         <button v-for="cat in categories" :key="cat" @click="selectedCategory = cat" :class="[
           'px-5 py-2 rounded-md text-sm transition-all duration-300  border-2 border-accent shadow-sm',
           selectedCategory === cat
@@ -213,7 +213,7 @@ const toggleFilter = () => {
         <!-- Drawer Footer -->
         <div class="p-6 border-t bg-hardwhite flex gap-4">
           <button @click="isFilterOpen = false"
-            class="flex-[2] bg-primary text-hardwhite py-4 rounded-2xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+            class="flex-[2] bg-primary text-hardwhite py-4 rounded-md font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all hover:bg-accent hover:text-primary hover:border-primary border-2 border-transparent ">
             عرض النتائج
           </button>
           <button @click="resetFilters"

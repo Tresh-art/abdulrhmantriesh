@@ -69,10 +69,6 @@ const isValid = computed(() => {
         prepTime.value &&
         servings.value &&
         difficulty.value &&
-        // calories.value &&
-        // protein.value &&
-        // carbs.value &&
-        // fat.value &&
         ingredients.value.filter(i => i.trim() !== '').length > 0 &&
         steps.value.filter(s => s.title && s.content).length > 0
     )
@@ -213,7 +209,7 @@ function confirmData() {
             <!-- CONFIRM BUTTON -->
             <button @click="confirmData" :disabled="!isValid" :class="[
                 'w-full p-3 my-6 rounded-lg font-semibold bg-primary text-hardwhite transition-colors',
-                isValid.value? 'bg-primary hover:bg-primary-dark' : 'bg-gray-600 cursor-not-allowed'
+                isValid.value? 'bg-primary hover:bg-primary-dark' : 'bg-gray-600'
             ]">
                 تأكيد و صنع ملف ماركداون
             </button>
@@ -221,10 +217,10 @@ function confirmData() {
             <!-- OUTPUT -->
             <div v-if="confirmed">
                 <h2 class="text-lg font-semibold text-primary mt-6 mb-2">
-                    Copy This Markdown
+                    إنسخه و إستعمله:
                 </h2>
-                <textarea :value="markdownOutput" rows="20" readonly
-                    class="w-full p-3 rounded-lg bg-hardwhite text-accent text-sm mb-12 h-full" />
+                <textarea :value="markdownOutput" rows="20" readonly dir="ltr"
+                    class="w-full p-3 text-left rounded-lg bg-hardwhite text-softblack text-sm mb-12 h-full" />
             </div>
 
         </div>
