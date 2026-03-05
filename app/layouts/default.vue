@@ -77,7 +77,7 @@
           <div class="flex justify-center gap-8 mt-auto pb-10">
             <a v-for="social in socialLinks" :key="social.name" :href="social.url"
               class="text-hardwhite hover:scale-125 transition-transform">
-              <Icon :name="social.icon" class="w-7 h-7 text-primary/30" />
+              <Icon :name="social.icon" class="w-7 h-7 text-primary/80" />
             </a>
           </div>
         </aside>
@@ -95,9 +95,9 @@
     <footer class="relative bg-primary overflow-hidden no-print">
       <!-- Opacity background image -->
       <div class="absolute inset-0 bg-cover bg-center opacity-[0.04] pointer-events-none"
-        style="background-image: url('/images/footer-bg.jpg')" />
+        style="background-image: url('/footer/footer.png')" />
 
-      <div class="relative z-10 py-16 pb-6 px-6 md:px-12 flex flex-col items-center text-center">
+      <div class="relative z-10 py-16 pb-2 px-6 md:px-12 flex flex-col items-center text-center">
         <nav class="flex flex-col flex-wrap justify-center gap-8 mb-8">
           <NuxtLink v-for="link in menuLinks" :key="link.to" :to="link.to"
             class="text-hardwhite/90 font-bold hover:text-highlight transition-colors">
@@ -110,14 +110,15 @@
         <div class="flex items-center gap-6 mb-8">
           <a v-for="social in socialLinks" :key="social.name" :href="social.url"
             class="text-hardwhite hover:scale-125 transition-transform">
-            <Icon :name="social.icon" class="w-6 h-6 text-hardwhite" />
+            <Icon :name="social.icon" class="w-6 h-6 text-hardwhite hover:text-highlight" />
           </a>
         </div>
 
         <p class="text-hardwhite/40 text-sm mt-2 mb-2">
-          Developed by <a href="https://www.ItsMsalati.ly" target="_blank" class="text-hardwhite">ItsMsalati</a>
+          Developed by <a href="https://www.ItsMsalati.ly" target="_blank"
+            class="text-hardwhite hover:text-highlight transition-colors">ItsMsalati</a>
         </p>
-        <p class="text-hardwhite/40 text-sm" dir="">
+        <p class="text-hardwhite text-sm" dir="">
           © {{ currentYear }} جميع الحقوق محفوظة.
         </p>
       </div>

@@ -200,7 +200,7 @@ const toggleFilter = () => {
               <span class="text-primary font-bold">{{ filters.servings }} أشخاص</span>
             </div>
             <input v-model.number="filters.servings" type="range" min="1" max="20" step="1"
-              class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+              class="w-full h-2 bg-primary/10 rounded-lg appearance-none cursor-pointer accent-primary">
             <div class="flex justify-between text-[10px] text-gray-400">
               <span>1 أشخاص</span>
               <span>20 أشخاص</span>
