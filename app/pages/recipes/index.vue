@@ -111,7 +111,7 @@ const toggleFilter = () => {
         <span class="text-gray-400 text-sm mb-2">{{ filteredRecipes.length }} وصفة موجودة</span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
         <NuxtLink v-for="recipe in filteredRecipes" :key="recipe.id" :to="recipe.path"
           class="bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.08)] flex flex-col h-[300px] transition-transform duration-300 hover:translate-y-[-4px]">
           <div class="h-[60%] w-full relative">
@@ -281,4 +281,15 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
+/* Custom animations */
+.animate-fade-in-up {
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 </style>
