@@ -6,7 +6,7 @@ videoUrl: "https://www.youtube.com/watch?v=example4"
 prepTime: 40
 servings: 10
 difficulty: "متوسط"
-image: "https://images.unsplash.com/photo-1517427294546-5aa121f68e8a?auto=format&fit=crop&w=800&q=80"
+image: /food-images/Ku123sfQQ.jpg
 
 macros:
   calories: 450

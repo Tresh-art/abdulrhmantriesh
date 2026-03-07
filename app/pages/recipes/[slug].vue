@@ -353,8 +353,8 @@ const socialLinks = [
             <section v-if="recipe.meta?.chefTip"
               class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-visible">
               <div
-                class="no-print absolute -top-3 -right-3 w-8 h-8 lg:w-10 lg:h-10 bg-secondary rounded-full flex items-center justify-center shadow-xl rotate-45 hover:rotate-90 transition-transform duration-500 z-10">
-                <Icon name="heroicons:light-bulb" class="w-6 h-6 lg:w-8 lg:h-8 text-highlight rotate-25" />
+                class="no-print absolute -top-3 -right-3 w-8 h-8 lg:w-10 lg:h-10 bg-secondary rounded-full flex items-center justify-center  hover:rotate-[360deg]  transition-transform duration-500 z-10">
+                <Icon name="tresh-icon:lightbulb" class="w-6 h-6 lg:w-8 lg:h-8 text-highlight hover:scale-125 transition-all  duration-300" />
               </div>
               <h2 class="text-xl lg:text-2xl font-bold text-secondary mb-4 mt-2">نصائح الشيف</h2>
               <p class="text-secondary font-normal leading-relaxed text-sm lg:text-base whitespace-pre-line">{{

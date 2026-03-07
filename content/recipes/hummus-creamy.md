@@ -6,13 +6,13 @@ videoUrl: "https://www.youtube.com/watch?v=example2"
 prepTime: 15
 servings: 6
 difficulty: "سهل"
-image: "https://www.smartpack-eg.com/rec/upload/8f224763c686b8917ebe1245f55e521c.jpg"
+image: /food-images/crGE234alk.jpg
 
 macros:
-  calories: 166
-  protein: 8
-  carbs: 14
-  fat: 10
+  calories: 
+  protein: 
+  carbs: 
+  fat: 
 
 ingredients:
   - "علبتين حمص مسلوق"

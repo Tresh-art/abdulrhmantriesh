@@ -6,7 +6,7 @@ videoUrl: "https://www.youtube.com/watch?v=a4sVBmG-yxU"
 prepTime: 12
 servings: 4
 difficulty: "صعب"
-image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6876b0b9008c38e183909b6d_Screenshot%202025-07-15%20at%2012.19.38%E2%80%AFPM-p-2000.png"
+image: /food-images/aElqt1315.jpg
 
 macros:
   calories: 1205
@@ -20,18 +20,18 @@ ingredients:
   - "Sit quos ut accusamu"
   - "Inventore corrupti "
 
-steps:
-  - title: "Sed ad praesentium e"
+ssteps:
+  - title: "تحضير الدجاج"
     content: |
-      Dicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatiditatDicta quis cupiditatDicta quis cupiditat
+      يُقلى البصل مع البهارات الصحيحة ثم يضاف الدجاج ويُقلب حتى يتغير لونه.
 
-  - title: "Deserunt elit dolor"
+  - title: "طهي الأرز"
     content: |
-      Laudantium libero n
+      يضاف الماء المغلي ويترك الدجاج حتى ينضج، ثم يرفع ويضاف الأرز للمرق.
 
-  - title: "Ut libero fuga Enim"
+  - title: "التقديم"
     content: |
-      Voluptas sed cum seq
+      يوضع الأرز في طبق واسع وفوقه الدجاج المحمر ويزين بالمكسرات.
 
 chefTip: |
   حافظ على حرارة منخفضة وهادئة؛ فالتسرع سيجعل البصل يحترق بدلاً من أن  يتكرمل. الحرارة الهادئة والصبر يمنحانك نكهة حلوة خالية من أي مرارة.

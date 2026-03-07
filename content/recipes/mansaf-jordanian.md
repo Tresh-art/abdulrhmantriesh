@@ -6,7 +6,7 @@ videoUrl: "https://www.youtube.com/watch?v=example3"
 prepTime: 120
 servings: 8
 difficulty: "صعب"
-image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80"
+image: /food-images/ManW1321s.jpg
 
 macros:
   calories: 820

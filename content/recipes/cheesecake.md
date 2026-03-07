@@ -6,7 +6,7 @@ videoUrl: "https://www.youtube.com/watch?v=a4sVBmG-yxU"
 prepTime: 140
 servings: 20
 difficulty: "صعب"
-image: "https://cdn.prod.website-files.com/6744d2d124649f6ecd466f50/6876a2bf79b2f8a39a0bf139_Screenshot%202025-07-15%20at%2011.49.28%E2%80%AFAM.png"
+image: /food-images/qoif311fija.webp
 
 macros:
   calories: 1205
@@ -21,17 +21,29 @@ ingredients:
   - "Inventore corrupti "
 
 steps:
-  - title: "Sed ad praesentium e"
+  - title: "تحضير المكونات"
     content: |
-      Dicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatDicta quis cupiditatiditatDicta quis cupiditatDicta quis cupiditat
+      تُغسل الخضروات جيداً وتُقطع إلى قطع متوسطة لتكون جاهزة للطهي.
 
-  - title: "Deserunt elit dolor"
+  - title: "التسخين الأولي"
     content: |
-      Laudantium libero n
+      تُسخن المقلاة على نار متوسطة ويُضاف القليل من الزيت حتى يصبح ساخناً.
 
-  - title: "Ut libero fuga Enim"
+  - title: "بداية الطهي"
     content: |
-      Voluptas sed cum seq
+      تُضاف المكونات الأساسية إلى المقلاة وتُقلب لمدة دقيقتين حتى تبدأ الروائح بالظهور.
+
+  - title: "إضافة النكهة"
+    content: |
+      تُضاف التوابل والملح حسب الرغبة ويُقلب الخليط جيداً حتى تتوزع النكهات.
+
+  - title: "لمسة السوائل"
+    content: |
+      يُضاف القليل من الماء أو المرق ليساعد على امتزاج المكونات ويمنع الالتصاق.
+
+  - title: "الطهي الهادئ"
+    content: |
+      تُخفف النار ويُترك الطبق لعدة دقائق حتى تنضج المكونات ويتماسك القوام.
 
 chefTip: |
   حافظ على حرارة منخفضة وهادئة؛ فالتسرع سيجعل البصل يحترق بدلاً من أن  يتكرمل. الحرارة الهادئة والصبر يمنحانك نكهة حلوة خالية من أي مرارة.

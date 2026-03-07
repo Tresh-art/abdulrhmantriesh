@@ -6,7 +6,7 @@ videoUrl: "https://www.youtube.com/watch?v=example1"
 prepTime: 60
 servings: 4
 difficulty: "متوسط"
-image: "https://static.webteb.net/images/content/ramadanrecipe_recipe_567_4506e8061f3-6b84-4a2d-a649-8fabd0cd768c.jpg"
+image: /food-images/KabQ2315.jpg
 
 macros:
   calories: 550
