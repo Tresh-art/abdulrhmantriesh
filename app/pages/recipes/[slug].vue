@@ -69,6 +69,12 @@ const printRecipe = () => {
 
   window.print()
 }
+const socialLinks = [
+  { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@abdalrhmantresh', icon: 'simple-icons:youtube' },
+  { name: 'Facebook', url: 'https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr', icon: 'simple-icons:facebook' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi ', icon: 'simple-icons:tiktok' }
+]
 </script>
 
 <template>
@@ -122,7 +128,8 @@ const printRecipe = () => {
                 class="bg-hardwhite rounded-[16px] p-5 flex flex-col items-center text-center shadow-[0_0_8px_4px_rgba(0,0,0,0.05)] hover:shadow-[0_0_16px_8px_rgba(63,49,40,0.1)] transition-all duration-300 hover:-translate-y-1 group">
                 <div
                   class="w-12 h-12 rounded-full bg-highlight/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <Icon :name="idx === 0 ? 'heroicons:clock' : idx === 1 ? 'heroicons:users' : 'heroicons:signal'"
+                  <Icon
+                    :name="idx === 0 ? 'tresh-icon:time-icon' : idx === 1 ? 'tresh-icon:people-icon' : 'tresh-icon:diff-icon'"
                     class="w-6 h-6 text-highlight" />
                 </div>
                 <span class="text-sm text-graytext font-medium mb-1">{{ val }}</span>
@@ -228,7 +235,8 @@ const printRecipe = () => {
               <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الكمية', difficulty: 'المستوى' }"
                 :key="idx"
                 class="bg-hardwhite rounded-[12px] p-3 flex flex-col items-center text-center shadow-[0_0_4px_2px_rgba(0,0,0,0.05)]">
-                <Icon :name="idx === 0 ? 'heroicons:clock' : idx === 1 ? 'heroicons:users' : 'heroicons:signal'"
+                <Icon
+                  :name="idx === 0 ? 'tresh-icon:time-icon' : idx === 1 ? 'tresh-icon:people-icon' : 'tresh-icon:diff-icon'"
                   class="w-5 h-5 text-highlight mb-1" />
                 <span class="text-[10px] text-graytext font-normal">{{ val }}</span>
                 <span class="text-[14px] text-softblack font-normal">{{ recipe.meta?.[label] }}{{ idx === 0 ? ' د' : ''
@@ -249,9 +257,10 @@ const printRecipe = () => {
             <!-- Socials -->
             <div id="ingredients"
               class="no-print bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
-              <a v-for="icon in ['instagram', 'youtube', 'tiktok', 'facebook']" :key="icon" href="#"
-                class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:scale-110 hover:rotate-6">
-                <Icon :name="`simple-icons:${icon}`" class="w-6 h-6 lg:w-7 lg:h-7" />
+              <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank"
+                rel="noopener noreferrer"
+                class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-sm">
+                <Icon :name="social.icon" class="w-6 h-6 lg:w-7 lg:h-7" />
               </a>
             </div>
 
@@ -376,16 +385,16 @@ const printRecipe = () => {
                   item.title }}</h3>
                 <div class="flex items-center justify-between mt-auto text-xs">
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
+                    <Icon name="tresh-icon:time-icon" class="w-4 h-4 text-highlight" />
                     <span class="text-graytext">{{ item.meta?.prepTime }} دقائق</span>
                   </div>
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
-                    <span class="text-graytext">{{ item.meta?.servings }} أشخاص</span>
+                    <Icon name="tresh-icon:diff-icon" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.difficulty }}</span>
                   </div>
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
-                    <span class="text-graytext">{{ item.meta?.difficulty }}</span>
+                    <Icon name="tresh-icon:people-icon" class="w-4 h-4 text-highlight" />
+                    <span class="text-graytext">{{ item.meta?.servings }} أشخاص</span>
                   </div>
                 </div>
               </div>
@@ -404,16 +413,16 @@ const printRecipe = () => {
                 <h3 class="text-lg font-black text-gray-800 truncate">{{ item.title }}</h3>
                 <div class="flex items-center justify-between mt-1">
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:clock" class="w-4 h-4 text-highlight" />
+                    <Icon name="tresh-icon:time-icon" class="w-4 h-4 text-highlight" />
                     <span class="text-xs text-graytext">{{ item.meta?.prepTime }} دقيقة</span>
                   </div>
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:users" class="w-4 h-4 text-highlight" />
-                    <span class="text-xs text-graytext">{{ item.meta?.servings }} أشخاص</span>
+                    <Icon name="tresh-icon:diff-icon" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.difficulty }}</span>
                   </div>
                   <div class="flex items-center gap-1">
-                    <Icon name="heroicons:signal" class="w-4 h-4 text-highlight" />
-                    <span class="text-xs text-graytext">{{ item.meta?.difficulty }}</span>
+                    <Icon name="tresh-icon:people-icon" class="w-4 h-4 text-highlight" />
+                    <span class="text-xs text-graytext">{{ item.meta?.servings }} أشخاص</span>
                   </div>
                 </div>
               </div>

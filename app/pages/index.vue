@@ -4,9 +4,9 @@
     <!-- HERO SECTION -->
     <section class="relative lg:h-fit h-auto w-full overflow-hidden">
       <!-- Optimized Hero Image -->
-      <picture>
+      <picture style="display: block; min-height: 680px;" class="w-full">
         <source media="(min-width: 640px)" srcset="/abdu-upscaled.png">
-        <NuxtImg src="/abdu.png" alt="Chef Abdu" class=" w-full h-[680px] md:h-full object-cover object-center"
+        <NuxtImg src="/abdu.png" alt="Chef Abdu" class="w-full h-[680px] md:h-full object-cover object-center"
           placeholder format="webp" quality="100" />
       </picture>
 
@@ -29,19 +29,18 @@
     <section class="py-6 border-b border-graytext/20 bg-hardwhite lg:h-24">
       <div class="container mx-auto px-4 flex justify-center items-center gap-8">
 
-        <span class="font-bold text-softblack text-lg lg:text-2xl">متواجد على</span>
         <div class="flex gap-6 items-center">
-          <a href="#" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr" class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:instagram" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a href="#" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh" class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:youtube" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a href="#" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi " class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="fa6-brands:tiktok"
               class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a href="#" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr" class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:facebook" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
         </div>
@@ -84,16 +83,16 @@
             </h3>
             <div class="flex items-center justify-between mt-4 text-xs">
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:clock" class="w-5 h-5 text-highlight" />
+                <Icon name="tresh-icon:time-icon" class="w-5 h-5 text-highlight" />
                 <span class="text-graytext">{{ item.meta?.prepTime }} دقائق</span>
               </div>
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:users" class="w-5 h-5 text-highlight" />
-                <span class="text-graytext">{{ item.meta?.servings }} أشخاص</span>
+                <Icon name="tresh-icon:diff-icon" class="w-5 h-5 text-highlight" />
+                <span class="text-graytext">{{ item.meta?.difficulty }}</span>
               </div>
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:signal" class="w-5 h-5 text-highlight" />
-                <span class="text-graytext">{{ item.meta?.difficulty }}</span>
+                <Icon name="tresh-icon:people-icon" class="w-5 h-5 text-highlight" />
+                <span class="text-graytext">{{ item.meta?.servings }} أشخاص</span>
               </div>
             </div>
           </div>
@@ -108,51 +107,89 @@
         loading="lazy" format="webp" quality="50" />
       <div
         class="relative z-10 container mx-2 px-0 md:px-[24px] lg:px-[60px] flex flex-row md:flex-row items-center justify-between ">
-        <h2 class="text-hardwhite text-center  text-[52px] md:text-[92px] font-bold leading-12  whitespace-nowrap w-1/2">
+        <h2
+          class="text-hardwhite text-center  text-[52px] md:text-[92px] font-bold leading-12  whitespace-nowrap w-1/2">
           نبذة <br class="block md:block lg:hidden">عنـي
         </h2>
-        <p class="text-hardwhite text-right md:text-center text-md md:text-3xl md:leading-relaxed leading-relaxed font-light  w-1/2">
+        <p
+          class="text-hardwhite text-right md:text-center text-md md:text-3xl md:leading-relaxed leading-relaxed font-light  w-1/2">
           شيف ليبي محترف وصانع محتوى يقدّم نصائح ووصفات يومية.<br> يسعى يجعل الطبخ عادة ممتعة وسهلة. </p>
       </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section class="w-full py-20 md:h-[849px] flex items-center">
-      <div class="container mx-auto px-6 md:px-[82px] flex flex-col md:flex-row items-center justify-between gap-12">
-        <h2 class="text-softblack text-[42px] md:text-[42px] font-black leading-none whitespace-nowrap">
-          تواصل معي
+    <!-- CONTACT SECTION -->
+    <section class="relative bg-hardwhite w-full py-20 h-[310px] md:h-[500px] flex items-center overflow-hidden"
+      dir="rtl">
+
+      <div class="relative z-10 container mx-auto px-4 md:px-[60px] flex flex-row items-center justify-between">
+
+        <!-- RIGHT SIDE: HEADING (Identical to About Section) -->
+        <h2 class="text-primary text-center text-[52px] md:text-[92px] font-bold leading-tight whitespace-nowrap w-1/2">
+          <span class="relative inline-block">
+            تواصل
+            <!-- This is the line -->
+            <span
+              class="absolute -bottom-1 md:-bottom-2 left-1/2 -translate-x-1/2 w-[40%] h-[4px] md:h-[8px] bg-primary rounded-full"></span>
+          </span>
+          <br class="block md:block">
+          معـي
         </h2>
-        <div class="flex flex-col gap-6 text-right w-full md:w-auto">
-          <h3 class="text-softblack text-3xl md:text-5xl font-bold mb-4">للتواصل او الاعلان</h3>
-          <div class="flex items-center gap-4 text-2xl md:text-3xl text-softblack group cursor-pointer">
-            <Icon name="heroicons:phone" class="text-highlight w-10 h-10" />
-            <span class="dir-ltr">08911231314</span>
+
+        <!-- LEFT SIDE: CONTACT DETAILS (Aligned to the Left) -->
+        <div class="w-1/2 flex flex-col items-start lg:items-center" dir="ltr">
+          <!-- dir="ltr" here ensures Icon is on the left and text flows to the right, 
+           and items-start pushes the whole block to the visual left of the screen -->
+
+          <div class="w-full text-right mb-4 md:mb-8">
+            <h3 class="text-primary text-lg md:text-4xl font-bold lg:text-center" dir="rtl">للتواصل او الاعلان</h3>
           </div>
-          <div class="flex items-center gap-4 text-2xl md:text-3xl text-softblack group cursor-pointer">
-            <Icon name="heroicons:envelope" class="text-highlight w-10 h-10" />
-            <span>myemail@gmail.com</span>
+
+          <div class="flex flex-col gap-3 md:gap-6 justify-center align-items-center">
+            <!-- Phone Link: [Icon] [Item] -->
+            <a href="tel:+905013681310" class="flex items-center gap-3 md:gap-4 group">
+              <div class="p-2 md:p-3   transition-all duration-300">
+                <Icon name="heroicons:phone" class="text-primary w-5 h-5 md:w-8 md:h-8" />
+              </div>
+              <span class="text-softblack text-sm md:text-2xl font-medium tracking-wider">
+                +90 501 368 13 10
+              </span>
+            </a>
+
+            <!-- Email Link: [Icon] [Item] -->
+            <a href="mailto:abdulrhmantriesh@gmail.com" class="flex items-center gap-3 md:gap-4 group">
+              <div class="p-2 md:p-3   transition-all duration-300">
+                <Icon name="heroicons:envelope" class="text-primary w-5 h-5 md:w-8 md:h-8" />
+              </div>
+              <span class="text-softblack text-sm md:text-2xl font-medium break-all md:break-normal">
+                abdulrhmantriesh@gmail.com
+              </span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER SOCIALS -->
-    <footer class="py-12 border-t border-graytext/20">
-      <div class="flex justify-center gap-10">
-        <a href="#" class="text-softblack hover:text-highlight transition-all scale-125">
-          <Icon name="uil:instagram" />
-        </a>
-        <a href="#" class="text-softblack hover:text-highlight transition-all scale-125">
-          <Icon name="uil:youtube" />
-        </a>
-        <a href="#" class="text-softblack hover:text-highlight transition-all scale-125">
-          <Icon name="fa6-brands:tiktok" />
-        </a>
-        <a href="#" class="text-softblack hover:text-highlight transition-all scale-125">
-          <Icon name="uil:facebook" />
-        </a>
+    <!-- SOCIAL MEDIA SECTION (Immediately Beneath) -->
+    <section class="py-6 border-b border-graytext/20 bg-hardwhite lg:h-24">
+      <div class="container mx-auto px-4 flex justify-center items-center gap-8">
+        <div class="flex gap-6 items-center">
+          <a target="_blank" href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr" class="text-primary hover:text-primary transition-all hover:scale-125">
+            <Icon name="uil:instagram" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
+          </a>
+          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh" class="text-primary hover:text-primary transition-all hover:scale-125">
+            <Icon name="uil:youtube" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
+          </a>
+          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi" class="text-primary hover:text-primary transition-all hover:scale-125">
+            <Icon name="fa6-brands:tiktok"
+              class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
+          </a>
+          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr" class="text-primary hover:text-primary transition-all hover:scale-125">
+            <Icon name="uil:facebook" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
+          </a>
+        </div>
       </div>
-    </footer>
+    </section>
 
   </div>
 </template>

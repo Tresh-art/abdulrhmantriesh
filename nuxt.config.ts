@@ -57,9 +57,17 @@ export default defineNuxtConfig({
         { name: 'author', content: 'عبدالرحمن طريش' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+        { rel: 'icon', type: 'image/png', href: '/favicon.ico' }
       ]
     }
+  },
+  icon: {
+    customCollections: [
+      {
+        prefix: 'tresh-icon',
+        dir: './app/assets/tresh-icon', 
+      },
+    ]
   },
   googleFonts: {
     families: {

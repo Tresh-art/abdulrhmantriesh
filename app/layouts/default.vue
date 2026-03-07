@@ -75,7 +75,7 @@
 
           <!-- Socials at bottom of menu -->
           <div class="flex justify-center gap-8 mt-auto pb-10">
-            <a v-for="social in socialLinks" :key="social.name" :href="social.url"
+            <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank"
               class="text-hardwhite hover:scale-125 transition-transform">
               <Icon :name="social.icon" class="w-7 h-7 text-primary/80" />
             </a>
@@ -108,7 +108,7 @@
         <div class="w-12 h-1 bg-highlight/40 rounded-full mb-8" />
 
         <div class="flex items-center gap-6 mb-8">
-          <a v-for="social in socialLinks" :key="social.name" :href="social.url"
+          <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank"
             class="text-hardwhite hover:scale-125 transition-transform">
             <Icon :name="social.icon" class="w-6 h-6 text-hardwhite hover:text-highlight" />
           </a>
@@ -142,10 +142,10 @@ const menuLinks = [
 ]
 
 const socialLinks = [
-  { name: 'Instagram', url: '#', icon: 'simple-icons:instagram' },
-  { name: 'YouTube', url: '#', icon: 'simple-icons:youtube' },
-  { name: 'facebook', url: '#', icon: 'simple-icons:facebook' },
-  { name: 'TikTok', url: '#', icon: 'simple-icons:tiktok' }
+  { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@abdalrhmantresh', icon: 'simple-icons:youtube' },
+  { name: 'facebook', url: 'https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr', icon: 'simple-icons:facebook' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi ', icon: 'simple-icons:tiktok' }
 ]
 
 const currentYear = new Date().getFullYear()

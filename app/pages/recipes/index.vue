@@ -108,7 +108,7 @@ const toggleFilter = () => {
       <hr class="border-gray-100 my-4">
       <div class="flex justify-between items-end my-6">
         <h2 class="text-[32px] font-bold text-primary">الوصفات</h2>
-        <span class="text-gray-400 text-sm mb-2">{{ filteredRecipes.length }} وصفة موجودة</span>
+        <span class="text-gray-400 text-sm mb-2">{{ filteredRecipes.length }} وصفات موجودة</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
@@ -126,15 +126,15 @@ const toggleFilter = () => {
             <h3 class="text-lg font-bold text-gray-800 truncate">{{ recipe.title }}</h3>
             <div class="flex items-center justify-between mt-auto">
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:clock" class="w-4 h-4 text-primary opacity-70" />
+                <Icon name="tresh-icon:time-icon" class="w-4 h-4 text-primary opacity-70" />
                 <span class="text-xs text-gray-500 font-medium">{{ recipe.meta?.prepTime }} دقيقة</span>
               </div>
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:bolt" class="w-4 h-4 text-primary opacity-70" />
+                <Icon name="tresh-icon:diff-icon" class="w-4 h-4 text-primary opacity-70" />
                 <span class="text-xs text-gray-500 font-medium">{{ recipe.meta?.difficulty }}</span>
               </div>
               <div class="flex items-center gap-1">
-                <Icon name="heroicons:users" class="w-4 h-4 text-primary opacity-70" />
+                <Icon name="tresh-icon:people-icon" class="w-4 h-4 text-primary opacity-70" />
                 <span class="text-xs text-gray-500 font-medium">{{ recipe.meta?.servings }} أشخاص</span>
               </div>
             </div>
