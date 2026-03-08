@@ -1,8 +1,12 @@
 <script setup>
 // Fetching using the Collections API
 const { data: recipes } = await useAsyncData('recipes', () => {
-  return queryCollection('recipes').all()
+  return queryCollection('recipes')
+    .order('date', 'DESC') // Sort by date in descending order
+    .all()
 })
+
+
 
 const searchQuery = ref('');
 const selectedCategory = ref('الكل');

@@ -7,6 +7,7 @@ prepTime: 40
 servings: 10
 difficulty: "متوسط"
 image: /food-images/Ku123sfQQ.jpg
+date: "2023-03-20"
 
 macros:
   calories: 450

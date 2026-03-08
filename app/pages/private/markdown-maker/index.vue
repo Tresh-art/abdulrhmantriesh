@@ -77,6 +77,17 @@ const isValid = computed(() => {
 /* ---------------- MARKDOWN GENERATION ---------------- */
 
 const markdownOutput = computed(() => {
+    const now = new Date();
+
+    const formattedDate = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Africa/Tripoli',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(now);
+
+
+
     if (!confirmed.value) return ''
 
     return `---
@@ -88,6 +99,7 @@ prepTime: ${prepTime.value}
 servings: ${servings.value}
 difficulty: "${difficulty.value}"
 image: "/food-images/${suggestedImageName.value}"
+date: "${formattedDate}"
 
 macros:
   calories: ${calories.value}
@@ -209,7 +221,7 @@ function confirmData() {
             <!-- CONFIRM BUTTON -->
             <button @click="confirmData" :disabled="!isValid" :class="[
                 'w-full p-3 my-6 rounded-lg font-semibold bg-primary text-hardwhite transition-colors',
-                isValid.value? 'bg-primary hover:bg-primary-dark' : 'bg-gray-600'
+                isValid.value ? 'bg-primary hover:bg-primary-dark' : 'bg-gray-600'
             ]">
                 تأكيد و صنع ملف ماركداون
             </button>

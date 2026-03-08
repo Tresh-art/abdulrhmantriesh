@@ -7,6 +7,7 @@ prepTime: 120
 servings: 8
 difficulty: "صعب"
 image: /food-images/ManW1321s.jpg
+date: "2024-03-20"
 
 macros:
   calories: 820
