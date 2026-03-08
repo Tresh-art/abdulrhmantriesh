@@ -7,6 +7,7 @@ prepTime: 60
 servings: 4
 difficulty: "متوسط"
 image: /food-images/KabQ2315.jpg
+date: "2025-03-26"
 
 macros:
   calories: 550

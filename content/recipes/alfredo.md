@@ -1,5 +1,5 @@
 ---
-title: "كيكة شوكلاته صحية 44غ بروتين"
+title: "تشيكن ألفريدو إيطالي"
 category: "صحية"
 description: "أحسن تشيكن ألفريدو ساهل و سريع و ماكروز مش هلبا."
 videoUrl: "https://www.youtube.com/watch?v=a4sVBmG-yxU"
@@ -7,6 +7,7 @@ prepTime: 12
 servings: 4
 difficulty: "متوسط"
 image: /food-images/aElqt1315.jpg
+date: "2025-03-20"
 
 macros:
   calories: 1205

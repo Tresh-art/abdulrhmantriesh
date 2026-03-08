@@ -7,6 +7,7 @@ prepTime: 140
 servings: 20
 difficulty: "صعب"
 image: /food-images/qoif311fija.webp
+date: "2025-02-20"
 
 macros:
   calories: 1205

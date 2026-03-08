@@ -7,6 +7,7 @@ prepTime: 25
 servings: 4
 difficulty: "سهل"
 image: /food-images/tAbw12451.jpg
+date: "2025-08-20"
 
 macros:
   calories: 120

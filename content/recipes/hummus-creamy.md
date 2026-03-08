@@ -7,6 +7,7 @@ prepTime: 15
 servings: 6
 difficulty: "سهل"
 image: /food-images/crGE234alk.jpg
+date: "2025-01-20"
 
 macros:
   calories: 

@@ -7,7 +7,7 @@
       <picture style="display: block; min-height: 680px;" class="w-full">
         <source media="(min-width: 640px)" srcset="/abdu-upscaled.png">
         <NuxtImg src="/abdu.png" alt="Chef Abdu" class="w-full h-[680px] md:h-full object-cover object-center"
-          placeholder format="webp" quality="100" />
+          placeholder format="webp" quality="100" :preload="{ fetchPriority: 'high' }" />
       </picture>
 
       <!-- Gradient Overlay (Bottom #000 to Top #fff @ 20% opacity) -->
@@ -30,17 +30,22 @@
       <div class="container mx-auto px-4 flex justify-center items-center gap-8">
 
         <div class="flex gap-6 items-center">
-          <a target="_blank" href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank"
+            href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr"
+            class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:instagram" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh"
+            class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:youtube" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi " class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi "
+            class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="fa6-brands:tiktok"
               class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr" class="text-softblack hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr"
+            class="text-softblack hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:facebook" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
         </div>
@@ -101,7 +106,7 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="relative bg-primary w-full py-20 h-[310px] md:h-[500px] flex items-center overflow-hidden">
+    <section id="bio" class="relative bg-primary w-full py-20 h-[310px] md:h-[500px] flex items-center overflow-hidden">
       <NuxtImg src="/site/pancake.png"
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover w-auto h-full opacity-10"
         loading="lazy" format="webp" quality="50" />
@@ -174,17 +179,22 @@
     <section class="py-6 border-b border-graytext/20 bg-hardwhite lg:h-24">
       <div class="container mx-auto px-4 flex justify-center items-center gap-8">
         <div class="flex gap-6 items-center">
-          <a target="_blank" href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr" class="text-primary hover:text-primary transition-all hover:scale-125">
+          <a target="_blank"
+            href="https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr"
+            class="text-primary hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:instagram" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh" class="text-primary hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.youtube.com/@abdalrhmantresh"
+            class="text-primary hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:youtube" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi" class="text-primary hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.tiktok.com/@abdulrhmantriesh?_r=1&_t=ZS-94S6KbdrtKi"
+            class="text-primary hover:text-primary transition-all hover:scale-125">
             <Icon name="fa6-brands:tiktok"
               class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
-          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr" class="text-primary hover:text-primary transition-all hover:scale-125">
+          <a target="_blank" href="https://www.facebook.com/share/187Q9Mz9LH/?mibextid=wwXIfr"
+            class="text-primary hover:text-primary transition-all hover:scale-125">
             <Icon name="uil:facebook" class="size-8 md:size-10 hover:text-highlight transition-all hover:scale-125" />
           </a>
         </div>
@@ -198,10 +208,10 @@
 // Fetch the LATEST recipes by sorting by 'date' or a similar field descending
 const { data: latestRecipes } = await useAsyncData('latest-recipes', () => {
   return queryCollection('recipes')
+    .order('date', 'DESC')
     .limit(6)              // Get the top 6
     .all()
 })
-
 </script>
 
 <style scoped>
