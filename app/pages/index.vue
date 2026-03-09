@@ -5,9 +5,9 @@
     <section class="relative lg:h-fit h-auto w-full overflow-hidden">
       <!-- Optimized Hero Image -->
       <picture style="display: block; min-height: 680px;" class="w-full">
-        <source media="(min-width: 640px)" srcset="/abdu-upscaled.png">
-        <NuxtImg src="/abdu.png" alt="Chef Abdu" class="w-full h-[680px] md:h-full object-cover object-center"
-          placeholder format="webp" quality="100" :preload="{ fetchPriority: 'high' }" />
+        <source media="(min-width: 640px)" srcset="/abdu-upscaled.jpg">
+        <NuxtImg src="/abdu.jpeg" alt="Chef Abdu" class="w-full h-[680px] md:h-full object-cover object-center"
+          placeholder format="webp" quality="90" :preload="{ fetchPriority: 'high' }" />
       </picture>
 
       <!-- Gradient Overlay (Bottom #000 to Top #fff @ 20% opacity) -->
