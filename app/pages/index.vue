@@ -124,7 +124,7 @@
 
     <!-- CONTACT SECTION -->
     <!-- CONTACT SECTION -->
-    <section class="relative bg-hardwhite w-full py-20 h-[310px] md:h-[500px] flex items-center overflow-hidden"
+    <section id="contact" class="relative bg-hardwhite w-full py-20 h-[310px] md:h-[500px] flex items-center overflow-hidden"
       dir="rtl">
 
       <div class="relative z-10 container mx-auto px-4 md:px-[60px] flex flex-row items-center justify-between">
