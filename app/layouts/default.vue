@@ -114,10 +114,7 @@
           </a>
         </div>
 
-        <p class="text-hardwhite/40 text-sm mt-2 mb-2">
-          Developed by <a href="https://www.ItsMsalati.ly" target="_blank"
-            class="text-hardwhite hover:text-highlight transition-colors">ItsMsalati</a>
-        </p>
+        
         <p class="text-hardwhite text-sm" dir="">
           © {{ currentYear }} جميع الحقوق محفوظة.
         </p>
