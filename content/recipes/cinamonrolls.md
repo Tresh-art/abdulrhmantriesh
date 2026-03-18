@@ -6,7 +6,7 @@ videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7597123066249874695?is
 prepTime: 150
 servings: 12
 difficulty: "متوسط"
-image: "/food-images/51lmlai92k.jpgpngjpeg"
+image: "/food-images/51lmlai92k.jpgpngjpeg.jpg"
 date: "2026-03-18"
 
 macros:
