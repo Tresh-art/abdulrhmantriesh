@@ -1,5 +1,8 @@
 ---
 title: Homemade Cinnabons
+image: /food-images/cinnabon.jpg
+---
+title: Homemade Cinnabons
 description: Soft, fluffy cinnamon rolls with a rich cream cheese frosting.
 image: /food-images/cinnabon.jpg
 category: Pastry
