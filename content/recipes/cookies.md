@@ -2,24 +2,24 @@
 title: "كوكيز كلاسيكي"
 category: "حلويات"
 description: "كوكيز بوزن مثالي يتراوح بين 85-90 جرام، يتميز بقوام يجمع بين الهشاشة والنعومة مع توزيع غني لقطع الشوكولاتة."
-videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7591523776005803272?is_from_webapp=1&sender_device=pc&web_id=7491799645849847301"
+videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7618799020948901140"
 prepTime: 45
-servings: 11
+servings: 12
 difficulty: "متوسطة"
-image: "/food-images/efj0qjk0r8.jpgpngjpeg.jpg"
+image: "/food-images/112233.jpg"
 date: "2026-03-18"
 
 macros:
   calories: 415
   protein: 5
   carbs: 52
-  fat: 21
+  fat: 23
 
 ingredients:
   - "زبدة طرية: 220 جرام (1 كوب)"
   - "سكر بني داكن: 180 جرام (1 كوب مضغوط)"
   - "سكر أبيض: 90 جرام (نصف كوب)"
-  - "دقيق متعدد الاستعمالات: 192 جرام (نصف كوب وثلث)"
+  - "دقيق متعدد الاستعمالات: 192 جرام (1 كوب ونصف)"
   - "دقيق خبز: 128 جرام (1 كوب)"
   - "بيض كامل: 2 حبة"
   - "صفار بيض: 1 حبة"
