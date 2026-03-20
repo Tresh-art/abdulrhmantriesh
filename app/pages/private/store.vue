@@ -18,7 +18,7 @@
             <p class="text-gray-600 mb-4">كوكيز طازجة محضرة يدوياً. البوكس يحتوي على 6 قطع كبيرة.</p>
             <span class="text-2xl font-bold text-green-600">45 LYD</span>
           </div>
-        </div>
+  <img src="https://via.placeholder.com/150" alt="Product" class="w-full h-full object-cover">
       </div>
 
       <section class="bg-gray-50 p-8 rounded-3xl border border-gray-200">
