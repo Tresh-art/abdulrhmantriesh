@@ -32,11 +32,10 @@
               ></button>
             </div>
           </div>
-          </div>
+        </div>
 
         <div class="w-full md:w-1/2 text-right pt-6">
-          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي </h1>
-          <p class="text-2xl text-[#555] font-light mb-10">رفيقك الموثوق لصحة عائلتك</p>
+          <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان الحرارة <br/>الرقمي المتطور</h1>
           
           <div class="flex items-center gap-4 mb-10">
             <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
@@ -138,7 +137,7 @@
           </button>
           
           <div class="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-center text-[#555] bg-[#F8F6F4]/50 py-3 rounded-full border border-[#E5E0DA]/50">
-            <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام (COD)
+            <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام
           </div>
         </form>
 
@@ -152,11 +151,12 @@ import { ref, computed } from 'vue'
 
 const submitted = ref(false)
 
-// Photos Array
+// Put the new photo here! (Make sure it is uploaded to your 'public' folder)
 const thermometerPhotos = [
-  'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1000&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1512069818826-6202422ebf0c?q=80&w=1000&auto=format&fit=crop',
+  '/H426a766f44894b18887f0a825cb36703p.jpg'
+  // If you have more photos, add them right below here like this:
+  // '/photo2.jpg',
+  // '/photo3.jpg'
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
