@@ -117,7 +117,7 @@ const handleSubmit = async (e) => {
   const formData = new FormData(form)
 
   try {
-    await fetch("/", {
+    await fetch("/form-bridge.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
