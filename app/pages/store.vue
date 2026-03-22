@@ -35,7 +35,7 @@
         </div>
 
         <div class="w-full md:w-1/2 text-right pt-6">
-          <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان الحرارة <br/>الرقمي المتطور</h1>
+          <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان الحرارة <br/>الرقمي </h1>
           
           <div class="flex items-center gap-4 mb-10">
             <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
