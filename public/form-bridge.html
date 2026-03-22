@@ -1,22 +1,33 @@
-const handleSubmit = async (e) => {
-  const form = e.target
+<script setup>
+import { ref } from 'vue'
+
+const submitted = ref(false)
+
+const scrollToForm = () => {
+  const el = document.getElementById('order-form')
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
+}
+
+const handleSubmit = async (event) => {
+  const form = event.target
   const formData = new FormData(form)
   
   try {
-    // We send the data to "/" but we MUST tell Netlify which form it is
+    // This sends the data as a string that Netlify understands
     await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     })
     
-    // This part shows your "Success" message
+    // Switch to the success message
     submitted.value = true
     
-    // Optional: Scroll back to the top of the form so they see the success message
-    document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' })
+    // Scroll to show the "Success" message
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    
   } catch (error) {
-    console.error(error)
-    alert("حدث خطأ، يرجى المحاولة مرة أخرى")
+    alert("حدث خطأ في الإرسال. يرجى التأكد من اتصالك بالإنترنت.")
   }
 }
+</script>
