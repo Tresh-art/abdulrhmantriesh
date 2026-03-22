@@ -30,3 +30,19 @@ const handleSubmit = async (e) => {
   }
 }
 </script>
+<form 
+  v-else
+  name="thermometer-orders" 
+  method="POST" 
+  data-netlify="true" 
+  data-netlify-honeypot="bot-field"
+  @submit.prevent="handleSubmit"
+  class="space-y-6"
+>
+  <input type="hidden" name="form-name" value="thermometer-orders" />
+  
+  <p class="hidden" style="display: none;">
+    <label>Don’t fill this out: <input name="bot-field" /></label>
+  </p>
+
+  <h2 class="text-3xl font-bold text-center mb-10">بيانات التوصيل</h2>
