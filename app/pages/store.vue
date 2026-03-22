@@ -1,36 +1,59 @@
 <template>
-  <div class="bg-[#F5F1EE] min-h-screen font-sans text-[#3D2E28]" dir="rtl">
-    <section class="max-w-6xl mx-auto pt-16 px-6">
-      <div class="flex flex-col md:flex-row items-center gap-16">
+  <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
+    <section class="max-w-6xl mx-auto pt-20 px-6 pb-24">
+      <div class="flex flex-col md:flex-row items-start gap-16">
         
-        <div class="w-full md:w-1/2 relative group">
-          <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#E5E0DA]">
+        <div class="w-full md:w-1/2">
+          <div 
+            class="relative w-full h-[400px] md:h-[500px] bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E5E0DA] group"
+            @touchstart="handleTouchStart"
+            @touchend="handleTouchEnd"
+          >
             <img 
-              src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000&auto=format&fit=crop" 
-              alt="Professional Thermometer" 
-              class="w-full h-[500px] object-cover rounded-xl transition-transform duration-700 group-hover:scale-[1.03]"
+              :src="thermometerPhotos[currentIndex]" 
+              alt="Professional Digital Thermometer" 
+              class="w-full h-full object-contain transition-opacity duration-300"
             />
+            
+            <button @click="nextSlide" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#333] w-10 h-10 rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity active:scale-95">
+              <span class="text-xl leading-none">❮</span>
+            </button>
+            <button @click="prevSlide" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#333] w-10 h-10 rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity active:scale-95">
+              <span class="text-xl leading-none">❯</span>
+            </button>
+
+            <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+              <button 
+                v-for="(_, index) in thermometerPhotos" 
+                :key="index"
+                @click="goToSlide(index)"
+                class="h-2 rounded-full transition-all duration-300"
+                :class="currentIndex === index ? 'bg-[#3D5A50] w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'"
+              ></button>
+            </div>
           </div>
-          <div class="absolute -top-4 -right-4 bg-[#3D2E28] text-white px-6 py-2 rounded-full font-bold shadow-lg">
-            الأكثر مبيعاً
+          
+          <div class="mt-6 bg-[#3D2E28]/10 text-[#3D2E28] text-center px-6 py-2 rounded-full font-medium text-sm inline-block w-full">
+            ✓ دقة احترافية في القياس | ✓ تصميم طبي آمن
           </div>
         </div>
 
-        <div class="w-full md:w-1/2 text-right">
-          <h1 class="text-5xl font-extrabold mb-6 leading-tight">ميزان الحرارة <br/>الرقمي المتطور</h1>
+        <div class="w-full md:w-1/2 text-right pt-6">
+          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي الفاخر</h1>
+          <p class="text-2xl text-[#555] font-light mb-10">رفيقك الموثوق لصحة عائلتك</p>
           
-          <div class="flex items-center gap-4 mb-8">
-            <span class="text-4xl font-bold text-[#3D2E28]">75 د.ل</span>
-            <span class="text-gray-400 line-through text-xl">110 د.ل</span>
+          <div class="flex items-center gap-4 mb-10">
+            <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
+            <span class="text-gray-400 line-through text-2xl">110 د.ل</span>
           </div>
 
-          <p class="text-xl leading-relaxed text-[#5A4A42] mb-10">
-            دقة احترافية في ثوانٍ معدودة. صُمم هذا الجهاز ليكون رفيقك المثالي في المنزل، مع شاشة LED واضحة وسهولة فائقة في الاستخدام.
+          <p class="text-xl leading-relaxed text-[#555] mb-12">
+            اكتشف راحة البال مع جهاز قياس الحرارة الرقمي المتطور. دقة فائقة في ثوانٍ معدودة، مع شاشة LED واضحة وسهولة استخدام منقطعة النظير. صُمم للعناية، بُني ليدوم.
           </p>
 
           <button 
             @click="scrollToForm"
-            class="bg-[#3D2E28] text-[#F5F1EE] px-14 py-5 rounded-xl text-2xl font-bold transition-all hover:opacity-90 active:scale-95 shadow-lg"
+            class="bg-[#3D5A50] text-[#F5F1EE] px-16 py-6 rounded-2xl text-2xl font-extrabold transition-all duration-200 hover:shadow-xl active:scale-[0.97] hover:bg-[#3D5A50]/90"
           >
             اطلب الآن
           </button>
@@ -38,15 +61,15 @@
       </div>
     </section>
 
-    <section id="order-form" class="max-w-2xl mx-auto py-24 px-6">
-      <div class="bg-white p-12 rounded-[2rem] shadow-sm border border-[#E5E0DA]">
+    <section id="order-form" class="max-w-3xl mx-auto py-24 px-6">
+      <div class="bg-white p-12 md:p-16 rounded-[3rem] shadow-lg border border-[#E5E0DA]">
         
         <div v-if="submitted" class="text-center py-10 transition-all duration-500">
-          <div class="w-24 h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6">
-            <span class="text-5xl text-[#065F46]">✓</span>
+          <div class="w-32 h-32 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+            <span class="text-7xl text-[#065F46]">✓</span>
           </div>
-          <h2 class="text-3xl font-bold mb-2">تم استلام طلبك!</h2>
-          <p class="text-[#5A4A42]">سنتواصل معك قريباً لتأكيد التوصيل.</p>
+          <h2 class="text-4xl font-bold mb-4">تم استلام طلبك بنجاح!</h2>
+          <p class="text-xl text-[#555]">سنتواصل معك قريباً لتأكيد تفاصيل التوصيل. شكراً لثقتكم.</p>
         </div>
 
         <form 
@@ -56,46 +79,71 @@
           data-netlify="true" 
           data-netlify-honeypot="bot-field"
           @submit.prevent="handleSubmit"
-          class="space-y-6"
+          class="space-y-8"
         >
           <input type="hidden" name="form-name" value="thermometer-orders" />
+          <input type="hidden" name="quantity" :value="quantity" />
+          <input type="hidden" name="total_price" :value="totalPrice + ' د.ل'" />
+          
           <p class="hidden" style="display: none;">
             <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
 
-          <h2 class="text-3xl font-bold text-center mb-10">بيانات التوصيل</h2>
+          <h2 class="text-4xl font-bold text-center mb-12">بيانات التوصيل</h2>
           
-          <div class="space-y-2">
-            <label class="block text-sm font-bold opacity-70 mr-2">الاسم بالكامل</label>
-            <input required name="name" type="text" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all" placeholder="اكتب اسمك هنا...">
+          <div class="space-y-3">
+            <label class="block text-sm font-semibold opacity-70 mr-2">الاسم بالكامل</label>
+            <input required name="name" type="text" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400" placeholder="اكتب اسمك هنا...">
           </div>
           
-          <div class="space-y-2">
-            <label class="block text-sm font-bold opacity-70 mr-2">رقم الهاتف</label>
-            <input required name="phone" type="tel" dir="ltr" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all text-right" placeholder="09X-XXXXXXX">
+          <div class="space-y-3">
+            <label class="block text-sm font-semibold opacity-70 mr-2">رقم الهاتف</label>
+            <input required name="phone" type="tel" dir="ltr" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400 text-right" placeholder="09X-XXXXXXX">
           </div>
 
-          <div class="space-y-2">
-            <label class="block text-sm font-bold opacity-70 mr-2">المدينة</label>
-            <select name="city" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all appearance-none cursor-pointer">
-              <option>طرابلس</option>
-              <option>بنغازي</option>
-              <option>مصراتة</option>
-              <option>الزاوية</option>
-              <option>مدينة أخرى</option>
-            </select>
+          <div class="space-y-3">
+            <label class="block text-sm font-semibold opacity-70 mr-2">المدينة</label>
+            <div class="relative">
+              <select name="city" required class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all appearance-none cursor-pointer text-[#333]">
+                <option value="" disabled selected>اختر المدينة</option>
+                <option>طرابلس</option>
+                <option>بنغازي</option>
+                <option>مصراتة</option>
+                <option>الزاوية</option>
+                <option>مدينة أخرى</option>
+              </select>
+              <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl">▼</span>
+            </div>
           </div>
 
-          <div class="space-y-2">
-            <label class="block text-sm font-bold opacity-70 mr-2">العنوان بالتفصيل</label>
-            <textarea required name="address" rows="3" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all resize-none" placeholder="اسم الشارع، رقم المنزل، أو علامة دالة..."></textarea>
+          <div class="space-y-3">
+            <label class="block text-sm font-semibold opacity-70 mr-2">العنوان بالتفصيل</label>
+            <textarea required name="address" rows="3" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all resize-none placeholder:text-gray-400" placeholder="اسم الشارع، رقم المنزل، أو علامة دالة..."></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-[#3D2E28] text-[#F5F1EE] py-6 rounded-2xl text-2xl font-bold mt-4 hover:shadow-2xl transition-all active:scale-[0.98]">
-            تأكيد الطلب
+          <div class="bg-[#F8F6F4] p-6 rounded-2xl border border-[#E5E0DA] mt-8">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-bold text-lg">الكمية المطلوبة:</span>
+              <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] shadow-sm overflow-hidden">
+                <button type="button" @click="incrementQuantity" class="w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-50 active:bg-gray-100 transition-colors text-[#3D5A50]">+</button>
+                <span class="w-12 text-center font-bold text-xl">{{ quantity }}</span>
+                <button type="button" @click="decrementQuantity" class="w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-50 active:bg-gray-100 transition-colors text-gray-500" :class="{'opacity-50 cursor-not-allowed': quantity === 1}">-</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#E5E0DA]">
+              <span class="font-bold text-xl text-gray-500">الإجمالي:</span>
+              <span class="font-extrabold text-3xl text-[#3D5A50]">{{ totalPrice }} د.ل</span>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-[#3D5A50] text-[#F5F1EE] py-7 rounded-2xl text-2xl font-extrabold mt-6 hover:shadow-xl transition-all duration-200 active:scale-[0.98] hover:bg-[#3D5A50]/90 flex items-center justify-center gap-3">
+            <span>تأكيد الطلب بـ {{ totalPrice }} د.ل</span>
+            <span class="text-xl">←</span>
           </button>
           
-          <p class="text-center text-sm opacity-50 font-medium">الدفع نقداً عند الاستلام (COD)</p>
+          <div class="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-center text-[#555] bg-[#F8F6F4]/50 py-3 rounded-full border border-[#E5E0DA]/50">
+            <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام (COD)
+          </div>
         </form>
 
       </div>
@@ -104,9 +152,67 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const submitted = ref(false)
+
+// Photos Array
+const thermometerPhotos = [
+  'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1512069818826-6202422ebf0c?q=80&w=1000&auto=format&fit=crop',
+]
+
+// --- PRICING & QUANTITY LOGIC ---
+const unitPrice = 75 // Price of one thermometer
+const quantity = ref(1)
+
+const totalPrice = computed(() => {
+  return quantity.value * unitPrice
+})
+
+const incrementQuantity = () => {
+  quantity.value++
+}
+
+const decrementQuantity = () => {
+  if (quantity.value > 1) {
+    quantity.value--
+  }
+}
+// --------------------------------
+
+// --- SLIDER LOGIC ---
+const currentIndex = ref(0)
+let touchStartX = 0
+let touchEndX = 0
+
+const nextSlide = () => {
+  currentIndex.value = currentIndex.value === thermometerPhotos.length - 1 ? 0 : currentIndex.value + 1
+}
+
+const prevSlide = () => {
+  currentIndex.value = currentIndex.value === 0 ? thermometerPhotos.length - 1 : currentIndex.value - 1
+}
+
+const goToSlide = (index) => {
+  currentIndex.value = index
+}
+
+const handleTouchStart = (e) => {
+  touchStartX = e.changedTouches[0].screenX
+}
+
+const handleTouchEnd = (e) => {
+  touchEndX = e.changedTouches[0].screenX
+  handleSwipe()
+}
+
+const handleSwipe = () => {
+  if (touchEndX < touchStartX - 50) nextSlide()
+  if (touchEndX > touchStartX + 50) prevSlide()
+}
+// --------------------
 
 const scrollToForm = () => {
   document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })
