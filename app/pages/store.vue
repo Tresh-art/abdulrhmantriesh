@@ -163,11 +163,13 @@ const submitted = ref(false)
 const selectedCity = ref('')
 const customCity = ref('')
 
-// Photos in the requested order: Black, Blue, Last
+// REARRANGED PHOTOS:
+// I moved the one that was showing up first (the red one) to the bottom of this list!
+// If Black and Blue are flipped, just swap the top two lines.
 const thermometerPhotos = [
-  '/footer/1112131415.avif', 
-  '/footer/678910.avif',     
-  '/footer/12345.avif'       
+  '/footer/12345.avif',       // Should be Black now
+  '/footer/678910.avif',      // Should be Blue
+  '/footer/1112131415.avif'   // Red (moved to last)
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
