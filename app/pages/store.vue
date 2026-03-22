@@ -22,25 +22,25 @@
               <span class="text-xl leading-none">❯</span>
             </button>
 
-            <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
-              <button 
-                v-for="(_, index) in thermometerPhotos" 
-                :key="index"
-                @click="goToSlide(index)"
-                class="h-2 rounded-full transition-all duration-300"
-                :class="currentIndex === index ? 'bg-[#3D5A50] w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'"
-              ></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-full md:w-1/2 text-right pt-6">
-          <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان الحرارة <br/>الرقمي </h1>
+            <div class="w-full md:w-1/2 text-right pt-6">
+          <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان حرارة <br/>رقمي</h1>
           
           <div class="flex items-center gap-4 mb-10">
             <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
             <span class="text-gray-400 line-through text-2xl">110 د.ل</span>
           </div>
+
+          <p class="text-xl leading-relaxed text-[#555] mb-12">
+            دقة فائقة وسهولة تامة في الاستخدام. ميزان حرارة مصمم خصيصاً لتلبية احتياجات المطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.
+          </p>
+
+          <button 
+            @click="scrollToForm"
+            class="bg-[#3D5A50] text-[#F5F1EE] px-16 py-6 rounded-2xl text-2xl font-extrabold transition-all duration-200 hover:shadow-xl active:scale-[0.97] hover:bg-[#3D5A50]/90"
+          >
+            اطلب الآن
+          </button>
+        </div>
 
           <p class="text-xl leading-relaxed text-[#555] mb-12">
             اكتشف راحة البال مع جهاز قياس الحرارة الرقمي المتطور. دقة فائقة في ثوانٍ معدودة، مع شاشة LED واضحة وسهولة استخدام منقطعة النظير. صُمم للعناية، بُني ليدوم.
