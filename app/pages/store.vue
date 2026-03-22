@@ -39,7 +39,6 @@
           
           <div class="flex items-center gap-4 mb-10">
             <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
-            <span class="text-gray-400 line-through text-2xl">110 د.ل</span>
           </div>
 
           <p class="text-xl leading-relaxed text-[#555] mb-12">
@@ -164,12 +163,11 @@ const submitted = ref(false)
 const selectedCity = ref('')
 const customCity = ref('')
 
-// Here are your three new photos! 
-// If the colors show up in the wrong order, just swap these lines around.
+// Photos in the requested order: Black, Blue, Last
 const thermometerPhotos = [
-  '/footer/1112131415.avif', // Black?
-  '/footer/678910.avif',     // Blue?
-  '/footer/12345.avif'       // The last one?
+  '/footer/1112131415.avif', 
+  '/footer/678910.avif',     
+  '/footer/12345.avif'       
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
