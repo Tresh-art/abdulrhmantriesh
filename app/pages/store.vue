@@ -161,13 +161,12 @@ import { ref, computed } from 'vue'
 
 const submitted = ref(false)
 
-// Data tracking for the custom city logic
 const selectedCity = ref('')
 const customCity = ref('')
 
-// Photos
+// This is the updated path based on your screenshot
 const thermometerPhotos = [
-  '/H426a766f44894b18887f0a825cb36703p.jpg'
+  '/footer/12345.avif'
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
@@ -229,9 +228,6 @@ const handleSubmit = async (e) => {
   const form = e.target
   const formData = new FormData(form)
 
-  // THE MAGIC FIX:
-  // If they selected "Another City" and typed a custom city, 
-  // we replace the 'city' data with whatever they typed before sending it to Netlify!
   if (selectedCity.value === 'مدينة أخرى' && customCity.value.trim() !== '') {
     formData.set('city', customCity.value)
   }
