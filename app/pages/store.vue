@@ -40,47 +40,87 @@
 
     <section id="order-form" class="max-w-2xl mx-auto py-24 px-6">
       <div class="bg-white p-12 rounded-[2rem] shadow-sm border border-[#E5E0DA]">
-        <h2 class="text-3xl font-bold text-center mb-10">إتمام الطلب</h2>
         
-        <div class="space-y-8">
+        <div v-if="submitted" class="text-center py-10">
+          <div class="text-6xl mb-4">✅</div>
+          <h2 class="text-3xl font-bold mb-2">تم استلام طلبك!</h2>
+          <p class="text-[#5A4A42]">سنتواصل معك قريباً لتأكيد التوصيل.</p>
+        </div>
+
+        <form 
+          v-else
+          name="thermometer-orders" 
+          method="POST" 
+          data-netlify="true" 
+          data-netlify-honeypot="bot-field"
+          @submit.prevent="handleSubmit"
+          class="space-y-6"
+        >
+          <input type="hidden" name="form-name" value="thermometer-orders" />
+          <h2 class="text-3xl font-bold text-center mb-10">إتمام الطلب</h2>
+          
           <div class="space-y-2">
             <label class="block text-sm font-bold opacity-70 mr-2">الاسم بالكامل</label>
-            <input type="text" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all placeholder:opacity-30" placeholder="اكتب اسمك هنا...">
+            <input required name="name" type="text" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all placeholder:opacity-30" placeholder="اكتب اسمك هنا...">
           </div>
           
           <div class="space-y-2">
             <label class="block text-sm font-bold opacity-70 mr-2">رقم الهاتف</label>
-            <input type="tel" dir="ltr" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all text-right placeholder:opacity-30" placeholder="09X-XXXXXXX">
+            <input required name="phone" type="tel" dir="ltr" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all text-right placeholder:opacity-30" placeholder="09X-XXXXXXX">
           </div>
 
           <div class="space-y-2">
             <label class="block text-sm font-bold opacity-70 mr-2">المدينة</label>
-            <select class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all appearance-none cursor-pointer">
+            <select name="city" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all appearance-none cursor-pointer">
               <option>طرابلس</option>
               <option>بنغازي</option>
               <option>مصراتة</option>
               <option>الزاوية</option>
+              <option>مدينة أخرى</option>
             </select>
           </div>
 
-          <button class="w-full bg-[#3D2E28] text-[#F5F1EE] py-6 rounded-2xl text-2xl font-bold mt-6 hover:shadow-2xl transition-all active:scale-[0.98]">
+          <div class="space-y-2">
+            <label class="block text-sm font-bold opacity-70 mr-2">العنوان بالتفصيل</label>
+            <textarea required name="address" rows="3" class="w-full p-5 bg-[#F5F1EE] border-none rounded-2xl focus:ring-2 focus:ring-[#3D2E28] outline-none transition-all placeholder:opacity-30 resize-none" placeholder="اسم الشارع، رقم المنزل، أو أقرب علامة دالة..."></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-[#3D2E28] text-[#F5F1EE] py-6 rounded-2xl text-2xl font-bold mt-4 hover:shadow-2xl transition-all active:scale-[0.98]">
             تأكيد الطلب
           </button>
           
-          <p class="text-center text-sm opacity-50 font-medium">
-            الدفع نقداً عند استلام المنتج (COD)
+          <p class="text-center text-sm opacity-50 font-medium italic">
+            * الدفع عند الاستلام (COD)
           </p>
-        </div>
+        </form>
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const submitted = ref(false)
+
 const scrollToForm = () => {
-  const el = document.getElementById('order-form');
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })
+}
+
+const handleSubmit = async (e) => {
+  const form = e.target
+  const formData = new FormData(form)
+  
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+    submitted.value = true
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  } catch (error) {
+    alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى")
   }
-};
+}
 </script>
