@@ -11,7 +11,7 @@
           >
             <img 
               :src="thermometerPhotos[currentIndex]" 
-              alt="Professional Digital Thermometer" 
+              alt="ميزان حرارة رقمي" 
               class="w-full h-full object-cover transition-opacity duration-300"
             />
             
@@ -22,7 +22,19 @@
               <span class="text-xl leading-none">❯</span>
             </button>
 
-            <div class="w-full md:w-1/2 text-right pt-6">
+            <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+              <button 
+                v-for="(_, index) in thermometerPhotos" 
+                :key="index"
+                @click="goToSlide(index)"
+                class="h-2 rounded-full transition-all duration-300"
+                :class="currentIndex === index ? 'bg-[#3D5A50] w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 text-right pt-6">
           <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان حرارة <br/>رقمي</h1>
           
           <div class="flex items-center gap-4 mb-10">
@@ -32,18 +44,6 @@
 
           <p class="text-xl leading-relaxed text-[#555] mb-12">
             دقة فائقة وسهولة تامة في الاستخدام. ميزان حرارة مصمم خصيصاً لتلبية احتياجات المطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.
-          </p>
-
-          <button 
-            @click="scrollToForm"
-            class="bg-[#3D5A50] text-[#F5F1EE] px-16 py-6 rounded-2xl text-2xl font-extrabold transition-all duration-200 hover:shadow-xl active:scale-[0.97] hover:bg-[#3D5A50]/90"
-          >
-            اطلب الآن
-          </button>
-        </div>
-
-          <p class="text-xl leading-relaxed text-[#555] mb-12">
-            اكتشف راحة البال مع جهاز قياس الحرارة الرقمي المتطور. دقة فائقة في ثوانٍ معدودة، مع شاشة LED واضحة وسهولة استخدام منقطعة النظير. صُمم للعناية، بُني ليدوم.
           </p>
 
           <button 
@@ -135,10 +135,6 @@
             <span>تأكيد الطلب بـ {{ totalPrice }} د.ل</span>
             <span class="text-xl">←</span>
           </button>
-          
-          <div class="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-center text-[#555] bg-[#F8F6F4]/50 py-3 rounded-full border border-[#E5E0DA]/50">
-            <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام
-          </div>
         </form>
 
       </div>
@@ -151,12 +147,9 @@ import { ref, computed } from 'vue'
 
 const submitted = ref(false)
 
-// Put the new photo here! (Make sure it is uploaded to your 'public' folder)
+// Keep this pointing to your uploaded file in the public folder
 const thermometerPhotos = [
   '/H426a766f44894b18887f0a825cb36703p.jpg'
-  // If you have more photos, add them right below here like this:
-  // '/photo2.jpg',
-  // '/photo3.jpg'
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
