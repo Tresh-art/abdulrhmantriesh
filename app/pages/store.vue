@@ -164,9 +164,12 @@ const submitted = ref(false)
 const selectedCity = ref('')
 const customCity = ref('')
 
-// This is the updated path based on your screenshot
+// Here are your three new photos! 
+// If the colors show up in the wrong order, just swap these lines around.
 const thermometerPhotos = [
-  '/footer/12345.avif'
+  '/footer/1112131415.avif', // Black?
+  '/footer/678910.avif',     // Blue?
+  '/footer/12345.avif'       // The last one?
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
