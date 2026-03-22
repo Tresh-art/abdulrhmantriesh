@@ -107,13 +107,11 @@ const scrollToForm = () => {
   document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })
 }
 
-const handleSubmit = async (e) => {
-  const form = e.target
-  const formData = new FormData(form)
-  
-  // This is the important part you were missing:
-  const body = new URLSearchParams(formData)
-  body.set("form-name", "thermometer-orders") 
+await fetch("/form-bridge.html", { // Post directly to the bridge file
+  method: "POST",
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  body: body.toString(),
+})
 
   try {
     await fetch("/", {
