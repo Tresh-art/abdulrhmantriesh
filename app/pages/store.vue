@@ -127,3 +127,8 @@ const handleSubmit = async (e) => {
     alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى")
   }
 }
+<form ...>
+  <p class="hidden">
+    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+  </form>
