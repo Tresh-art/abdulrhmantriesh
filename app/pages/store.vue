@@ -99,15 +99,25 @@
           <div class="space-y-3">
             <label class="block text-sm font-semibold opacity-70 mr-2">المدينة</label>
             <div class="relative">
-              <select name="city" required class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all appearance-none cursor-pointer text-[#333]">
+              <select name="city" required v-model="selectedCity" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all appearance-none cursor-pointer text-[#333]">
                 <option value="" disabled selected>اختر المدينة</option>
-                <option>طرابلس</option>
-                <option>بنغازي</option>
-                <option>مصراتة</option>
-                <option>الزاوية</option>
-                <option>مدينة أخرى</option>
+                <option value="طرابلس">طرابلس</option>
+                <option value="بنغازي">بنغازي</option>
+                <option value="مصراتة">مصراتة</option>
+                <option value="الزاوية">الزاوية</option>
+                <option value="مدينة أخرى">مدينة أخرى</option>
               </select>
               <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl">▼</span>
+            </div>
+            
+            <div v-if="selectedCity === 'مدينة أخرى'" class="pt-2 transition-all duration-300">
+              <input 
+                v-model="customCity" 
+                type="text" 
+                required 
+                class="w-full p-6 bg-white border-2 border-[#3D5A50]/30 rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400" 
+                placeholder="الرجاء كتابة اسم مدينتك هنا..."
+              >
             </div>
           </div>
 
@@ -135,6 +145,10 @@
             <span>تأكيد الطلب بـ {{ totalPrice }} د.ل</span>
             <span class="text-xl">←</span>
           </button>
+          
+          <div class="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-center text-[#555] bg-[#F8F6F4]/50 py-3 rounded-full border border-[#E5E0DA]/50">
+            <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام
+          </div>
         </form>
 
       </div>
@@ -147,7 +161,11 @@ import { ref, computed } from 'vue'
 
 const submitted = ref(false)
 
-// Keep this pointing to your uploaded file in the public folder
+// Data tracking for the custom city logic
+const selectedCity = ref('')
+const customCity = ref('')
+
+// Photos
 const thermometerPhotos = [
   '/H426a766f44894b18887f0a825cb36703p.jpg'
 ]
@@ -210,6 +228,13 @@ const scrollToForm = () => {
 const handleSubmit = async (e) => {
   const form = e.target
   const formData = new FormData(form)
+
+  // THE MAGIC FIX:
+  // If they selected "Another City" and typed a custom city, 
+  // we replace the 'city' data with whatever they typed before sending it to Netlify!
+  if (selectedCity.value === 'مدينة أخرى' && customCity.value.trim() !== '') {
+    formData.set('city', customCity.value)
+  }
 
   try {
     await fetch("/form-bridge.html", {
