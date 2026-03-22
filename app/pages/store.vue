@@ -35,7 +35,7 @@
           </div>
 
         <div class="w-full md:w-1/2 text-right pt-6">
-          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي المتطور</h1>
+          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي </h1>
           <p class="text-2xl text-[#555] font-light mb-10">رفيقك الموثوق لصحة عائلتك</p>
           
           <div class="flex items-center gap-4 mb-10">
