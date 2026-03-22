@@ -5,14 +5,14 @@
         
         <div class="w-full md:w-1/2">
           <div 
-            class="relative w-full h-[400px] md:h-[500px] bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E5E0DA] group"
+            class="relative w-full h-[500px] md:h-[600px] bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E5E0DA] group"
             @touchstart="handleTouchStart"
             @touchend="handleTouchEnd"
           >
             <img 
               :src="thermometerPhotos[currentIndex]" 
               alt="Professional Digital Thermometer" 
-              class="w-full h-full object-contain transition-opacity duration-300"
+              class="w-full h-full object-cover transition-opacity duration-300"
             />
             
             <button @click="nextSlide" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#333] w-10 h-10 rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity active:scale-95">
@@ -32,14 +32,10 @@
               ></button>
             </div>
           </div>
-          
-          <div class="mt-6 bg-[#3D2E28]/10 text-[#3D2E28] text-center px-6 py-2 rounded-full font-medium text-sm inline-block w-full">
-            ✓ دقة احترافية في القياس | ✓ تصميم طبي آمن
           </div>
-        </div>
 
         <div class="w-full md:w-1/2 text-right pt-6">
-          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي الفاخر</h1>
+          <h1 class="text-6xl font-extrabold mb-4 leading-tight">ميزان الحرارة <br/>الرقمي المتطور</h1>
           <p class="text-2xl text-[#555] font-light mb-10">رفيقك الموثوق لصحة عائلتك</p>
           
           <div class="flex items-center gap-4 mb-10">
@@ -164,7 +160,7 @@ const thermometerPhotos = [
 ]
 
 // --- PRICING & QUANTITY LOGIC ---
-const unitPrice = 75 // Price of one thermometer
+const unitPrice = 75 
 const quantity = ref(1)
 
 const totalPrice = computed(() => {
