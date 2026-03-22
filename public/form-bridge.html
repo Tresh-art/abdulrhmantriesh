@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head><title>Form Bridge</title></head>
-<body>
-  <form name="thermometer-orders" data-netlify="true" hidden>
-    <input type="text" name="name" />
-    <input type="tel" name="phone" />
-    <select name="city"></select>
-    <textarea name="address"></textarea>
-  </form>
-</body>
-</html>
+<form name="thermometer-orders" method="POST" data-netlify="true">
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <button type="submit">Submit Order</button>
+</form>
