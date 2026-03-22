@@ -1,33 +1,12 @@
-<script setup>
-import { ref } from 'vue'
-
-const submitted = ref(false)
-
-const scrollToForm = () => {
-  const el = document.getElementById('order-form')
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
-}
-
-const handleSubmit = async (event) => {
-  const form = event.target
-  const formData = new FormData(form)
-  
-  try {
-    // This sends the data as a string that Netlify understands
-    await fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-    
-    // Switch to the success message
-    submitted.value = true
-    
-    // Scroll to show the "Success" message
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    
-  } catch (error) {
-    alert("حدث خطأ في الإرسال. يرجى التأكد من اتصالك بالإنترنت.")
-  }
-}
-</script>
+<!DOCTYPE html>
+<html>
+<head><title>Form Bridge</title></head>
+<body>
+  <form name="thermometer-orders" data-netlify="true" hidden>
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <select name="city"></select>
+    <textarea name="address"></textarea>
+  </form>
+</body>
+</html>
