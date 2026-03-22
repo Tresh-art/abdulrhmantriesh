@@ -111,11 +111,15 @@ const handleSubmit = async (e) => {
   const form = e.target
   const formData = new FormData(form)
   
+  // This is the important part you were missing:
+  const body = new URLSearchParams(formData)
+  body.set("form-name", "thermometer-orders") 
+
   try {
     await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      body: body.toString(),
     })
     submitted.value = true
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -123,4 +127,3 @@ const handleSubmit = async (e) => {
     alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى")
   }
 }
-</script>
