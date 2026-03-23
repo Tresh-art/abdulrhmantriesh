@@ -143,7 +143,7 @@ const socialLinks = [
               class="hidden lg:block bg-hardwhite rounded-[16px] p-8 shadow-[0px_0px_8px_4px_rgba(0,0,0,0.05)]">
               <div class="flex items-center justify-between">
                 <div class="flex flex-col gap-4 text-right flex-1">
-                  <h4 class="text-2xl font-black text-softblack mb-2">القيمة الغذائية</h4>
+                  <h4 class="text-2xl font-black text-softblack mb-2">القيمة الغذائية للحصة</h4>
                   <div v-for="(val, label) in { carbs: 'كربوهيدرات', protein: 'بروتين', fat: 'دهون' }" :key="label"
                     class="flex flex-row justify-between items-center py-2 border-b border-accent last:border-0">
                     <div class="flex items-center gap-3">
