@@ -571,58 +571,125 @@ const socialLinks = [
 }
 </style>
 <style>
+/* Keeps satisfyng smooth scroll for screen users */
 html {
   scroll-behavior: smooth;
 }
 
+/* Target specialized Print Specifics */
 @media print {
-  /* 1. Reset Backgrounds & Remove Page Padding */
+  /* 1. Base Page Reset: pure white, no padding, black text for better contrast on paper */
   body, .min-h-screen, .bg-accent {
     background-color: white !important;
     padding: 0 !important;
     margin: 0 !important;
+    color: black !important;
   }
 
-  /* 2. STOP Animations (Crucial: prevents blank invisible text in print) */
+  /* 2. Compact Page 1: Apply global font size reduction across the page */
   * {
-    animation: none !important;
-    transition: none !important;
+    font-size: 10pt !important; /* Reduces base text from 16-18px down to ~13px on paper */
+  }
+
+  /* Target main recipe titles to make them smaller but still distinct */
+  h1 {
+    font-size: 18pt !important;
+    margin-bottom: 2mm !important;
+  }
+  h2 {
+    font-size: 14pt !important;
+  }
+  header {
+    padding: 0 !important;
+  }
+  header p {
+    font-size: 9pt !important;
+    margin-top: 0 !important;
+    margin-bottom: 3mm !important;
+  }
+
+  /* 3. Compact Stats Grid (Prep Time / Portions / Difficulty) */
+  [class*="grid-cols-3"] div {
+    padding: 1mm !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+  }
+  [class*="grid-cols-3"] Icon {
+    display: none !important; /* Hide icons to save vertical space on Page 1 */
+  }
+  [class*="grid-cols-3"] span:last-of-type {
+    font-size: 10pt !important;
+    font-weight: bold !important;
+  }
+
+  /* 4. DRASCTIC Image compaction: make it a small thumbnail, float right at bottom of Page 1 */
+  [class*="relative"][class*="h-[190px]"] {
+    display: block !important;
+    height: 80px !important; /* VASTLY reduced height, acts as a thumbnail */
+    width: 120px !important; /* Narrower width */
+    position: static !important;
+    float: none !important;
+    clear: both !important;
+    margin-right: 0 !important; /* Align to the right margin */
+    margin-left: auto !important;
+    border-radius: 6px !important;
+    margin-bottom: 4mm !important;
+  }
+
+  /* 5. Nutrition Card Compaction: keep it on Page 1 below stats */
+  [ref="macrosCard"] {
+    display: flex !important; /* force mobile macros visible in print */
+    padding: 2mm !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
     opacity: 1 !important;
     transform: none !important;
+    margin-bottom: 4mm !important;
+  }
+  [ref="macrosCard"] h4 {
+    font-size: 11pt !important;
+    margin-bottom: 1mm !important;
+  }
+  /* drastically reduce SVG size for nutrition wheel */
+  [ref="macrosCard"] .relative.w-28.h-28 {
+    width: 18mm !important;
+    height: 18mm !important;
+  }
+  /* ensure caloric text is visible instantly on Page 1 */
+  [ref="macrosCard"] div.absolute {
+    font-size: 8pt !important;
+    position: absolute !important;
+    left: 1mm !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
   }
 
-  /* 3. Hide Unwanted Elements & the Entire Desktop Side-Column */
-  .no-print,
-  .lg\:order-2 { 
-    display: none !important; 
+  /* 6. THE MOST IMPORTANT REQUIREMENT: FORCE INGREDIENTS TO A NEW PAGE (PAGE 2) */
+  /* Target the exact DOM element that holds your ingredients section and force a page break BEFORE it. */
+  /* This ensures Page 1 ends and ingredients *always* start at the top of a new sheet. */
+  section.bg-hardwhite:nth-of-type(1) {
+    page-break-before: always !important; /* Classic break command */
+    break-before: page !important; /* Modern CSS break command */
+    margin-top: 0 !important; /* Starts immediately at the top edge of paper */
   }
 
-  /* 4. Force a Single Column Layout */
-  .lg\:grid {
-    display: block !important;
+  /* Target the list of ingredients to ensure they are listed in columns, making them easier to read when compacted on a new page */
+  section.bg-hardwhite:nth-of-type(1) ul {
+    column-count: 2 !important; /* force ingredients into 2 columns on Page 2 */
+    column-gap: 5mm !important;
   }
 
-  /* 5. Activate the Mobile Flow (Top-to-Bottom) for Print */
-  .lg\:hidden[class*="flex"] { display: flex !important; }
-  .lg\:hidden[class*="grid"] { display: grid !important; }
-  .lg\:hidden[class*="relative"] { display: block !important; }
-
-  /* 6. Fix Image Sizing so it looks beautiful on paper */
-  .lg\:hidden.relative {
-    height: 300px !important; 
-    margin-top: 16px !important;
-    margin-bottom: 24px !important;
+  /* Targeted specific steps compaction for later pages */
+  [class*="space-y-10"] div {
+    padding-bottom: 4mm !important;
   }
-  .lg\:hidden.relative img {
-    border-radius: 12px !important;
-  }
-
-  /* 7. Clean Up Boxes (Remove shadows, add thin clean borders, prevent cutting in half) */
-  .bg-hardwhite {
-    box-shadow: none !important;
-    border: 2px solid #f3f4f6 !important;
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
+  [class*="space-y-10"] h3 {
+    font-size: 12pt !important;
+    margin-bottom: 1mm !important;
   }
 }
 </style>
