@@ -59,32 +59,22 @@ const chartData = computed(() => {
     fatOffset: -((p + c) / total * 100)
   }
 })
-  const socialLinks = [
-  { name: 'Instagram', url: 'https://www.instagram.com...', icon: 'simple-icons:instagram' },
-  // ... your other links
-]
-
-// Add this right here! It changes the page title so the PDF saves with the correct name.
+  // 1. Let Nuxt handle the page title natively (Notice we removed "computed")
 useHead({
-  title: computed(() => recipe.value ? recipe.value.title + ' - عبدالرحمن طريش' : 'عبدالرحمن طريش')
+  title: () => recipe.value ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش'
 })
-// Function to trigger PDF Print
+
+// 2. Function to trigger PDF Print
 const printRecipe = () => {
-  isVisible.value = true; // Ensure macros are visible before printing
-  macrosCard.value?.classList.add('opacity-100', 'translate-y-0');
-  macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0');
+  // Reveal the hidden macros UI
+  isVisible.value = true
+  macrosCard.value?.classList.add('opacity-100', 'translate-y-0')
+  macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0')
 
-  // Force the title using simple addition so it never breaks
-  if (recipe.value && recipe.value.title) {
-    document.title = recipe.value.title + ' - عبدالرحمن طريش';
-  } else {
-    document.title = 'عبدالرحمن طريش';
-  }
-
-  // 2. Give devices 800ms to register the change before freezing the screen
+  // Give the UI animations 400ms to finish, then open the print menu. No title hacks here!
   setTimeout(() => {
-    window.print();
-  }, 800);
+    window.print()
+  }, 400)
 }
 const socialLinks = [
   { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
