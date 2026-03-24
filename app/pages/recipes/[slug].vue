@@ -66,23 +66,25 @@ const chartData = computed(() => {
 
 // Add this right here! It changes the page title so the PDF saves with the correct name.
 useHead({
-  title: computed(() => recipe.value ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش')
+  title: computed(() => recipe.value ? recipe.value.title + ' - عبدالرحمن طريش' : 'عبدالرحمن طريش')
 })
 // Function to trigger PDF Print
 const printRecipe = () => {
-  isVisible.value = true // Ensure macros are visible before printing
+  isVisible.value = true; // Ensure macros are visible before printing
   macrosCard.value?.classList.add('opacity-100', 'translate-y-0');
   macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0');
 
-  // 1. Force the title we want for the PDF
-  const pdfName = recipe.value?.title ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش';
-  document.title = pdfName;
+  // Force the title using simple addition so it never breaks
+  if (recipe.value && recipe.value.title) {
+    document.title = recipe.value.title + ' - عبدالرحمن طريش';
+  } else {
+    document.title = 'عبدالرحمن طريش';
+  }
 
-  // 2. Give iPhones/Safari half a second (500ms) to register the change 
-  // before freezing the screen with the print menu.
+  // 2. Give devices 800ms to register the change before freezing the screen
   setTimeout(() => {
     window.print();
-  }, 500);
+  }, 800);
 }
 const socialLinks = [
   { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
