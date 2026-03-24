@@ -24,7 +24,6 @@ const macrosCardDesktop = ref(null)
 const isVisible = ref(false)
 const isImgModalOpen = ref(false)
 
-
 onMounted(() => {
   isPageReady.value = true
 
@@ -59,7 +58,8 @@ const chartData = computed(() => {
     fatOffset: -((p + c) / total * 100)
   }
 })
-  // 1. Let Nuxt handle the page title natively (Notice we removed "computed")
+
+// 1. Let Nuxt handle the page title natively
 useHead({
   title: () => recipe.value ? recipe.value.title + ' - عبدالرحمن طريش' : 'عبدالرحمن طريش'
 })
@@ -71,11 +71,12 @@ const printRecipe = () => {
   macrosCard.value?.classList.add('opacity-100', 'translate-y-0')
   macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0')
 
-  // Give the UI animations 400ms to finish, then open the print menu. No title hacks here!
+  // Give the UI animations 400ms to finish, then open the print menu
   setTimeout(() => {
     window.print()
   }, 400)
 }
+
 const socialLinks = [
   { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
   { name: 'YouTube', url: 'https://www.youtube.com/@abdalrhmantresh', icon: 'simple-icons:youtube' },
@@ -86,19 +87,14 @@ const socialLinks = [
 
 <template>
   <div v-if="recipe" class="min-h-screen bg-accent pb-20 pt-24 lg:pt-32" dir="rtl">
-    <!-- Initial fade-in to prevent flashing -->
     <div :class="[isPageReady ? 'opacity-100' : 'opacity-0', 'duration-500 transition-all']">
 
-      <!-- Mobile Container (max-w-[390px]) / Desktop Container (max-w-7xl) -->
       <div class="max-w-[390px] lg:max-w-7xl mx-auto px-[26px] lg:px-12">
 
-        <!-- Desktop: Two Column Layout -->
         <div class="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24">
 
-          <!-- Left Column: Image & Quick Stats (Desktop) -->
           <div class="lg:order-2 lg:sticky lg:top-32 lg:self-start space-y-6">
 
-            <!-- Category Pill - Desktop Top Right -->
             <div class="hidden lg:flex justify-between animate-reveal-right">
               <span
                 class="bg-primary text-hardwhite px-6 py-2 rounded-md text-sm font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-shadow">
@@ -111,9 +107,8 @@ const socialLinks = [
               </button>
             </div>
 
-            <!-- Main Image - Desktop Large Version -->
             <div
-              class="hidden lg:block relative h-[500px] xl:h-[600px] w-full bg-hardwhite/40 rounded-[16px] overflow-hidden shadow-2xl fade-in-up-custom group cursor-pointer"
+              class="hidden lg:block relative h-[500px] xl:h-[600px] w-full bg-hardwhite/40 rounded-[16px] overflow-hidden shadow-2xl fade-in-up-custom group cursor-pointer no-print"
               @click="isImgModalOpen = true">
               <NuxtImg :src="recipe.meta?.image"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -128,7 +123,6 @@ const socialLinks = [
               </div>
             </div>
 
-            <!-- Desktop: Horizontal Info Cards -->
             <div class="hidden lg:grid grid-cols-3 gap-4 fade-in-up-custom">
               <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الحصص', difficulty: 'المستوى' }"
                 :key="idx"
@@ -145,9 +139,8 @@ const socialLinks = [
               </div>
             </div>
 
-            <!-- Desktop: Macros Card (Large) -->
             <div v-if="macros && chartData" ref="macrosCardDesktop"
-              class="hidden lg:block bg-hardwhite rounded-[16px] p-8 shadow-[0px_0px_8px_4px_rgba(0,0,0,0.05)]">
+              class="hidden lg:block bg-hardwhite rounded-[16px] p-8 shadow-[0px_0px_8px_4px_rgba(0,0,0,0.05)] no-print">
               <div class="flex items-center justify-between">
                 <div class="flex flex-col gap-4 text-right flex-1">
                   <h4 class="text-2xl font-black text-softblack mb-2">القيمة الغذائية للحصة</h4>
@@ -192,10 +185,8 @@ const socialLinks = [
             </div>
           </div>
 
-          <!-- Right Column: Content -->
           <div class="lg:order-1 space-y-6 lg:space-y-8">
 
-            <!-- Mobile Category Pill -->
             <div class="lg:hidden flex justify-between animate-reveal-right">
               <span class="bg-primary text-hardwhite px-4 py-1 rounded-md text-xs font-bold shadow-sm">
                 {{ recipe.meta?.category }}
@@ -206,7 +197,6 @@ const socialLinks = [
               </button>
             </div>
 
-            <!-- Title & Description -->
             <header class="mt-4 lg:mt-0 text-right">
               <h1
                 class="text-[40px] lg:text-[56px] xl:text-[64px] leading-[1.4] font-black text-primary animate-reveal-right">
@@ -217,9 +207,7 @@ const socialLinks = [
                 {{ recipe.description }}
               </p>
             </header>
-            <!-- Premium Print Button -->
 
-            <!-- Action Buttons -->
             <div
               class="flex items-center justify-between lg:justify-start gap-4 lg:gap-6 mt-8 animate-fade-in-up no-print">
               <a href="#ingredients"
@@ -234,10 +222,8 @@ const socialLinks = [
               </a>
             </div>
 
-            <!-- Divider Line -->
-            <div class="w-[166px] lg:w-[200px] h-[1px] bg-primary mt-8 mb-8 animate-scale-x" />
+            <div class="w-[166px] lg:w-[200px] h-[1px] bg-primary mt-8 mb-8 animate-scale-x no-print" />
 
-            <!-- Mobile Info Grid -->
             <div class="lg:hidden grid grid-cols-3 gap-3 fade-in-up-custom">
               <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الكمية', difficulty: 'المستوى' }"
                 :key="idx"
@@ -251,9 +237,8 @@ const socialLinks = [
               </div>
             </div>
 
-            <!-- Mobile Image -->
             <div
-              class="lg:hidden relative h-[190px] w-full bg-hardwhite/40 rounded-[8px] overflow-hidden shadow-lg fade-in-up-custom group cursor-pointer"
+              class="lg:hidden relative h-[190px] w-full bg-hardwhite/40 rounded-[8px] overflow-hidden shadow-lg fade-in-up-custom group cursor-pointer no-print"
               @click="isImgModalOpen = true">
               <NuxtImg :src="recipe.meta?.image"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -261,9 +246,7 @@ const socialLinks = [
                 fetchpriority="high" />
             </div>
 
-            <!-- Socials -->
-            <div id="ingredients"
-              class="no-print bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+            <div class="no-print bg-hardwhite rounded-[12px] lg:rounded-[16px] p-4 lg:p-6 flex justify-around lg:justify-center lg:gap-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
               <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank"
                 rel="noopener noreferrer"
                 class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-hardwhite transition-all duration-300 hover:scale-110 hover:rotate-6 shadow-sm">
@@ -271,10 +254,63 @@ const socialLinks = [
               </a>
             </div>
 
-            <!-- Mobile Macros Card -->
+            <section id="print-ingredients"
+              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                المقادير
+              </h2>
+              <ul class="space-y-4">
+                <li v-for="(item) in recipe.meta?.ingredients" :key="item"
+                  class="flex items-center gap-4 text-highlight font-bold text-sm lg:text-base group cursor-default">
+                  <div
+                    class="w-3 h-3 rounded-full bg-highlight group-hover:scale-150 transition-transform duration-300" />
+                  <span class="group-hover:translate-x-2 transition-transform duration-300">{{ item }}</span>
+                </li>
+              </ul>
+            </section>
+
+            <section id="print-steps"
+              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
+              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+                طريقة التحضير
+              </h2>
+              <div class="space-y-8 lg:space-y-10">
+                <div v-for="(step, idx) in recipe.meta?.steps" :key="idx"
+                  class="flex items-start gap-4 lg:gap-6 group relative pb-8 lg:pb-10">
+                  <div class="relative z-10">
+                    <div
+                      class="w-[28px] h-[28px] lg:w-[32px] lg:h-[32px] rounded-full bg-primary text-hardwhite flex items-center justify-center text-sm lg:text-base font-black shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
+                      {{ idx + 1 }}
+                    </div>
+                  </div>
+                  <div v-if="idx < recipe.meta?.steps.length - 1"
+                    class="absolute right-[14px] lg:right-[16px] top-[32px] lg:top-[36px] bottom-0 w-0.5 bg-primary/10 group-hover:bg-primary/30 transition-colors">
+                  </div>
+                  <div class="flex-1">
+                    <h3
+                      class="text-primary font-black text-lg lg:text-xl mb-2 group-hover:text-secondary transition-colors">
+                      {{ step.title }}</h3>
+                    <p class="text-highlight text-sm lg:text-base leading-relaxed font-medium whitespace-pre-line">{{
+                      step.content }}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="print-chef-tip" v-if="recipe.meta?.chefTip"
+              class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-visible">
+              <div
+                class="no-print absolute -top-3 -right-3 w-8 h-8 lg:w-10 lg:h-10 bg-secondary rounded-full flex items-center justify-center  hover:rotate-[360deg]  transition-transform duration-500 z-10">
+                <Icon name="tresh-icon:lightbulb" class="w-6 h-6 lg:w-8 lg:h-8 text-highlight hover:scale-125 transition-all  duration-300" />
+              </div>
+              <h2 class="text-xl lg:text-2xl font-bold text-secondary mb-4 mt-2">نصائح الشيف</h2>
+              <p class="text-secondary font-normal leading-relaxed text-sm lg:text-base whitespace-pre-line">{{
+                recipe.meta.chefTip }}</p>
+            </section>
+
             <div v-if="macros && chartData" ref="macrosCard"
-              class="lg:hidden bg-hardwhite rounded-[12px] p-6 shadow-[0px_0px_4px_2px_rgba(0,0,0,0.05)] flex items-center justify-between transition-all duration-700"
-              :class="isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-4'">
+              class="bg-hardwhite rounded-[12px] p-6 shadow-[0px_0px_4px_2px_rgba(0,0,0,0.05)] flex items-center justify-between transition-all duration-700 print-macros-forced"
+              :class="[isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-4', 'lg:hidden']">
               <div class="flex flex-col gap-3 text-right">
                 <h4 class="text-xl font-black text-softblack mb-1">القيمة الغذائية</h4>
                 <div v-for="(val, label) in { carbs: 'كربوهيدرات', protein: 'بروتين', fat: 'دهون' }" :key="label"
@@ -310,74 +346,15 @@ const socialLinks = [
               </div>
             </div>
 
-            <!-- Ingredients -->
-            <section
-              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
-              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-6 flex items-center gap-3">
-                المقادير
-              </h2>
-              <ul class="space-y-4">
-                <li v-for="(item) in recipe.meta?.ingredients" :key="item"
-                  class="flex items-center gap-4 text-highlight font-bold text-sm lg:text-base group cursor-default">
-                  <div
-                    class="w-3 h-3 rounded-full bg-highlight group-hover:scale-150 transition-transform duration-300" />
-                  <span class="group-hover:translate-x-2 transition-transform duration-300">{{ item }}</span>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Steps -->
-            <section
-              class="bg-hardwhite rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 shadow-[0_0_4px_2px_rgba(0,0,0,0.05)] animate-fade-in-up">
-              <h2 class="text-xl lg:text-2xl font-bold text-primary mb-8 flex items-center gap-3">
-                طريقة التحضير
-              </h2>
-              <div class="space-y-8 lg:space-y-10">
-                <div v-for="(step, idx) in recipe.meta?.steps" :key="idx"
-                  class="flex items-start gap-4 lg:gap-6 group relative pb-8 lg:pb-10">
-                  <div class="relative z-10">
-                    <div
-                      class="w-[28px] h-[28px] lg:w-[32px] lg:h-[32px] rounded-full bg-primary text-hardwhite flex items-center justify-center text-sm lg:text-base font-black shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                      {{ idx + 1 }}
-                    </div>
-                  </div>
-                  <!-- Line that stretches to next step using absolute positioning -->
-                  <div v-if="idx < recipe.meta?.steps.length - 1"
-                    class="absolute right-[14px] lg:right-[16px] top-[32px] lg:top-[36px] bottom-0 w-0.5 bg-primary/10 group-hover:bg-primary/30 transition-colors">
-                  </div>
-                  <div class="flex-1">
-                    <h3
-                      class="text-primary font-black text-lg lg:text-xl mb-2 group-hover:text-secondary transition-colors">
-                      {{ step.title }}</h3>
-                    <p class="text-highlight text-sm lg:text-base leading-relaxed font-medium whitespace-pre-line">{{
-                      step.content }}</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- Chef Tip -->
-            <section v-if="recipe.meta?.chefTip"
-              class="relative bg-hardwhite border-[5px] border-secondary rounded-[12px] lg:rounded-[16px] p-6 lg:p-8 animate-fade-in-up overflow-visible">
-              <div
-                class="no-print absolute -top-3 -right-3 w-8 h-8 lg:w-10 lg:h-10 bg-secondary rounded-full flex items-center justify-center  hover:rotate-[360deg]  transition-transform duration-500 z-10">
-                <Icon name="tresh-icon:lightbulb" class="w-6 h-6 lg:w-8 lg:h-8 text-highlight hover:scale-125 transition-all  duration-300" />
-              </div>
-              <h2 class="text-xl lg:text-2xl font-bold text-secondary mb-4 mt-2">نصائح الشيف</h2>
-              <p class="text-secondary font-normal leading-relaxed text-sm lg:text-base whitespace-pre-line">{{
-                recipe.meta.chefTip }}</p>
-            </section>
           </div>
         </div>
 
-        <!-- Suggestions Section - Full Width -->
         <section class="mt-16 lg:mt-24 pb-10  no-print">
           <h2 class="text-xl lg:text-3xl font-bold text-primary mb-8 lg:mb-10 flex items-center gap-3">
             <span class="w-1 h-8 bg-highlight rounded-full"></span>
             وصفات قد تعجبك
           </h2>
 
-          <!-- Desktop Grid -->
           <div class="hidden lg:grid lg:grid-cols-3  gap-6">
             <NuxtLink v-for="(item, idx) in suggested" :key="item.id" :to="item.path"
               class="bg-hardwhite  rounded-[16px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[380px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)] group"
@@ -408,7 +385,6 @@ const socialLinks = [
             </NuxtLink>
           </div>
 
-          <!-- Mobile Scroll -->
           <div class="lg:hidden flex gap-5 overflow-x-auto no-scrollbar pb-8 px-1 scroll-smooth no-print">
             <NuxtLink v-for="item in suggested" :key="item.id" :to="item.path"
               class="min-w-[280px] bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col h-[290px] transition-all hover:scale-[1.02]">
@@ -439,7 +415,6 @@ const socialLinks = [
       </div>
     </div>
 
-    <!-- Image Modal -->
     <Transition name="fade">
       <div v-if="isImgModalOpen"
         class="fixed inset-0 z-[100] bg-softblack/95 flex items-center justify-center p-6 backdrop-blur-sm"
@@ -577,6 +552,7 @@ const socialLinks = [
   }
 }
 </style>
+
 <style>
 html {
   scroll-behavior: smooth;
@@ -611,44 +587,29 @@ html {
     box-shadow: none !important; 
   }
 
-  /* 6. THE MAGIC TRICK: Turn the whole page into a Flex column to reorder things */
+  /* 6. Turn the whole page into a Flex column */
   .lg\:order-1 {
     display: flex !important;
     flex-direction: column !important;
   }
 
-  /* 7. Beautiful, Clear Photo on Page 1 */
-  .lg\:hidden.relative {
-    display: block !important;
-    height: 250px !important; /* Nice landscape size */
-    width: 100% !important;
-    margin: 6mm 0 !important;
-    border-radius: 12px !important;
-    page-break-inside: avoid !important;
-    order: 2 !important; /* Keep near the top */
-  }
-
-  /* 8. Force Ingredients to Page 2 */
-  section#ingredients {
+  /* 7. Force Ingredients to Page 2 */
+  #print-ingredients {
     page-break-before: always !important;
     break-before: page !important;
     margin-top: 0 !important;
-    order: 5 !important; 
   }
 
-  /* 9. Move the Nutrition Card to the absolute end of the PDF */
-  [ref="macrosCard"] {
-    order: 99 !important; /* This pushes it to the very bottom! */
+  /* 8. Ensure the Macros Card prints properly at the end */
+  .print-macros-forced {
     display: flex !important;
-    margin-top: 10mm !important;
+    margin-top: 15mm !important;
+    page-break-inside: avoid !important;
     border: 1px solid #e5e7eb !important;
     box-shadow: none !important;
-    page-break-inside: avoid !important;
   }
 
   /* Standard borders for sections */
   .bg-hardwhite { box-shadow: none !important; border: 1px solid #e5e7eb !important; break-inside: avoid !important; }
-}
-</style>
 }
 </style>
