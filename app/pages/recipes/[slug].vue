@@ -574,4 +574,26 @@ const socialLinks = [
 html {
   scroll-behavior: smooth;
 }
+
+@media print {
+  body, .bg-accent, .min-h-screen {
+    background-color: white !important;
+  }
+  .pt-24, .lg\:pt-32 {
+    padding-top: 0 !important;
+  }
+  .lg\:grid {
+    display: block !important;
+  }
+  .lg\:sticky {
+    position: static !important;
+  }
+  .bg-hardwhite {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+    margin-bottom: 24px !important;
+    break-inside: avoid !important; 
+    page-break-inside: avoid !important;
+  }
+}
 </style>
