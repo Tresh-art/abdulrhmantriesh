@@ -559,57 +559,117 @@ html {
 }
 
 @media print {
-  /* 1. Base Reset */
+  /* 1. Base Reset & Full A4 Width (Fixes the squished car issue) */
   body, .min-h-screen, .bg-accent {
     background-color: white !important;
     padding: 0 !important;
     margin: 0 !important;
     color: black !important;
   }
-  * { font-size: 11pt !important; }
+  * { font-size: 12pt !important; }
 
-  /* 2. Hide unwanted elements */
-  .no-print, .lg\:order-2 { display: none !important; }
-
-  /* 3. Make Title Pop */
-  h1 { font-size: 24pt !important; margin-bottom: 5mm !important; }
-  header p { font-size: 11pt !important; margin-bottom: 5mm !important; }
-
-  /* 4. Force Mobile Elements ON */
-  .lg\:hidden[class*="flex"] { display: flex !important; }
-  .lg\:hidden[class*="grid"] { display: grid !important; }
-
-  /* 5. Clean up the Stats Grid */
-  [class*="grid-cols-3"] div { 
-    padding: 3mm !important; 
-    border: 1px solid #e5e7eb !important; 
-    border-radius: 8px !important; 
-    box-shadow: none !important; 
+  /* Break out of the mobile website width constraints */
+  .max-w-\[390px\], .lg\:max-w-7xl, .mx-auto, .px-\[26px\] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 15mm !important; /* Comfortable side margins for A4 paper */
+    margin: 0 !important;
   }
 
-  /* 6. Turn the whole page into a Flex column */
+  /* 2. Hide unwanted web elements */
+  .no-print, .lg\:order-2 { display: none !important; }
+
+  /* 3. Turn the container into a full-width flexible column */
   .lg\:order-1 {
     display: flex !important;
     flex-direction: column !important;
+    width: 100% !important;
   }
 
-  /* 7. Force Ingredients to Page 2 */
+  /* ---------------------------------------------------- */
+  /* PAGE 1: Title, Description, and Stats Only           */
+  /* ---------------------------------------------------- */
+  
+  header {
+    order: 1 !important;
+    margin-top: 20mm !important; /* Top margin for the first page */
+  }
+  
+  h1 { 
+    font-size: 32pt !important; 
+    margin-bottom: 10mm !important; 
+    line-height: 1.3 !important; 
+  }
+  
+  header p { 
+    font-size: 15pt !important; 
+    line-height: 1.8 !important; /* More relaxed reading */
+    margin-bottom: 25mm !important; 
+  }
+
+  /* Relaxed Stats Grid */
+  .lg\:hidden[class*="grid"], [class*="grid-cols-3"] { 
+    display: grid !important; 
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15mm !important; /* Lots of breathing room between items */
+    order: 2 !important;
+  }
+  
+  [class*="grid-cols-3"] div { 
+    padding: 8mm !important; 
+    border: 1.5px solid #e5e7eb !important; 
+    border-radius: 12px !important; 
+    box-shadow: none !important; 
+  }
+
+  /* ---------------------------------------------------- */
+  /* PAGE 2 ONWARDS: Ingredients, Steps, Chef Tip, Macros */
+  /* ---------------------------------------------------- */
+
+  /* Remove web boxes to make it look like a clean document */
+  section {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 15mm !important;
+  }
+
+  /* Document-style Headers */
+  h2 {
+    font-size: 22pt !important;
+    margin-bottom: 10mm !important;
+    border-bottom: 2px solid #f3f4f6 !important; /* Clean underline */
+    padding-bottom: 5mm !important;
+  }
+
+  ul li, p {
+    font-size: 13pt !important;
+    line-height: 1.8 !important; /* Relaxed text spacing */
+    margin-bottom: 4mm !important;
+  }
+
+  /* Force Ingredients to start fresh on Page 2 */
   #print-ingredients {
+    order: 3 !important;
     page-break-before: always !important;
     break-before: page !important;
-    margin-top: 0 !important;
+    margin-top: 15mm !important;
   }
 
-  /* 8. Ensure the Macros Card prints properly at the end */
+  #print-steps { order: 4 !important; }
+  #print-chef-tip { order: 5 !important; }
+
+  /* Ensure the Macros Card prints properly at the end */
   .print-macros-forced {
+    order: 6 !important;
     display: flex !important;
-    margin-top: 15mm !important;
+    margin-top: 20mm !important;
+    padding: 10mm !important;
     page-break-inside: avoid !important;
-    border: 1px solid #e5e7eb !important;
+    border: 1.5px solid #e5e7eb !important;
+    background: transparent !important;
     box-shadow: none !important;
   }
-
-  /* Standard borders for sections */
-  .bg-hardwhite { box-shadow: none !important; border: 1px solid #e5e7eb !important; break-inside: avoid !important; }
 }
 </style>
