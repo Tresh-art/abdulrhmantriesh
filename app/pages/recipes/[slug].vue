@@ -59,6 +59,15 @@ const chartData = computed(() => {
     fatOffset: -((p + c) / total * 100)
   }
 })
+  const socialLinks = [
+  { name: 'Instagram', url: 'https://www.instagram.com...', icon: 'simple-icons:instagram' },
+  // ... your other links
+]
+
+// Add this right here! It changes the page title so the PDF saves with the correct name.
+useHead({
+  title: computed(() => recipe.value ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش')
+})
 // Function to trigger PDF Print
 const printRecipe = () => {
   isVisible.value = true // Ensure macros are visible before printing
@@ -571,125 +580,77 @@ const socialLinks = [
 }
 </style>
 <style>
-/* Keeps satisfyng smooth scroll for screen users */
 html {
   scroll-behavior: smooth;
 }
 
-/* Target specialized Print Specifics */
 @media print {
-  /* 1. Base Page Reset: pure white, no padding, black text for better contrast on paper */
+  /* 1. Base Reset */
   body, .min-h-screen, .bg-accent {
     background-color: white !important;
     padding: 0 !important;
     margin: 0 !important;
     color: black !important;
   }
+  * { font-size: 11pt !important; }
 
-  /* 2. Compact Page 1: Apply global font size reduction across the page */
-  * {
-    font-size: 10pt !important; /* Reduces base text from 16-18px down to ~13px on paper */
-  }
+  /* 2. Hide unwanted elements */
+  .no-print, .lg\:order-2 { display: none !important; }
 
-  /* Target main recipe titles to make them smaller but still distinct */
-  h1 {
-    font-size: 18pt !important;
-    margin-bottom: 2mm !important;
-  }
-  h2 {
-    font-size: 14pt !important;
-  }
-  header {
-    padding: 0 !important;
-  }
-  header p {
-    font-size: 9pt !important;
-    margin-top: 0 !important;
-    margin-bottom: 3mm !important;
+  /* 3. Make Title Pop */
+  h1 { font-size: 24pt !important; margin-bottom: 5mm !important; }
+  header p { font-size: 11pt !important; margin-bottom: 5mm !important; }
+
+  /* 4. Force Mobile Elements ON */
+  .lg\:hidden[class*="flex"] { display: flex !important; }
+  .lg\:hidden[class*="grid"] { display: grid !important; }
+
+  /* 5. Clean up the Stats Grid */
+  [class*="grid-cols-3"] div { 
+    padding: 3mm !important; 
+    border: 1px solid #e5e7eb !important; 
+    border-radius: 8px !important; 
+    box-shadow: none !important; 
   }
 
-  /* 3. Compact Stats Grid (Prep Time / Portions / Difficulty) */
-  [class*="grid-cols-3"] div {
-    padding: 1mm !important;
-    background: none !important;
-    box-shadow: none !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 4px !important;
-  }
-  [class*="grid-cols-3"] Icon {
-    display: none !important; /* Hide icons to save vertical space on Page 1 */
-  }
-  [class*="grid-cols-3"] span:last-of-type {
-    font-size: 10pt !important;
-    font-weight: bold !important;
+  /* 6. THE MAGIC TRICK: Turn the whole page into a Flex column to reorder things */
+  .lg\:order-1 {
+    display: flex !important;
+    flex-direction: column !important;
   }
 
-  /* 4. DRASCTIC Image compaction: make it a small thumbnail, float right at bottom of Page 1 */
-  [class*="relative"][class*="h-[190px]"] {
+  /* 7. Beautiful, Clear Photo on Page 1 */
+  .lg\:hidden.relative {
     display: block !important;
-    height: 80px !important; /* VASTLY reduced height, acts as a thumbnail */
-    width: 120px !important; /* Narrower width */
-    position: static !important;
-    float: none !important;
-    clear: both !important;
-    margin-right: 0 !important; /* Align to the right margin */
-    margin-left: auto !important;
-    border-radius: 6px !important;
-    margin-bottom: 4mm !important;
+    height: 250px !important; /* Nice landscape size */
+    width: 100% !important;
+    margin: 6mm 0 !important;
+    border-radius: 12px !important;
+    page-break-inside: avoid !important;
+    order: 2 !important; /* Keep near the top */
   }
 
-  /* 5. Nutrition Card Compaction: keep it on Page 1 below stats */
+  /* 8. Force Ingredients to Page 2 */
+  section#ingredients {
+    page-break-before: always !important;
+    break-before: page !important;
+    margin-top: 0 !important;
+    order: 5 !important; 
+  }
+
+  /* 9. Move the Nutrition Card to the absolute end of the PDF */
   [ref="macrosCard"] {
-    display: flex !important; /* force mobile macros visible in print */
-    padding: 2mm !important;
-    background: none !important;
-    box-shadow: none !important;
+    order: 99 !important; /* This pushes it to the very bottom! */
+    display: flex !important;
+    margin-top: 10mm !important;
     border: 1px solid #e5e7eb !important;
-    border-radius: 4px !important;
-    opacity: 1 !important;
-    transform: none !important;
-    margin-bottom: 4mm !important;
-  }
-  [ref="macrosCard"] h4 {
-    font-size: 11pt !important;
-    margin-bottom: 1mm !important;
-  }
-  /* drastically reduce SVG size for nutrition wheel */
-  [ref="macrosCard"] .relative.w-28.h-28 {
-    width: 18mm !important;
-    height: 18mm !important;
-  }
-  /* ensure caloric text is visible instantly on Page 1 */
-  [ref="macrosCard"] div.absolute {
-    font-size: 8pt !important;
-    position: absolute !important;
-    left: 1mm !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
   }
 
-  /* 6. THE MOST IMPORTANT REQUIREMENT: FORCE INGREDIENTS TO A NEW PAGE (PAGE 2) */
-  /* Target the exact DOM element that holds your ingredients section and force a page break BEFORE it. */
-  /* This ensures Page 1 ends and ingredients *always* start at the top of a new sheet. */
-  section.bg-hardwhite:nth-of-type(1) {
-    page-break-before: always !important; /* Classic break command */
-    break-before: page !important; /* Modern CSS break command */
-    margin-top: 0 !important; /* Starts immediately at the top edge of paper */
-  }
-
-  /* Target the list of ingredients to ensure they are listed in columns, making them easier to read when compacted on a new page */
-  section.bg-hardwhite:nth-of-type(1) ul {
-    column-count: 2 !important; /* force ingredients into 2 columns on Page 2 */
-    column-gap: 5mm !important;
-  }
-
-  /* Targeted specific steps compaction for later pages */
-  [class*="space-y-10"] div {
-    padding-bottom: 4mm !important;
-  }
-  [class*="space-y-10"] h3 {
-    font-size: 12pt !important;
-    margin-bottom: 1mm !important;
-  }
+  /* Standard borders for sections */
+  .bg-hardwhite { box-shadow: none !important; border: 1px solid #e5e7eb !important; break-inside: avoid !important; }
+}
+</style>
 }
 </style>
