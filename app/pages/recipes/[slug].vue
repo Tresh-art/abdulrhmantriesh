@@ -559,7 +559,7 @@ html {
 }
 
 @media print {
-  /* 1. Base Reset & Full A4 Width (Fixes the squished car issue) */
+  /* 1. Base Reset & Full A4 Width */
   body, .min-h-screen, .bg-accent {
     background-color: white !important;
     padding: 0 !important;
@@ -572,7 +572,7 @@ html {
   .max-w-\[390px\], .lg\:max-w-7xl, .mx-auto, .px-\[26px\] {
     max-width: 100% !important;
     width: 100% !important;
-    padding: 0 15mm !important; /* Comfortable side margins for A4 paper */
+    padding: 0 15mm !important; /* Comfortable side margins */
     margin: 0 !important;
   }
 
@@ -592,7 +592,7 @@ html {
   
   header {
     order: 1 !important;
-    margin-top: 20mm !important; /* Top margin for the first page */
+    margin-top: 20mm !important;
   }
   
   h1 { 
@@ -603,7 +603,7 @@ html {
   
   header p { 
     font-size: 15pt !important; 
-    line-height: 1.8 !important; /* More relaxed reading */
+    line-height: 1.8 !important; 
     margin-bottom: 25mm !important; 
   }
 
@@ -611,7 +611,7 @@ html {
   .lg\:hidden[class*="grid"], [class*="grid-cols-3"] { 
     display: grid !important; 
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 15mm !important; /* Lots of breathing room between items */
+    gap: 15mm !important; 
     order: 2 !important;
   }
   
@@ -626,8 +626,8 @@ html {
   /* PAGE 2 ONWARDS: Ingredients, Steps, Chef Tip, Macros */
   /* ---------------------------------------------------- */
 
-  /* Remove web boxes to make it look like a clean document */
-  section {
+  /* Force NO borders and NO backgrounds for all text sections */
+  section, .bg-hardwhite {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
@@ -635,17 +635,17 @@ html {
     margin-bottom: 15mm !important;
   }
 
-  /* Document-style Headers */
+  /* Clean Headers with NO lines */
   h2 {
     font-size: 22pt !important;
     margin-bottom: 10mm !important;
-    border-bottom: 2px solid #f3f4f6 !important; /* Clean underline */
-    padding-bottom: 5mm !important;
+    border: none !important; /* Removed the underline */
+    padding-bottom: 0 !important;
   }
 
   ul li, p {
     font-size: 13pt !important;
-    line-height: 1.8 !important; /* Relaxed text spacing */
+    line-height: 1.8 !important; 
     margin-bottom: 4mm !important;
   }
 
@@ -667,9 +667,10 @@ html {
     margin-top: 20mm !important;
     padding: 10mm !important;
     page-break-inside: avoid !important;
-    border: 1.5px solid #e5e7eb !important;
+    border: 1.5px solid #e5e7eb !important; /* Keep a nice box JUST for nutrition */
     background: transparent !important;
     box-shadow: none !important;
+    border-radius: 12px !important;
   }
 }
 </style>
