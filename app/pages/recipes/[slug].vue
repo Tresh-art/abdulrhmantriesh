@@ -61,7 +61,7 @@ const chartData = computed(() => {
 })
   // 1. Let Nuxt handle the page title natively (Notice we removed "computed")
 useHead({
-  title: () => recipe.value ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش'
+  title: () => recipe.value ? recipe.value.title + ' - عبدالرحمن طريش' : 'عبدالرحمن طريش'
 })
 
 // 2. Function to trigger PDF Print
