@@ -123,7 +123,7 @@ const socialLinks = [
 
             <!-- Desktop: Horizontal Info Cards -->
             <div class="hidden lg:grid grid-cols-3 gap-4 fade-in-up-custom">
-              <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الكمية', difficulty: 'المستوى' }"
+              <div v-for="(val, label, idx) in { prepTime: 'التحضير', servings: 'الحصص', difficulty: 'المستوى' }"
                 :key="idx"
                 class="bg-hardwhite rounded-[16px] p-5 flex flex-col items-center text-center shadow-[0_0_8px_4px_rgba(0,0,0,0.05)] hover:shadow-[0_0_16px_8px_rgba(63,49,40,0.1)] transition-all duration-300 hover:-translate-y-1 group">
                 <div
