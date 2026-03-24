@@ -576,23 +576,52 @@ html {
 }
 
 @media print {
-  body, .bg-accent, .min-h-screen {
+  /* 1. Reset Backgrounds & Remove Page Padding */
+  body, .min-h-screen, .bg-accent {
     background-color: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
-  .pt-24, .lg\:pt-32 {
-    padding-top: 0 !important;
+
+  /* 2. STOP Animations (Crucial: prevents blank invisible text in print) */
+  * {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
+
+  /* 3. Hide Unwanted Elements & the Entire Desktop Side-Column */
+  .no-print,
+  .lg\:order-2 { 
+    display: none !important; 
+  }
+
+  /* 4. Force a Single Column Layout */
   .lg\:grid {
     display: block !important;
   }
-  .lg\:sticky {
-    position: static !important;
+
+  /* 5. Activate the Mobile Flow (Top-to-Bottom) for Print */
+  .lg\:hidden[class*="flex"] { display: flex !important; }
+  .lg\:hidden[class*="grid"] { display: grid !important; }
+  .lg\:hidden[class*="relative"] { display: block !important; }
+
+  /* 6. Fix Image Sizing so it looks beautiful on paper */
+  .lg\:hidden.relative {
+    height: 300px !important; 
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
   }
+  .lg\:hidden.relative img {
+    border-radius: 12px !important;
+  }
+
+  /* 7. Clean Up Boxes (Remove shadows, add thin clean borders, prevent cutting in half) */
   .bg-hardwhite {
     box-shadow: none !important;
-    border: 1px solid #e5e7eb !important;
-    margin-bottom: 24px !important;
-    break-inside: avoid !important; 
+    border: 2px solid #f3f4f6 !important;
+    break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
 }
