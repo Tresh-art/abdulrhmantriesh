@@ -84,18 +84,6 @@ const printRecipe = () => {
     window.print();
   }, 500);
 }
-  if (recipe.value && recipe.value.title) {
-    document.title = `${recipe.value.title} - عبدالرحمن طريش`;
-  } else {
-    document.title = 'عبدالرحمن طريش';
-  }
-
-  // Add a tiny delay so the browser registers the new title before opening the print menu
-  setTimeout(() => {
-    window.print();
-  }, 50);
-  // --- NEW CODE END ---
-}
 const socialLinks = [
   { name: 'Instagram', url: 'https://www.instagram.com/abdalrhman_tresh?igsh=MTJudmppaDVsczJlMQ%3D%3D&utm_source=qr', icon: 'simple-icons:instagram' },
   { name: 'YouTube', url: 'https://www.youtube.com/@abdalrhmantresh', icon: 'simple-icons:youtube' },
