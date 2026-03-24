@@ -71,13 +71,19 @@ useHead({
 // Function to trigger PDF Print
 const printRecipe = () => {
   isVisible.value = true // Ensure macros are visible before printing
-  //if it is not visible, the chart will not render in the PDF, which looks unprofessional we will fix it with this:
-  //scroll down then up real quick to trigger the observer if it's not already visible
   macrosCard.value?.classList.add('opacity-100', 'translate-y-0');
   macrosCardDesktop.value?.classList.add('opacity-100', 'translate-y-0');
 
-  // --- NEW CODE START ---
-  // Temporarily change the document title so the PDF saves with this name
+  // 1. Force the title we want for the PDF
+  const pdfName = recipe.value?.title ? `${recipe.value.title} - عبدالرحمن طريش` : 'عبدالرحمن طريش';
+  document.title = pdfName;
+
+  // 2. Give iPhones/Safari half a second (500ms) to register the change 
+  // before freezing the screen with the print menu.
+  setTimeout(() => {
+    window.print();
+  }, 500);
+}
   if (recipe.value && recipe.value.title) {
     document.title = `${recipe.value.title} - عبدالرحمن طريش`;
   } else {
