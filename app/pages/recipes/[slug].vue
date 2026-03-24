@@ -570,3 +570,8 @@ const socialLinks = [
   }
 }
 </style>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
