@@ -1,10 +1,10 @@
 <template>
   <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
     
-    <div v-if="view === 'home'" class="flex flex-col gap-24 lg:gap-40 pb-40">
+    <div v-if="view === 'home'" class="flex flex-col gap-24 lg:gap-36 pb-40">
       
-      <nav class="pt-16 pb-4 text-center">
-        <div class="font-bold text-2xl tracking-wide text-[#3D5A50] opacity-40 uppercase">قائمة المنتجات</div>
+      <nav class="pt-20 pb-4 text-center">
+        <div class="font-bold text-2xl tracking-widest text-[#3D5A50] opacity-40 uppercase">قائمة المنتجات</div>
       </nav>
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
@@ -14,10 +14,10 @@
           </div>
           
           <div class="mt-12 text-center flex flex-col items-center">
-            <h2 class="text-5xl md:text-6xl font-black mb-4 text-[#333] leading-relaxed">ميزان الحرارة</h2>
-            <p class="text-2xl tracking-widest text-[#555] opacity-80 mb-10 font-medium">الدقة في كل درجة</p>
+            <h2 class="text-4xl md:text-5xl font-black mb-4 text-[#333] leading-relaxed">ميزان الحرارة</h2>
+            <p class="text-xl md:text-2xl tracking-widest text-[#555] opacity-70 mb-10 font-medium">الدقة في كل درجة</p>
             
-            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
+            <div class="px-20 py-6 bg-[#6B4F3F] text-white rounded-2xl text-xl font-bold shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-[#5A4235] active:scale-95 active:translate-y-0">
               استكشف المنتج
             </div>
           </div>
@@ -29,11 +29,12 @@
           <div class="w-full overflow-hidden rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
             <img src="/footer/678910.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
+          
           <div class="mt-12 text-center flex flex-col items-center">
-            <h2 class="text-5xl md:text-6xl font-black mb-4 text-[#333] leading-relaxed">المنتج المميز</h2>
-            <p class="text-2xl tracking-widest text-[#555] opacity-80 mb-10 font-medium">فخامة التصميم</p>
+            <h2 class="text-4xl md:text-5xl font-black mb-4 text-[#333] leading-relaxed">المنتج المميز</h2>
+            <p class="text-xl md:text-2xl tracking-widest text-[#555] opacity-70 mb-10 font-medium">فخامة التصميم</p>
             
-            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
+            <div class="px-20 py-6 bg-[#6B4F3F] text-white rounded-2xl text-xl font-bold shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-[#5A4235] active:scale-95 active:translate-y-0">
               استكشف المنتج
             </div>
           </div>
@@ -76,6 +77,7 @@
               <div v-if="submitted" class="text-center py-10">
                 <div class="w-24 h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
                 <h2 class="text-3xl font-bold">تم استلام طلبك!</h2>
+                <p class="mt-4 text-gray-500">سنتواصل معكم قريباً</p>
               </div>
 
               <form v-else @submit.prevent="handleSubmit" class="space-y-8">
@@ -97,17 +99,17 @@
                   <input v-model="customCity" type="text" required class="w-full p-6 bg-white border-2 border-[#3D5A50]/20 rounded-2xl" placeholder="اكتب مدينتك هنا...">
                 </div>
 
-                <div class="bg-[#F8F6F4] p-8 rounded-3xl space-y-6">
+                <div class="bg-[#F8F6F4] p-8 rounded-3xl space-y-6 text-xl">
                    <div class="flex justify-between items-center">
-                     <span class="text-xl font-bold">الكمية</span>
-                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
+                     <span class="font-bold">الكمية</span>
+                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden">
                        <button type="button" @click="quantity++" class="w-14 h-14 text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
-                       <span class="w-14 text-center font-bold text-xl">{{ quantity }}</span>
+                       <span class="w-14 text-center font-bold">{{ quantity }}</span>
                        <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-14 h-14 text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">-</button>
                      </div>
                    </div>
                    <div class="flex justify-between items-center pt-6 border-t border-[#E5E0DA]">
-                     <span class="text-2xl font-bold text-gray-400">الإجمالي</span>
+                     <span class="font-bold text-gray-400">الإجمالي</span>
                      <span class="text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
                    </div>
                 </div>
@@ -115,7 +117,6 @@
                 <button type="submit" class="w-full bg-[#3D5A50] text-white py-8 rounded-[2rem] text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300">
                   تأكيد الطلب الآن
                 </button>
-                <p class="text-center text-gray-400 font-medium">✓ الدفع عند الاستلام</p>
               </form>
             </div>
           </div>
@@ -160,8 +161,6 @@ const openProduct = (id) => {
   currentIndex.value = 0
   quantity.value = 1
   submitted.value = false
-  selectedCity.value = ''
-  customCity.value = ''
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
@@ -192,10 +191,10 @@ const handleSubmit = async (e) => {
 
 <style scoped>
 .animate-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 </style>
