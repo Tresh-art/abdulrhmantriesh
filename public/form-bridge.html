@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Bridge</title>
+</head>
+<body>
+    <form name="thermometer-orders" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="tel" name="phone" />
+        <select name="city">
+            <option>طرابلس</option>
+            <option>بنغازي</option>
+            <option>مصراتة</option>
+            <option>الزاوية</option>
+            <option>مدينة أخرى</option>
+        </select>
+        <textarea name="address"></textarea>
+        
+        <input type="number" name="quantity" />
+        <input type="text" name="total_price" />
+
+        <input type="hidden" name="form-name" value="thermometer-orders" />
+    </form>
+</body>
+</html>
