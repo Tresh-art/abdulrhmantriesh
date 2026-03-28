@@ -17,7 +17,7 @@
             <h2 class="text-5xl md:text-6xl font-black mb-4 text-[#333] leading-relaxed">ميزان الحرارة</h2>
             <p class="text-2xl tracking-widest text-[#555] opacity-80 mb-10 font-medium">الدقة في كل درجة</p>
             
-            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm group-hover:bg-gray-50 transition-all duration-300 active:scale-95">
+            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
@@ -33,7 +33,7 @@
             <h2 class="text-5xl md:text-6xl font-black mb-4 text-[#333] leading-relaxed">المنتج المميز</h2>
             <p class="text-2xl tracking-widest text-[#555] opacity-80 mb-10 font-medium">فخامة التصميم</p>
             
-            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm group-hover:bg-gray-50 transition-all duration-300 active:scale-95">
+            <div class="px-16 py-5 bg-white border border-[#E5E0DA] rounded-2xl text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
