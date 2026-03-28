@@ -5,7 +5,7 @@
       
       <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
         <p class="text-lg md:text-xl leading-relaxed text-[#3D5A50] font-medium opacity-80">
-          دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.
+          نوفر لك أحدث أدوات المطبخ الذكية لتجربة طهي احترافية وسهلة.
         </p>
       </nav>
 
