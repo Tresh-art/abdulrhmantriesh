@@ -1,198 +1,108 @@
 <template>
   <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
     
-    <section class="flex flex-col md:flex-row h-screen w-full bg-white border-b border-[#E5E0DA]">
-      
-      <div 
-        @click="scrollToProduct('thermometer')"
-        class="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden group cursor-pointer border-l border-[#E5E0DA]"
-      >
-        <img 
-          src="/footer/12345.avif" 
-          alt="Thermometer Preview" 
-          class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-        />
-        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700"></div>
+    <div v-if="view === 'home'" class="h-screen w-full flex flex-col md:flex-row bg-white overflow-hidden">
+      <div @click="openProduct('thermometer')" class="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden group cursor-pointer border-l border-[#E5E0DA]">
+        <img src="/footer/12345.avif" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110" />
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
-          <h2 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">ميزان الحرارة</h2>
-          <p class="text-xl md:text-2xl font-light tracking-widest opacity-90">الدقة الاحترافية</p>
-          <div class="mt-8 px-8 py-3 border-2 border-white rounded-full font-bold backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-all">
-            عرض التفاصيل
-          </div>
+          <h2 class="text-6xl md:text-8xl font-extrabold mb-4 drop-shadow-xl">ميزان الحرارة</h2>
+          <p class="text-xl tracking-widest opacity-80 mb-8 font-light">الدقة في كل درجة</p>
+          <div class="px-12 py-4 border-2 border-white rounded-full font-bold backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500">استكشف المنتج</div>
         </div>
       </div>
 
-      <div 
-        @click="scrollToProduct('product-two')"
-        class="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden group cursor-pointer"
-      >
-        <img 
-          src="/footer/678910.avif" 
-          alt="Second Product Preview" 
-          class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-        />
-        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700"></div>
+      <div @click="openProduct('product-two')" class="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden group cursor-pointer">
+        <img src="/footer/678910.avif" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110" />
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
-          <h2 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">المنتج الثاني</h2>
-          <p class="text-xl md:text-2xl font-light tracking-widest opacity-90">الفخامة العصرية</p>
-          <div class="mt-8 px-8 py-3 border-2 border-white rounded-full font-bold backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-all">
-            عرض التفاصيل
-          </div>
+          <h2 class="text-6xl md:text-8xl font-extrabold mb-4 drop-shadow-xl">المنتج المميز</h2>
+          <p class="text-xl tracking-widest opacity-80 mb-8 font-light">فخامة التصميم</p>
+          <div class="px-12 py-4 border-2 border-white rounded-full font-bold backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500">استكشف المنتج</div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <div id="product-thermometer">
-      <section class="max-w-6xl mx-auto pt-20 px-6 pb-24">
-        <div class="flex flex-col md:flex-row items-start gap-16">
+    <div v-else-if="view === 'product'" class="animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
+        <button @click="view = 'home'" class="text-[#3D5A50] font-bold text-lg flex items-center gap-2 hover:gap-4 transition-all">
+          <span>→</span> العودة للرئيسية
+        </button>
+        <div class="font-black text-3xl tracking-tighter text-[#3D5A50]">LUXE.</div>
+      </nav>
+
+      <section class="max-w-7xl mx-auto pt-10 px-6 pb-24">
+        <div class="flex flex-col lg:flex-row items-start gap-20">
           
-          <div class="w-full md:w-1/2">
-            <div 
-              class="relative w-full h-[500px] md:h-[600px] bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E5E0DA] group"
-              @touchstart="handleTouchStart"
-              @touchend="handleTouchEnd"
-            >
-              <img 
-                :src="thermometerPhotos[currentIndex]" 
-                alt="ميزان حرارة رقمي" 
-                class="w-full h-full object-cover transition-opacity duration-300"
-              />
+          <div class="w-full lg:w-3/5">
+            <div class="relative w-full aspect-[4/5] bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
+              <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
               
-              <button @click="nextSlide" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#333] w-10 h-10 rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity active:scale-95">
-                <span class="text-xl leading-none">❮</span>
-              </button>
-              <button @click="prevSlide" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#333] w-10 h-10 rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity active:scale-95">
-                <span class="text-xl leading-none">❯</span>
-              </button>
+              <button @click="prevSlide" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 w-14 h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
+              <button @click="nextSlide" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 w-14 h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
 
-              <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
-                <button 
-                  v-for="(_, index) in thermometerPhotos" 
-                  :key="index"
-                  @click="goToSlide(index)"
-                  class="h-2 rounded-full transition-all duration-300"
-                  :class="currentIndex === index ? 'bg-[#3D5A50] w-6' : 'bg-gray-300 w-2 hover:bg-gray-400'"
-                ></button>
+              <div class="absolute bottom-10 left-0 right-0 flex justify-center gap-3">
+                <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i" 
+                  class="h-1.5 rounded-full transition-all duration-500"
+                  :class="currentIndex === i ? 'bg-[#3D5A50] w-10' : 'bg-gray-300 w-3'"></button>
               </div>
             </div>
           </div>
 
-          <div class="w-full md:w-1/2 text-right pt-6">
-            <h1 class="text-6xl font-extrabold mb-10 leading-tight">ميزان حرارة <br/>رقمي</h1>
-            
-            <div class="flex items-center gap-4 mb-10">
-              <span class="text-5xl font-extrabold text-[#3D5A50]">{{ unitPrice }} د.ل</span>
-            </div>
+          <div class="w-full lg:w-2/5 text-right">
+            <h1 class="text-7xl font-black mb-6 text-[#333] leading-[1.1]">{{ activeProductData.title }}</h1>
+            <div class="text-5xl font-extrabold text-[#3D5A50] mb-10">{{ activeProductData.price }} د.ل</div>
+            <p class="text-2xl leading-relaxed text-[#555] mb-12 font-medium">{{ activeProductData.description }}</p>
 
-            <p class="text-xl leading-relaxed text-[#555] mb-12">
-              دقة فائقة وسهولة تامة في الاستخدام. ميزان حرارة مصمم خصيصاً لتلبية احتياجات المطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.
-            </p>
+            <div id="order-section" class="bg-white p-10 md:p-12 rounded-[3rem] shadow-xl border border-[#E5E0DA]">
+              <div v-if="submitted" class="text-center py-10">
+                <div class="w-24 h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
+                <h2 class="text-3xl font-bold">تم استلام طلبك!</h2>
+                <p class="mt-4 text-gray-500 text-lg">سنتواصل معك خلال 24 ساعة</p>
+              </div>
 
-            <button 
-              @click="scrollToForm"
-              class="bg-[#3D5A50] text-[#F5F1EE] px-16 py-6 rounded-2xl text-2xl font-extrabold transition-all duration-200 hover:shadow-xl active:scale-[0.97] hover:bg-[#3D5A50]/90"
-            >
-              اطلب الآن
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="order-form" class="max-w-3xl mx-auto py-24 px-6">
-        <div class="bg-white p-12 md:p-16 rounded-[3rem] shadow-lg border border-[#E5E0DA]">
-          
-          <div v-if="submitted" class="text-center py-10 transition-all duration-500">
-            <div class="w-32 h-32 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-              <span class="text-7xl text-[#065F46]">✓</span>
-            </div>
-            <h2 class="text-4xl font-bold mb-4">تم استلام طلبك بنجاح!</h2>
-            <p class="text-xl text-[#555]">سنتواصل معك قريباً لتأكيد تفاصيل التوصيل. شكراً لثقتكم.</p>
-          </div>
-
-          <form 
-            v-else
-            name="thermometer-orders" 
-            method="POST" 
-            data-netlify="true" 
-            data-netlify-honeypot="bot-field"
-            @submit.prevent="handleSubmit"
-            class="space-y-8"
-          >
-            <input type="hidden" name="form-name" value="thermometer-orders" />
-            <input type="hidden" name="quantity" :value="quantity" />
-            <input type="hidden" name="total_price" :value="totalPrice + ' د.ل'" />
-            
-            <p class="hidden" style="display: none;">
-              <label>Don’t fill this out: <input name="bot-field" /></label>
-            </p>
-
-            <h2 class="text-4xl font-bold text-center mb-12">بيانات التوصيل</h2>
-            
-            <div class="space-y-3">
-              <label class="block text-sm font-semibold opacity-70 mr-2">الاسم بالكامل</label>
-              <input required name="name" type="text" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400" placeholder="اكتب اسمك هنا...">
-            </div>
-            
-            <div class="space-y-3">
-              <label class="block text-sm font-semibold opacity-70 mr-2">رقم الهاتف</label>
-              <input required name="phone" type="tel" dir="ltr" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400 text-right" placeholder="09X-XXXXXXX">
-            </div>
-
-            <div class="space-y-3">
-              <label class="block text-sm font-semibold opacity-70 mr-2">المدينة</label>
-              <div class="relative">
-                <select name="city" required v-model="selectedCity" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all appearance-none cursor-pointer text-[#333]">
-                  <option value="" disabled selected>اختر المدينة</option>
+              <form v-else @submit.prevent="handleSubmit" class="space-y-8">
+                <input type="hidden" name="form-name" :value="'order-' + activeProduct" />
+                
+                <h3 class="text-3xl font-bold mb-8 text-center">بيانات التوصيل</h3>
+                
+                <input required name="name" type="text" placeholder="الاسم بالكامل" class="w-full p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
+                <input required name="phone" type="tel" dir="ltr" placeholder="رقم الهاتف" class="w-full p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg text-right">
+                
+                <select name="city" required v-model="selectedCity" class="w-full p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg appearance-none">
+                  <option value="" disabled>اختر المدينة</option>
                   <option value="طرابلس">طرابلس</option>
                   <option value="بنغازي">بنغازي</option>
                   <option value="مصراتة">مصراتة</option>
-                  <option value="الزاوية">الزاوية</option>
                   <option value="مدينة أخرى">مدينة أخرى</option>
                 </select>
-                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xl">▼</span>
-              </div>
-              
-              <div v-if="selectedCity === 'مدينة أخرى'" class="pt-2 transition-all duration-300">
-                <input 
-                  v-model="customCity" 
-                  type="text" 
-                  required 
-                  class="w-full p-6 bg-white border-2 border-[#3D5A50]/30 rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all placeholder:text-gray-400" 
-                  placeholder="الرجاء كتابة اسم مدينتك هنا..."
-                >
-              </div>
-            </div>
 
-            <div class="space-y-3">
-              <label class="block text-sm font-semibold opacity-70 mr-2">العنوان بالتفصيل</label>
-              <textarea required name="address" rows="3" class="w-full p-6 bg-[#F8F6F4] border border-[#E5E0DA] rounded-2xl focus:ring-2 focus:ring-[#3D5A50] focus:border-[#3D5A50] outline-none transition-all resize-none placeholder:text-gray-400" placeholder="اسم الشارع، رقم المنزل، أو علامة دالة..."></textarea>
-            </div>
-
-            <div class="bg-[#F8F6F4] p-6 rounded-2xl border border-[#E5E0DA] mt-8">
-              <div class="flex items-center justify-between mb-4">
-                <span class="font-bold text-lg">الكمية المطلوبة:</span>
-                <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] shadow-sm overflow-hidden">
-                  <button type="button" @click="incrementQuantity" class="w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-50 active:bg-gray-100 transition-colors text-[#3D5A50]">+</button>
-                  <span class="w-12 text-center font-bold text-xl">{{ quantity }}</span>
-                  <button type="button" @click="decrementQuantity" class="w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-50 active:bg-gray-100 transition-colors text-gray-500" :class="{'opacity-50 cursor-not-allowed': quantity === 1}">-</button>
+                <div v-if="selectedCity === 'مدينة أخرى'">
+                  <input v-model="customCity" type="text" required class="w-full p-6 bg-white border-2 border-[#3D5A50]/20 rounded-2xl" placeholder="اكتب مدينتك هنا...">
                 </div>
-              </div>
-              <div class="flex items-center justify-between pt-4 border-t border-[#E5E0DA]">
-                <span class="font-bold text-xl text-gray-500">الإجمالي:</span>
-                <span class="font-extrabold text-3xl text-[#3D5A50]">{{ totalPrice }} د.ل</span>
-              </div>
-            </div>
 
-            <button type="submit" class="w-full bg-[#3D5A50] text-[#F5F1EE] py-7 rounded-2xl text-2xl font-extrabold mt-6 hover:shadow-xl transition-all duration-200 active:scale-[0.98] hover:bg-[#3D5A50]/90 flex items-center justify-center gap-3">
-              <span>تأكيد الطلب بـ {{ totalPrice }} د.ل</span>
-              <span class="text-xl">←</span>
-            </button>
-            
-            <div class="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-center text-[#555] bg-[#F8F6F4]/50 py-3 rounded-full border border-[#E5E0DA]/50">
-              <span class="text-[#3D5A50] font-bold">✓</span> الدفع نقداً عند الاستلام
-            </div>
-          </form>
+                <div class="bg-[#F8F6F4] p-8 rounded-3xl space-y-6">
+                   <div class="flex justify-between items-center">
+                     <span class="text-xl font-bold">الكمية</span>
+                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
+                       <button type="button" @click="quantity++" class="w-14 h-14 text-2xl hover:bg-gray-50">+</button>
+                       <span class="w-14 text-center font-bold text-xl">{{ quantity }}</span>
+                       <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-14 h-14 text-2xl hover:bg-gray-50">-</button>
+                     </div>
+                   </div>
+                   <div class="flex justify-between items-center pt-6 border-t border-[#E5E0DA]">
+                     <span class="text-2xl font-bold text-gray-400">الإجمالي</span>
+                     <span class="text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
+                   </div>
+                </div>
 
+                <button type="submit" class="w-full bg-[#3D5A50] text-white py-8 rounded-[2rem] text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300">
+                  تأكيد الطلب الآن
+                </button>
+                <p class="text-center text-gray-400 font-medium">✓ الدفع عند الاستلام</p>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -200,95 +110,76 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
+const view = ref('home')
+const activeProduct = ref('thermometer')
 const submitted = ref(false)
+const quantity = ref(1)
+const currentIndex = ref(0)
 const selectedCity = ref('')
 const customCity = ref('')
 
-const thermometerPhotos = [
-  '/footer/12345.avif',
-  '/footer/678910.avif',
-  '/footer/1112131415.avif'
-]
-
-const unitPrice = 75 
-const quantity = ref(1)
-
-const totalPrice = computed(() => {
-  return quantity.value * unitPrice
-})
-
-const incrementQuantity = () => {
-  quantity.value++
-}
-
-const decrementQuantity = () => {
-  if (quantity.value > 1) {
-    quantity.value--
+const products = {
+  thermometer: {
+    title: 'ميزان حرارة رقمي',
+    description: 'دقة فائقة وسهولة تامة في الاستخدام. ميزان حرارة مصمم خصيصاً لتلبية احتياجات المطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.',
+    price: 75,
+    photos: ['/footer/12345.avif', '/footer/678910.avif', '/footer/1112131415.avif']
+  },
+  'product-two': {
+    title: 'المنتج الفاخر الثاني',
+    description: 'وصف حصري يعبر عن جودة هذا المنتج وتفاصيله المذهلة. صُمم هذا المنتج ليوفر لك تجربة فريدة تجمع بين الجمال والوظيفة.',
+    price: 150,
+    photos: ['/footer/678910.avif', '/footer/12345.avif']
   }
 }
 
-const currentIndex = ref(0)
-let touchStartX = 0
-let touchEndX = 0
+const activeProductData = computed(() => products[activeProduct.value])
+const totalPrice = computed(() => quantity.value * activeProductData.value.price)
+
+const openProduct = (id) => {
+  activeProduct.value = id
+  view.value = 'product'
+  currentIndex.value = 0
+  quantity.value = 1
+  submitted.value = false
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 const nextSlide = () => {
-  currentIndex.value = currentIndex.value === thermometerPhotos.length - 1 ? 0 : currentIndex.value + 1
+  currentIndex.value = (currentIndex.value + 1) % activeProductData.value.photos.length
 }
-
 const prevSlide = () => {
-  currentIndex.value = currentIndex.value === 0 ? thermometerPhotos.length - 1 : currentIndex.value - 1
-}
-
-const goToSlide = (index) => {
-  currentIndex.value = index
-}
-
-const handleTouchStart = (e) => {
-  touchStartX = e.changedTouches[0].screenX
-}
-
-const handleTouchEnd = (e) => {
-  touchEndX = e.changedTouches[0].screenX
-  handleSwipe()
-}
-
-const handleSwipe = () => {
-  if (touchEndX < touchStartX - 50) nextSlide()
-  if (touchEndX > touchStartX + 50) prevSlide()
-}
-
-// NAVIGATION LOGIC
-const scrollToProduct = (id) => {
-  const targetId = id === 'thermometer' ? 'product-thermometer' : 'product-two';
-  document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' })
-}
-
-const scrollToForm = () => {
-  document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })
+  currentIndex.value = currentIndex.value === 0 ? activeProductData.value.photos.length - 1 : currentIndex.value - 1
 }
 
 const handleSubmit = async (e) => {
   const form = e.target
   const formData = new FormData(form)
-
-  if (selectedCity.value === 'مدينة أخرى' && customCity.value.trim() !== '') {
-    formData.set('city', customCity.value)
-  }
-
+  if (selectedCity.value === 'مدينة أخرى') formData.set('city', customCity.value)
+  
   try {
     await fetch("/form-bridge.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     })
-    
     submitted.value = true
     window.scrollTo({ top: 0, behavior: 'smooth' })
   } catch (error) {
-    alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى")
-    console.error("Form submission error:", error)
+    alert("حدث خطأ، حاول مرة أخرى")
   }
 }
 </script>
+
+<style scoped>
+/* Smooth fade transition for the page switch */
+.animate-in {
+  animation: fadeIn 0.8s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
