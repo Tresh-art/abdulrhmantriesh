@@ -1,10 +1,12 @@
 <template>
   <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
     
-    <div v-if="view === 'home'" class="flex flex-col gap-16 md:gap-40 pb-40">
+    <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
       
-      <nav class="pt-12 md:pt-20 pb-2 text-center">
-        <div class="font-bold text-xl md:text-2xl tracking-widest text-[#3D5A50] opacity-40 uppercase">قائمة المنتجات</div>
+      <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
+        <p class="text-lg md:text-xl leading-relaxed text-[#3D5A50] font-medium opacity-80">
+          دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.
+        </p>
       </nav>
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
@@ -13,9 +15,11 @@
             <img src="/footer/12345.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           
-          <div class="mt-6 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-3xl md:text-6xl font-black mb-2 md:mb-4 text-[#333] leading-relaxed">ميزان الحرارة</h2>
-            <p class="text-lg md:text-2xl tracking-widest text-[#555] opacity-70 mb-6 md:mb-10 font-medium">الدقة في كل درجة</p>
+          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
+            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة</h2>
+            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
+              دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
+            </p>
             
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
@@ -30,9 +34,11 @@
             <img src="/footer/678910.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           
-          <div class="mt-6 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-3xl md:text-6xl font-black mb-2 md:mb-4 text-[#333] leading-relaxed">المنتج المميز</h2>
-            <p class="text-lg md:text-2xl tracking-widest text-[#555] opacity-70 mb-6 md:mb-10 font-medium">فخامة التصميم</p>
+          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
+            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">المنتج المميز</h2>
+            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
+              دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
+            </p>
             
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
@@ -101,7 +107,7 @@
                 <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-6 text-lg">
                    <div class="flex justify-between items-center">
                      <span class="font-bold">الكمية</span>
-                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden">
+                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
                        <button type="button" @click="quantity++" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
                        <span class="w-12 md:w-14 text-center font-bold">{{ quantity }}</span>
                        <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">-</button>
