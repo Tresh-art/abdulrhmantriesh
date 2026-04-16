@@ -2,13 +2,13 @@
 title: "راڤايولي إيطالية منزلية"
 category: "أطباق رئيسية"
 description: "وصفة احترافية لتحضير الرافيولي الكلاسيكية من الصفر: عجينة غنية بصفار البيض، حشوة اللحم والسبانخ، مع صوص طماطم إيطالي غني."
-videoUrl: "https://vt.tiktok.com/ZSHkAM7ue/"
+videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7624564868074540296"
 prepTime: 120
 servings: 8
 difficulty: "متوسط"
 image: "/food-images/Ravioli1.jpg"
 date: "2026-04-03"
-
+...
 macros:
   calories: 480
   protein: 25
