@@ -6,7 +6,7 @@ videoUrl: "https://webapp-sg.tiktok.com/906805627a4172a92cc8e201c92b9745/69ce958
 prepTime: 30
 servings: 12
 difficulty: "سهل"
-image: "/food-images/h7i3tjuyaw.jpgpngjpeg.jpg"
+image: "/food-images/Banana Bread1.jpg"
 date: "2026-03-31"
 
 macros:

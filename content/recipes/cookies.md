@@ -6,7 +6,7 @@ videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7618799020948901140"
 prepTime: 45
 servings: 12
 difficulty: "متوسطة"
-image: "/food-images/112233.jpg"
+image: "/food-images/Cookies1.jpg"
 date: "2026-03-18"
 
 macros:

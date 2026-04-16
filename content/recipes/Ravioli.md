@@ -6,7 +6,7 @@ videoUrl: "https://vt.tiktok.com/ZSHkAM7ue/"
 prepTime: 120
 servings: 8
 difficulty: "متوسط"
-image: "/food-images/Ravaioli.jpg"
+image: "/food-images/Ravioli1.jpg"
 date: "2026-04-03"
 
 macros:
