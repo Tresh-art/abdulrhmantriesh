@@ -2,13 +2,13 @@
 title: "تشكن سوڤلاكي"
 category: "وجبات رئيسية"
 description: "وصفة متكاملة للتشكن سوفلاكي اليوناني بلمسة احترافية؛ دجاج متبل بعناية ومطبوخ بتكنيك يحافظ على طراوته، يُقدم في خبزة بيتا يدوية مع صوص تزاتزيكي كريمي وسلطة منعشة توازن النكهات."
-videoUrl: ""
+videoUrl: "https://www.tiktok.com/@abdulrhmantriesh/video/7626772653000592647"
 prepTime: 150
 servings: 6
 difficulty: "متوسط"
 image: "/food-images/sovlaki.png"
 date: "2026-04-09"
-
+...
 macros:
   calories: 693
   protein: 38
