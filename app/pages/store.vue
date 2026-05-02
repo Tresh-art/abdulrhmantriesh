@@ -14,13 +14,11 @@
           <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
             <img src="/footer/12345.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
-          
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
             </p>
-            
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
@@ -33,13 +31,11 @@
           <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
             <img src="/footer/678910.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
-          
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">المنتج المميز</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
             </p>
-            
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
@@ -62,12 +58,10 @@
           <div class="w-full lg:w-3/5">
             <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
               <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
-              
               <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
               <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
-
               <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3">
-                <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i" 
+                <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i"
                   class="h-1.5 rounded-full transition-all duration-500"
                   :class="currentIndex === i ? 'bg-[#3D5A50] w-8 md:w-10' : 'bg-gray-300 w-2 md:w-3'"></button>
               </div>
@@ -85,7 +79,7 @@
                 <h2 class="text-2xl md:text-3xl font-bold">تم استلام طلبك!</h2>
               </div>
 
-              <form v-else @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
+              <form v-else @submit.prevent="handleSubmit" data-netlify="true" :name="'order-' + activeProduct" class="space-y-6 md:space-y-8">
                 <input type="hidden" name="form-name" :value="'order-' + activeProduct" />
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
                 
@@ -105,18 +99,18 @@
                 </div>
 
                 <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-6 text-lg">
-                   <div class="flex justify-between items-center">
-                     <span class="font-bold">الكمية</span>
-                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
-                       <button type="button" @click="quantity++" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
-                       <span class="w-12 md:w-14 text-center font-bold">{{ quantity }}</span>
-                       <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">-</button>
-                     </div>
-                   </div>
-                   <div class="flex justify-between items-center pt-4 md:pt-6 border-t border-[#E5E0DA]">
-                     <span class="font-bold text-gray-400">الإجمالي</span>
-                     <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
-                   </div>
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold">الكمية</span>
+                    <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
+                      <button type="button" @click="quantity++" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
+                      <span class="w-12 md:w-14 text-center font-bold">{{ quantity }}</span>
+                      <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">-</button>
+                    </div>
+                  </div>
+                  <div class="flex justify-between items-center pt-4 md:pt-6 border-t border-[#E5E0DA]">
+                    <span class="font-bold text-gray-400">الإجمالي</span>
+                    <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
+                  </div>
                 </div>
 
                 <button type="submit" class="w-full bg-[#3D5A50] text-white py-6 md:py-8 rounded-[2rem] text-xl md:text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300">
@@ -180,16 +174,18 @@ const handleSubmit = async (e) => {
   const form = e.target
   const formData = new FormData(form)
   if (selectedCity.value === 'مدينة أخرى') formData.set('city', customCity.value)
+  formData.set('quantity', quantity.value)
+  formData.set('total', totalPrice.value)
   try {
-    await fetch("/form-bridge.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    await fetch('/form-bridge.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(formData).toString(),
     })
     submitted.value = true
     window.scrollTo({ top: 0, behavior: 'smooth' })
   } catch (error) {
-    alert("حدث خطأ في الإرسال")
+    alert('حدث خطأ في الإرسال')
   }
 }
 </script>
