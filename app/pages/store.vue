@@ -13,6 +13,7 @@
       </svg>
     </a>
 
+    <!-- HOME VIEW -->
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
       
       <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
@@ -31,7 +32,7 @@
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
             </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
+            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
@@ -48,7 +49,7 @@
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
             </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 active:translate-y-0 group-hover:bg-gray-50">
+            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
@@ -57,6 +58,7 @@
 
     </div>
 
+    <!-- PRODUCT VIEW -->
     <div v-else-if="view === 'product'" class="animate-in">
       <nav class="p-6 md:p-8 flex justify-start items-center max-w-7xl mx-auto">
         <button @click="view = 'home'" class="text-[#3D5A50] font-bold text-base md:text-lg flex items-center gap-3 hover:gap-5 transition-all p-3 px-6 md:px-8 rounded-full bg-white shadow-sm border border-[#E5E0DA]">
@@ -67,6 +69,7 @@
       <section class="max-w-7xl mx-auto pt-4 md:pt-6 px-6 pb-24">
         <div class="flex flex-col lg:flex-row items-start gap-12 md:gap-24">
           
+          <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
             <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
               <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
@@ -78,19 +81,80 @@
                   :class="currentIndex === i ? 'bg-[#3D5A50] w-8 md:w-10' : 'bg-gray-300 w-2 md:w-3'"></button>
               </div>
             </div>
+
+            <!-- REVIEWS SECTION -->
+            <div class="mt-10 md:mt-16">
+              <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">آراء العملاء</h3>
+              <div class="flex flex-col gap-4">
+                <div v-for="review in activeProductData.reviews" :key="review.name"
+                  class="bg-white rounded-3xl p-6 md:p-8 border border-[#E5E0DA] shadow-sm">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-lg text-[#333]">{{ review.name }}</span>
+                    <span class="text-yellow-400 text-xl">★★★★★</span>
+                  </div>
+                  <p class="text-[#555] leading-relaxed">{{ review.text }}</p>
+                </div>
+              </div>
+            </div>
           </div>
 
+          <!-- PRODUCT INFO -->
           <div class="w-full lg:w-2/5 text-right">
             <h1 class="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-[#333] leading-relaxed">{{ activeProductData.title }}</h1>
-            <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-8 md:mb-10">{{ activeProductData.price }} د.ل</div>
+            <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-4 md:mb-6">{{ activeProductData.price }} د.ل</div>
+
+            <!-- TRUST BADGES -->
+            <div class="flex flex-wrap gap-3 mb-6 md:mb-8 justify-end">
+              <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
+                <span>🚚</span> توصيل خلال 2-5 أيام
+              </div>
+              <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
+                <span>🔄</span> ضمان استرجاع 7 أيام
+              </div>
+              <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
+                <span>✅</span> جودة مضمونة
+              </div>
+            </div>
+
+            <!-- STOCK INDICATOR -->
+            <div class="bg-red-50 border border-red-100 rounded-2xl px-5 py-3 mb-6 text-right">
+              <span class="text-red-600 font-bold text-base">🔥 باقي {{ activeProductData.stock }} قطعة فقط!</span>
+            </div>
+
             <p class="text-xl md:text-2xl leading-relaxed text-[#555] mb-10 md:mb-12 font-medium">{{ activeProductData.description }}</p>
 
+            <!-- ORDER FORM -->
             <div id="order-section" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA]">
-              <div v-if="submitted" class="text-center py-10">
+              
+              <!-- SUCCESS STATE -->
+              <div v-if="submitted" class="text-center py-6">
                 <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
-                <h2 class="text-2xl md:text-3xl font-bold">تم استلام طلبك!</h2>
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">تم استلام طلبك!</h2>
+                <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
+                  <div class="flex justify-between">
+                    <span class="text-[#3D5A50] font-bold">{{ activeProductData.price * quantity }} د.ل</span>
+                    <span class="text-[#555]">الإجمالي</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-bold">{{ quantity }}</span>
+                    <span class="text-[#555]">الكمية</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-bold">{{ activeProductData.title }}</span>
+                    <span class="text-[#555]">المنتج</span>
+                  </div>
+                  <div class="pt-3 border-t border-[#E5E0DA] text-sm text-[#777] text-center">
+                    سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب
+                  </div>
+                </div>
+                <a href="https://wa.me/905013681310" target="_blank"
+                  class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white font-bold text-lg"
+                  style="background-color: #25D366">
+                  تواصل معنا على واتساب
+                </a>
               </div>
 
+              <!-- FORM -->
               <form v-else @submit.prevent="handleSubmit" data-netlify="true" name="thermometer-orders" class="space-y-6 md:space-y-8">
                 <input type="hidden" name="form-name" value="thermometer-orders" />
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
@@ -120,8 +184,8 @@
                     </div>
                   </div>
                   <div class="flex justify-between items-center pt-4 md:pt-6 border-t border-[#E5E0DA]">
-                    <span class="font-bold text-gray-400">الإجمالي</span>
                     <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
+                    <span class="font-bold text-gray-400">الإجمالي</span>
                   </div>
                 </div>
 
@@ -153,13 +217,25 @@ const products = {
     title: 'ميزان حرارة رقمي',
     description: 'دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.',
     price: 75,
-    photos: ['/footer/12345.avif', '/footer/678910.avif', '/footer/1112131415.avif']
+    stock: 100,
+    photos: ['/footer/12345.avif', '/footer/678910.avif', '/footer/1112131415.avif'],
+    reviews: [
+      { name: 'فاطمة المنصوري', text: 'منتج ممتاز! دقيق جداً ومريح الاستخدام. اشتريته للمطبخ المنزلي وما خذلني. التوصيل كان سريع والتغليف محترم.' },
+      { name: 'أحمد الزروق', text: 'جربت ميزانات حرارة كثيرة وهذا الأفضل بفرق. يقرأ الحرارة في ثانية واحدة والشاشة واضحة. أنصح فيه بشدة.' },
+      { name: 'مريم البوسيفي', text: 'اشتريته لتحضير الشوكولاتة والحلويات. دقته عالية ومناسب جداً للاستخدام الاحترافي في المنزل. شكراً جزيلاً!' }
+    ]
   },
   'product-two': {
     title: 'المنتج الفاخر الثاني',
     description: 'وصف حصري يعبر عن جودة هذا المنتج وتفاصيله المذهلة التي تجعل منه قطعة لا غنى عنها.',
     price: 150,
-    photos: ['/footer/678910.avif', '/footer/12345.avif']
+    stock: 30,
+    photos: ['/footer/678910.avif', '/footer/12345.avif'],
+    reviews: [
+      { name: 'سارة العبيدي', text: 'منتج رائع وجودة عالية. سعيدة جداً بالشراء وسأطلب مرة أخرى بالتأكيد.' },
+      { name: 'خالد الورفلي', text: 'تجربة شراء ممتازة والمنتج يستحق سعره. التوصيل في الوقت المحدد.' },
+      { name: 'نور الهداج', text: 'أفضل من توقعاتي! الجودة ممتازة والتغليف احترافي. شكراً لكم.' }
+    ]
   }
 }
 
@@ -188,6 +264,7 @@ const handleSubmit = async (e) => {
   if (selectedCity.value === 'مدينة أخرى') formData.set('city', customCity.value)
   formData.set('quantity', quantity.value)
   formData.set('total', totalPrice.value)
+  formData.set('product', activeProductData.value.title)
   try {
     await fetch('/form-bridge.html', {
       method: 'POST',
