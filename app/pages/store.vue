@@ -79,8 +79,8 @@
                 <h2 class="text-2xl md:text-3xl font-bold">تم استلام طلبك!</h2>
               </div>
 
-              <form v-else @submit.prevent="handleSubmit" data-netlify="true" :name="'order-' + activeProduct" class="space-y-6 md:space-y-8">
-                <input type="hidden" name="form-name" :value="'order-' + activeProduct" />
+              <form v-else @submit.prevent="handleSubmit" data-netlify="true" name="thermometer-orders" class="space-y-6 md:space-y-8">
+  <input type="hidden" name="form-name" value="thermometer-orders" />
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
                 
                 <input required name="name" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
