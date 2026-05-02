@@ -1,6 +1,18 @@
 <template>
   <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
-    
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/905013681310"
+      target="_blank"
+      class="fixed bottom-6 left-6 z-50 flex items-center justify-center w-16 h-16 rounded-full shadow-2xl transition-transform duration-300 hover:scale-110 active:scale-95"
+      style="background-color: #25D366;"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+        <path d="M16 0C7.164 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.454-2.01A15.937 15.937 0 0 0 16 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.748-1.833l-.484-.287-5.016 1.193 1.234-4.874-.316-.5A13.226 13.226 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.77c-.398-.199-2.352-1.16-2.717-1.292-.364-.133-.63-.199-.895.199-.266.398-1.03 1.292-1.262 1.558-.232.266-.465.299-.863.1-.398-.2-1.681-.62-3.2-1.974-1.183-1.054-1.981-2.356-2.213-2.754-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.698.2-.232.266-.398.398-.664.133-.265.067-.498-.033-.697-.1-.2-.895-2.157-1.227-2.953-.322-.775-.65-.67-.895-.682l-.763-.013c-.265 0-.697.1-1.062.498-.364.398-1.393 1.36-1.393 3.317s1.426 3.847 1.625 4.113c.199.265 2.806 4.283 6.798 6.006.95.41 1.692.655 2.27.839.953.304 1.821.261 2.507.158.765-.114 2.352-.961 2.684-1.889.332-.928.332-1.724.232-1.889-.099-.166-.364-.265-.763-.464z"/>
+      </svg>
+    </a>
+
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
       
       <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
@@ -80,7 +92,7 @@
               </div>
 
               <form v-else @submit.prevent="handleSubmit" data-netlify="true" name="thermometer-orders" class="space-y-6 md:space-y-8">
-  <input type="hidden" name="form-name" value="thermometer-orders" />
+                <input type="hidden" name="form-name" value="thermometer-orders" />
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
                 
                 <input required name="name" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
