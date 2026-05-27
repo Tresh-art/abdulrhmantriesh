@@ -28,9 +28,9 @@
             <img src="/footer/12345.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة</h2>
+            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
-              دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
+              مقاوم للماء، قراءة فورية، مثالي للحوم والشواء والحلويات.
             </p>
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
@@ -45,9 +45,9 @@
             <img src="/footer/678910.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">المنتج المميز</h2>
+            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان حرارة البداية</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
-              دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية.
+              أول خطوة في رحلتك مع الطبخ الاحترافي. سهل، دقيق، بسعر مناسب.
             </p>
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
@@ -82,6 +82,17 @@
               </div>
             </div>
 
+            <!-- WHO IS THIS FOR -->
+            <div class="mt-10 md:mt-16 bg-white rounded-3xl p-6 md:p-8 border border-[#E5E0DA] shadow-sm">
+              <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">هذا المنتج مناسب لك إذا...</h3>
+              <ul class="flex flex-col gap-3">
+                <li v-for="point in activeProductData.forWho" :key="point" class="flex items-start gap-3 text-[#555] text-lg leading-relaxed">
+                  <span class="text-[#3D5A50] font-black text-xl mt-0.5">✓</span>
+                  <span>{{ point }}</span>
+                </li>
+              </ul>
+            </div>
+
             <!-- REVIEWS SECTION -->
             <div class="mt-10 md:mt-16">
               <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">آراء العملاء</h3>
@@ -101,7 +112,12 @@
           <!-- PRODUCT INFO -->
           <div class="w-full lg:w-2/5 text-right">
             <h1 class="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-[#333] leading-relaxed">{{ activeProductData.title }}</h1>
-            <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-4 md:mb-6">{{ activeProductData.price }} د.ل</div>
+            <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-2 md:mb-3">{{ activeProductData.price }} د.ل</div>
+            
+            <!-- SHIPPING BADGE -->
+            <div class="inline-block bg-orange-50 border border-orange-200 rounded-xl px-4 py-2 mb-6 text-right">
+              <span class="text-orange-600 font-bold text-sm">⚠️ السعر لا يشمل رسوم التوصيل</span>
+            </div>
 
             <!-- TRUST BADGES -->
             <div class="flex flex-wrap gap-3 mb-6 md:mb-8 justify-end">
@@ -116,11 +132,6 @@
               </div>
             </div>
 
-            <!-- STOCK INDICATOR -->
-            <div class="bg-red-50 border border-red-100 rounded-2xl px-5 py-3 mb-6 text-right">
-              <span class="text-red-600 font-bold text-base">🔥 باقي {{ activeProductData.stock }} قطعة فقط!</span>
-            </div>
-
             <p class="text-xl md:text-2xl leading-relaxed text-[#555] mb-10 md:mb-12 font-medium">{{ activeProductData.description }}</p>
 
             <!-- ORDER FORM -->
@@ -133,7 +144,7 @@
                 <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
                   <div class="flex justify-between">
                     <span class="text-[#3D5A50] font-bold">{{ activeProductData.price * quantity }} د.ل</span>
-                    <span class="text-[#555]">الإجمالي</span>
+                    <span class="text-[#555]">الإجمالي (بدون توصيل)</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="font-bold">{{ quantity }}</span>
@@ -155,14 +166,24 @@
               </div>
 
               <!-- FORM -->
-              <form v-else @submit.prevent="handleSubmit" data-netlify="true" name="thermometer-orders" class="space-y-6 md:space-y-8">
-                <input type="hidden" name="form-name" value="thermometer-orders" />
+              <form v-else @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
                 
-                <input required name="name" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
-                <input required name="phone" type="tel" dir="ltr" placeholder="رقم الهاتف" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg text-right">
+                <input required v-model="formName" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
                 
-                <select name="city" required v-model="selectedCity" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg appearance-none cursor-pointer">
+                <input 
+                  required 
+                  v-model="formPhone"
+                  type="tel" 
+                  dir="ltr" 
+                  placeholder="رقم الهاتف (10 أرقام على الأقل)" 
+                  minlength="10"
+                  pattern="[0-9+\s\-]{10,}"
+                  class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg text-right"
+                >
+                <p v-if="phoneError" class="text-red-500 text-sm text-right -mt-4">رقم الهاتف يجب أن يحتوي على 10 أرقام على الأقل</p>
+                
+                <select required v-model="selectedCity" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg appearance-none cursor-pointer">
                   <option value="" disabled>اختر المدينة</option>
                   <option value="طرابلس">طرابلس</option>
                   <option value="بنغازي">بنغازي</option>
@@ -173,6 +194,14 @@
                 <div v-if="selectedCity === 'مدينة أخرى'">
                   <input v-model="customCity" type="text" required class="w-full p-5 md:p-6 bg-white border-2 border-[#3D5A50]/20 rounded-2xl" placeholder="اكتب مدينتك هنا...">
                 </div>
+
+                <textarea 
+                  required 
+                  v-model="formAddress"
+                  placeholder="العنوان بالتفصيل — المنطقة، الشارع، أقرب معلم" 
+                  rows="3"
+                  class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg resize-none"
+                ></textarea>
 
                 <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-6 text-lg">
                   <div class="flex justify-between items-center">
@@ -185,12 +214,14 @@
                   </div>
                   <div class="flex justify-between items-center pt-4 md:pt-6 border-t border-[#E5E0DA]">
                     <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
-                    <span class="font-bold text-gray-400">الإجمالي</span>
+                    <span class="font-bold text-gray-400">الإجمالي (بدون توصيل)</span>
                   </div>
                 </div>
 
-                <button type="submit" class="w-full bg-[#3D5A50] text-white py-6 md:py-8 rounded-[2rem] text-xl md:text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300">
-                  تأكيد الطلب الآن
+                <p v-if="formError" class="text-red-500 text-sm text-center">{{ formError }}</p>
+
+                <button type="submit" :disabled="isSubmitting" class="w-full bg-[#3D5A50] text-white py-6 md:py-8 rounded-[2rem] text-xl md:text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300 disabled:opacity-50">
+                  {{ isSubmitting ? 'جاري الإرسال...' : 'تأكيد الطلب الآن' }}
                 </button>
               </form>
             </div>
@@ -211,14 +242,25 @@ const currentIndex = ref(0)
 const quantity = ref(1)
 const selectedCity = ref('')
 const customCity = ref('')
+const formName = ref('')
+const formPhone = ref('')
+const formAddress = ref('')
+const phoneError = ref(false)
+const formError = ref('')
+const isSubmitting = ref(false)
 
 const products = {
   thermometer: {
-    title: 'ميزان حرارة رقمي',
-    description: 'دقة فائقة وسهولة تامة في الاستخدام للمطابخ الاحترافية والمنزلية، مع بنية متينة صُممت لتدوم طويلاً.',
+    title: 'ميزان الحرارة الاحترافي',
+    description: 'مقاوم للماء بالكامل IP67 — يمكن غسله تحت الماء مباشرة. مسبار من الفولاذ المقاوم للصدأ آمن تماماً للطعام. قراءة فورية في 2-4 ثواني بدقة ±1 درجة. مدى قياس واسع من -50 إلى 300 درجة يغطي كل احتياجاتك — من الشواء والحوم إلى الحلويات والشوكولاتة والقلي العميق. تصميم قابل للطي يحمي المسبار ويدوم طويلاً.',
     price: 75,
-    stock: 100,
     photos: ['/footer/12345.avif', '/footer/678910.avif', '/footer/1112131415.avif'],
+    forWho: [
+      'تهتم بطهي اللحوم بالدرجة الصحيحة',
+      'تحضر الحلويات والشوكولاتة وتحتاج دقة عالية',
+      'تريد أداة احترافية تدوم لسنوات',
+      'تطبخ بشكل منتظم وتريد الأفضل'
+    ],
     reviews: [
       { name: 'فاطمة المنصوري', text: 'منتج ممتاز! دقيق جداً ومريح الاستخدام. اشتريته للمطبخ المنزلي وما خذلني. التوصيل كان سريع والتغليف محترم.' },
       { name: 'أحمد الزروق', text: 'جربت ميزانات حرارة كثيرة وهذا الأفضل بفرق. يقرأ الحرارة في ثانية واحدة والشاشة واضحة. أنصح فيه بشدة.' },
@@ -226,11 +268,16 @@ const products = {
     ]
   },
   'product-two': {
-    title: 'المنتج الفاخر الثاني',
-    description: 'وصف حصري يعبر عن جودة هذا المنتج وتفاصيله المذهلة التي تجعل منه قطعة لا غنى عنها.',
-    price: 150,
-    stock: 30,
+    title: 'ميزان حرارة البداية',
+    description: 'أول خطوة في رحلتك مع الطبخ الاحترافي. سهل الاستخدام، دقيق، ومدى قياسه من -50 إلى 300 درجة. مناسب للحوم، الحليب، الزيت، والحلويات. كل ما تحتاجه بسعر في متناول الجميع.',
+    price: 35,
     photos: ['/footer/678910.avif', '/footer/12345.avif'],
+    forWho: [
+      'تبدأ لأول مرة باستخدام ميزان الحرارة في الطبخ',
+      'تريد تجربة الفرق قبل الاستثمار في أداة أغلى',
+      'تطبخ بشكل عرضي ولا تحتاج ميزان احترافي',
+      'تريد هدية عملية بسعر مناسب'
+    ],
     reviews: [
       { name: 'سارة العبيدي', text: 'منتج رائع وجودة عالية. سعيدة جداً بالشراء وسأطلب مرة أخرى بالتأكيد.' },
       { name: 'خالد الورفلي', text: 'تجربة شراء ممتازة والمنتج يستحق سعره. التوصيل في الوقت المحدد.' },
@@ -248,6 +295,13 @@ const openProduct = (id) => {
   currentIndex.value = 0
   quantity.value = 1
   submitted.value = false
+  formName.value = ''
+  formPhone.value = ''
+  formAddress.value = ''
+  selectedCity.value = ''
+  customCity.value = ''
+  phoneError.value = false
+  formError.value = ''
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
@@ -258,23 +312,45 @@ const prevSlide = () => {
   currentIndex.value = currentIndex.value === 0 ? activeProductData.value.photos.length - 1 : currentIndex.value - 1
 }
 
-const handleSubmit = async (e) => {
-  const form = e.target
-  const formData = new FormData(form)
-  if (selectedCity.value === 'مدينة أخرى') formData.set('city', customCity.value)
-  formData.set('quantity', quantity.value)
-  formData.set('total', totalPrice.value)
-  formData.set('product', activeProductData.value.title)
+const handleSubmit = async () => {
+  phoneError.value = false
+  formError.value = ''
+
+  const cleanPhone = formPhone.value.replace(/[\s\-]/g, '')
+  if (cleanPhone.length < 10) {
+    phoneError.value = true
+    return
+  }
+
+  const city = selectedCity.value === 'مدينة أخرى' ? customCity.value : selectedCity.value
+
+  isSubmitting.value = true
+
   try {
-    await fetch('/form-bridge.html', {
+    const response = await fetch('https://formspree.io/f/mredrbwn', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        الاسم: formName.value,
+        الهاتف: formPhone.value,
+        المدينة: city,
+        العنوان: formAddress.value,
+        المنتج: activeProductData.value.title,
+        الكمية: quantity.value,
+        الإجمالي: `${totalPrice.value} د.ل (بدون توصيل)`
+      })
     })
-    submitted.value = true
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    if (response.ok) {
+      submitted.value = true
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      formError.value = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.'
+    }
   } catch (error) {
-    alert('حدث خطأ في الإرسال')
+    formError.value = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.'
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>
