@@ -24,8 +24,8 @@
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
         <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-[#3D5A50] flex items-center justify-center" style="min-height:400px;">
-            <span class="text-white text-2xl font-bold">ميزان الحرارة الاحترافي</span>
+          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
+            <img src="/footer/pro-1.jpg.jpg" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
@@ -41,8 +41,8 @@
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('product-two')">
         <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-[#333] flex items-center justify-center" style="min-height:400px;">
-            <span class="text-white text-2xl font-bold">ميزان حرارة البداية</span>
+          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
+            <img src="/footer/basic-1.jpg.jpg" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان حرارة البداية</h2>
@@ -69,11 +69,17 @@
       <section class="max-w-7xl mx-auto pt-4 md:pt-6 px-6 pb-24">
         <div class="flex flex-col lg:flex-row items-start gap-12 md:gap-24">
           
-          <!-- PHOTO PLACEHOLDER -->
+          <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
-            <div class="relative w-full aspect-[4/5] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] flex items-center justify-center"
-              :style="{ backgroundColor: activeProduct === 'thermometer' ? '#3D5A50' : '#333' }">
-              <span class="text-white text-3xl font-bold text-center px-8">{{ activeProductData.title }}</span>
+            <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
+              <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
+              <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
+              <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
+              <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3">
+                <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i"
+                  class="h-1.5 rounded-full transition-all duration-500"
+                  :class="currentIndex === i ? 'bg-[#3D5A50] w-8 md:w-10' : 'bg-gray-300 w-2 md:w-3'"></button>
+              </div>
             </div>
 
             <!-- WHO IS THIS FOR -->
@@ -85,21 +91,6 @@
                   <span>{{ point }}</span>
                 </li>
               </ul>
-            </div>
-
-            <!-- REVIEWS SECTION -->
-            <div class="mt-10 md:mt-16">
-              <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">آراء العملاء</h3>
-              <div class="flex flex-col gap-4">
-                <div v-for="review in activeProductData.reviews" :key="review.name"
-                  class="bg-white rounded-3xl p-6 md:p-8 border border-[#E5E0DA] shadow-sm">
-                  <div class="flex items-center justify-between mb-3">
-                    <span class="font-bold text-lg text-[#333]">{{ review.name }}</span>
-                    <span class="text-yellow-400 text-xl">★★★★★</span>
-                  </div>
-                  <p class="text-[#555] leading-relaxed">{{ review.text }}</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -232,6 +223,7 @@ import { ref, computed } from 'vue'
 const view = ref('home')
 const activeProduct = ref('thermometer')
 const submitted = ref(false)
+const currentIndex = ref(0)
 const quantity = ref(1)
 const selectedCity = ref('')
 const customCity = ref('')
@@ -247,32 +239,36 @@ const products = {
     title: 'ميزان الحرارة الاحترافي',
     description: 'مقاوم للماء بالكامل IP67 — يمكن غسله تحت الماء مباشرة. مسبار من الفولاذ المقاوم للصدأ آمن تماماً للطعام. قراءة فورية في 2-4 ثواني بدقة ±1 درجة. مدى قياس واسع من -50 إلى 300 درجة يغطي كل احتياجاتك — من الشواء والحوم إلى الحلويات والشوكولاتة والقلي العميق. تصميم قابل للطي يحمي المسبار ويدوم طويلاً.',
     price: 75,
+    photos: [
+      '/footer/pro-1.jpg.jpg',
+      '/footer/pro-2.jpg.jpg',
+      '/footer/pro-3.jpg.jpg',
+      '/footer/pro-4.jpg.jpg',
+      '/footer/pro-5.jpg.jpg'
+    ],
     forWho: [
       'تهتم بطهي اللحوم بالدرجة الصحيحة',
       'تحضر الحلويات والشوكولاتة وتحتاج دقة عالية',
       'تريد أداة احترافية تدوم لسنوات',
       'تطبخ بشكل منتظم وتريد الأفضل'
-    ],
-    reviews: [
-      { name: 'فاطمة المنصوري', text: 'منتج ممتاز! دقيق جداً ومريح الاستخدام. اشتريته للمطبخ المنزلي وما خذلني. التوصيل كان سريع والتغليف محترم.' },
-      { name: 'أحمد الزروق', text: 'جربت ميزانات حرارة كثيرة وهذا الأفضل بفرق. يقرأ الحرارة في ثانية واحدة والشاشة واضحة. أنصح فيه بشدة.' },
-      { name: 'مريم البوسيفي', text: 'اشتريته لتحضير الشوكولاتة والحلويات. دقته عالية ومناسب جداً للاستخدام الاحترافي في المنزل. شكراً جزيلاً!' }
     ]
   },
   'product-two': {
     title: 'ميزان حرارة البداية',
     description: 'أول خطوة في رحلتك مع الطبخ الاحترافي. سهل الاستخدام، دقيق، ومدى قياسه من -50 إلى 300 درجة. مناسب للحوم، الحليب، الزيت، والحلويات. كل ما تحتاجه بسعر في متناول الجميع.',
     price: 35,
+    photos: [
+      '/footer/basic-1.jpg.jpg',
+      '/footer/basic-2.jpg.jpg',
+      '/footer/basic-3.jpg.jpg',
+      '/footer/basic-4.jpg.jpg',
+      '/footer/basic-5.jpg.jpg'
+    ],
     forWho: [
       'تبدأ لأول مرة باستخدام ميزان الحرارة في الطبخ',
       'تريد تجربة الفرق قبل الاستثمار في أداة أغلى',
       'تطبخ بشكل عرضي ولا تحتاج ميزان احترافي',
       'تريد هدية عملية بسعر مناسب'
-    ],
-    reviews: [
-      { name: 'سارة العبيدي', text: 'منتج رائع وجودة عالية. سعيدة جداً بالشراء وسأطلب مرة أخرى بالتأكيد.' },
-      { name: 'خالد الورفلي', text: 'تجربة شراء ممتازة والمنتج يستحق سعره. التوصيل في الوقت المحدد.' },
-      { name: 'نور الهداج', text: 'أفضل من توقعاتي! الجودة ممتازة والتغليف احترافي. شكراً لكم.' }
     ]
   }
 }
@@ -283,6 +279,7 @@ const totalPrice = computed(() => quantity.value * activeProductData.value.price
 const openProduct = (id) => {
   activeProduct.value = id
   view.value = 'product'
+  currentIndex.value = 0
   quantity.value = 1
   submitted.value = false
   formName.value = ''
@@ -293,6 +290,13 @@ const openProduct = (id) => {
   phoneError.value = false
   formError.value = ''
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const nextSlide = () => {
+  currentIndex.value = (currentIndex.value + 1) % activeProductData.value.photos.length
+}
+const prevSlide = () => {
+  currentIndex.value = currentIndex.value === 0 ? activeProductData.value.photos.length - 1 : currentIndex.value - 1
 }
 
 const handleSubmit = async () => {
