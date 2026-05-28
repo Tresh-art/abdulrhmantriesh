@@ -13,23 +13,22 @@
       <!-- Gradient Overlay (Bottom #000 to Top #fff @ 20% opacity) -->
       <div class="absolute inset-0 bg-gradient-to-t from-[#000000] to-transparent opacity-20"></div>
 
-      <!-- Text Content Overlay -->
-      <div class="absolute inset-0 flex flex-col justify-end items-center pb-6 px-6 text-center lg:pb-44">
-        <h1 class="text-hardwhite text-5xl md:text-7xl font-black leading-none mb-6 drop-shadow-lg ">
-          تعلـــم الطـبخ
-        </h1>
-        <div class="flex gap-4 justify-center flex-wrap">
-  <NuxtLink to="/recipes"
-   class="bg-primary text-hardwhite px-6 py-2 rounded-md text-md font-bold hover:scale-105 transition-transform duration-300 shadow-xl">
-    عرض الوصفات
-  </NuxtLink>
-  <NuxtLink to="/store"
-    class="bg-white text-primary px-6 py-2 rounded-md text-md font-bold hover:scale-105 transition-transform duration-300 shadow-xl">
-    🛒 المتجر
-  </NuxtLink>
+     <!-- Text Content Overlay -->
+<div class="absolute inset-0 flex flex-col justify-end items-center pb-6 px-6 text-center lg:pb-44">
+  <h1 class="text-hardwhite text-5xl md:text-7xl font-black leading-none mb-6 drop-shadow-lg ">
+    تعلـــم الطـبخ
+  </h1>
+  <div class="flex gap-4 justify-center flex-wrap">
+    <NuxtLink to="/recipes"
+      class="bg-secondary text-hardwhite px-6 py-2 rounded-md text-md font-normal hover:scale-105 transition-transform duration-300 shadow-xl">
+      عرض الوصفات
+    </NuxtLink>
+    <NuxtLink to="/store"
+      class="bg-primary text-hardwhite px-6 py-2 rounded-md text-md font-bold hover:scale-105 transition-transform duration-300 shadow-xl">
+      🛒 المتجر
+    </NuxtLink>
+  </div>
 </div>
-      </div>
-    </section>
 
     <!-- SOCIAL MEDIA BAR -->
     <section class="py-6 border-b border-graytext/20 bg-hardwhite lg:h-24">
