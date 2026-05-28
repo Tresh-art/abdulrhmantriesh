@@ -18,10 +18,16 @@
         <h1 class="text-hardwhite text-5xl md:text-7xl font-black leading-none mb-6 drop-shadow-lg ">
           تعلـــم الطـبخ
         </h1>
-        <NuxtLink to="/recipes"
-          class="bg-secondary text-hardwhite px-6 py-2 rounded-md text-md font-normal hover:scale-105 transition-transform duration-300 shadow-xl">
-          عرض الوصفات
-        </NuxtLink>
+        <div class="flex gap-4 justify-center flex-wrap">
+  <NuxtLink to="/recipes"
+    class="bg-secondary text-hardwhite px-6 py-2 rounded-md text-md font-normal hover:scale-105 transition-transform duration-300 shadow-xl">
+    عرض الوصفات
+  </NuxtLink>
+  <NuxtLink to="/store"
+    class="bg-white text-primary px-6 py-2 rounded-md text-md font-bold hover:scale-105 transition-transform duration-300 shadow-xl">
+    🛒 المتجر
+  </NuxtLink>
+</div>
       </div>
     </section>
 
