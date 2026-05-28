@@ -135,6 +135,7 @@ const navbarSolid = computed(() => !isHomePage.value || isScrolled.value)
 const menuLinks = [
   { to: '/', label: 'الرئيسية' },
   { to: '/recipes', label: 'الوصفات' },
+  { to: '/store', label: 'المتجر' },
   { to: '/#contact', label: 'تواصل معي' }
 ]
 
