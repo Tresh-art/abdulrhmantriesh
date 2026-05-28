@@ -71,11 +71,21 @@
           
           <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
-            <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
-              <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
-              <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
-              <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
-              <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3">
+            <div 
+              class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group"
+              @touchstart="touchStart"
+              @touchend="touchEnd"
+            >
+              <transition name="slide-fade">
+                <img 
+                  :key="currentIndex"
+                  :src="activeProductData.photos[currentIndex]" 
+                  class="absolute inset-0 w-full h-full object-cover" 
+                />
+              </transition>
+              <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10">❯</button>
+              <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10">❮</button>
+              <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3 z-10">
                 <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i"
                   class="h-1.5 rounded-full transition-all duration-500"
                   :class="currentIndex === i ? 'bg-[#3D5A50] w-8 md:w-10' : 'bg-gray-300 w-2 md:w-3'"></button>
@@ -107,13 +117,13 @@
             <!-- TRUST BADGES -->
             <div class="flex flex-wrap gap-3 mb-6 md:mb-8 justify-end">
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>🚚</span> توصيل خلال 2-5 أيام
+                <span>🚚</span> توصيل خلال 2-3 أيام
               </div>
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>🔄</span> ضمان استرجاع 7 أيام
+                <span>💵</span> الدفع عند الاستلام
               </div>
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>✅</span> جودة مضمونة
+                <span>📞</span> دعم مباشر على واتساب
               </div>
             </div>
 
@@ -123,35 +133,35 @@
             <div id="order-section" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA]">
               
               <!-- SUCCESS STATE -->
-              <div v-if="submitted" class="text-center py-6">
-                <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
-                <h2 class="text-2xl md:text-3xl font-bold mb-6">تم استلام طلبك!</h2>
-                <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
-                  <div class="flex justify-between">
-                    <span class="text-[#3D5A50] font-bold">{{ activeProductData.price * quantity }} د.ل</span>
-                    <span class="text-[#555]">الإجمالي (بدون توصيل)</span>
+              <transition name="fade">
+                <div v-if="submitted" class="text-center py-6">
+                  <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
+                  <h2 class="text-2xl md:text-3xl font-bold mb-2">تم استلام طلبك!</h2>
+                  <p class="text-[#555] mb-6">سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب والاتفاق على التوصيل.</p>
+                  <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
+                    <div class="flex justify-between">
+                      <span class="text-[#3D5A50] font-bold">{{ activeProductData.price * quantity }} د.ل</span>
+                      <span class="text-[#555]">الإجمالي (بدون توصيل)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="font-bold">{{ quantity }}</span>
+                      <span class="text-[#555]">الكمية</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="font-bold">{{ activeProductData.title }}</span>
+                      <span class="text-[#555]">المنتج</span>
+                    </div>
                   </div>
-                  <div class="flex justify-between">
-                    <span class="font-bold">{{ quantity }}</span>
-                    <span class="text-[#555]">الكمية</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="font-bold">{{ activeProductData.title }}</span>
-                    <span class="text-[#555]">المنتج</span>
-                  </div>
-                  <div class="pt-3 border-t border-[#E5E0DA] text-sm text-[#777] text-center">
-                    سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب
-                  </div>
+                  <a href="https://wa.me/905013681310" target="_blank"
+                    class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white font-bold text-lg"
+                    style="background-color: #25D366">
+                    تواصل معنا على واتساب
+                  </a>
                 </div>
-                <a href="https://wa.me/905013681310" target="_blank"
-                  class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white font-bold text-lg"
-                  style="background-color: #25D366">
-                  تواصل معنا على واتساب
-                </a>
-              </div>
+              </transition>
 
               <!-- FORM -->
-              <form v-else @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
+              <form v-if="!submitted" @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
                 
                 <input required v-model="formName" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
@@ -233,6 +243,7 @@ const formAddress = ref('')
 const phoneError = ref(false)
 const formError = ref('')
 const isSubmitting = ref(false)
+const touchStartX = ref(0)
 
 const products = {
   thermometer: {
@@ -299,6 +310,16 @@ const prevSlide = () => {
   currentIndex.value = currentIndex.value === 0 ? activeProductData.value.photos.length - 1 : currentIndex.value - 1
 }
 
+const touchStart = (e) => {
+  touchStartX.value = e.touches[0].clientX
+}
+const touchEnd = (e) => {
+  const diff = touchStartX.value - e.changedTouches[0].clientX
+  if (Math.abs(diff) > 50) {
+    diff > 0 ? nextSlide() : prevSlide()
+  }
+}
+
 const handleSubmit = async () => {
   phoneError.value = false
   formError.value = ''
@@ -329,7 +350,6 @@ const handleSubmit = async () => {
 
     if (response.ok) {
       submitted.value = true
-      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       formError.value = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.'
     }
@@ -348,5 +368,23 @@ const handleSubmit = async () => {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
