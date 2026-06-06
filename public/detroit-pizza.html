@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بيتزا ديترويت — عبدالرحمن طريش</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crust: #e8b863;
+  --crust-deep: #c8841f;
+  --sauce: #b8341f;
+  --sauce-deep: #8a1f10;
+  --char: #2b1810;
+  --cream: #fdf6e9;
+  --cream-2: #f7ebd5;
+  --basil: #3d6b32;
+  --ink: #221208;
+  --muted: #8a6a45;
+  --shadow: rgba(90,40,10,.14);
+  --primary: #3D5A50;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+  direction: rtl;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,246,233,.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,132,31,.18);
+  padding: 12px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo { font-size: 1rem; font-weight: 900; color: var(--char); text-decoration: none; }
+.nav-logo span { color: var(--crust-deep); }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: .88rem; font-weight: 600; transition: color .2s; }
+.nav-links a:hover { color: var(--sauce); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 480px;
+  background: linear-gradient(135deg, #1a0d06 0%, #3d1a08 45%, #2b1810 100%);
+  display: flex; align-items: flex-end; overflow: hidden;
+}
+.hero-emoji {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14rem; opacity: .07; user-select: none;
+  line-height: 1;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(34,18,8,.92) 0%, rgba(34,18,8,.2) 65%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 40px 48px;
+  width: 100%; max-width: 920px; margin: 0 auto;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--sauce); color: #fff;
+  font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 10px;
+}
+.hero-desc {
+  font-size: 1rem; color: rgba(255,255,255,.65); font-weight: 400;
+  max-width: 520px; margin-bottom: 24px; line-height: 1.7;
+}
+.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px); border-radius: 10px;
+  padding: 7px 14px; color: #fff; font-size: .82rem; font-weight: 600;
+}
+
+/* ── WRAP ── */
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ── INTRO ── */
+.intro-card {
+  background: var(--char); color: var(--cream);
+  border-radius: 22px; padding: 34px 38px; margin: 44px 0;
+  position: relative; overflow: hidden;
+}
+.intro-card::after {
+  content: '🍕'; position: absolute; left: 20px; bottom: -10px;
+  font-size: 7rem; opacity: .06; line-height: 1;
+}
+.intro-card p { font-size: 1.08rem; line-height: 2; color: rgba(253,246,233,.88); }
+.intro-card strong { color: var(--crust); font-weight: 700; }
+
+/* ── SECTION HEADER ── */
+.sec-head { display: flex; align-items: center; gap: 14px; margin: 56px 0 24px; }
+.sec-num {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  background: var(--char); color: var(--crust);
+  display: grid; place-items: center;
+  font-size: 1.1rem; font-weight: 900;
+}
+.sec-head h2 { font-size: 1.75rem; font-weight: 900; color: var(--char); }
+
+/* ── INGREDIENT CARDS ── */
+.cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card {
+  background: #fff; border-radius: 20px; padding: 22px 22px 16px;
+  box-shadow: 0 8px 26px var(--shadow); border: 1px solid rgba(200,132,31,.14);
+}
+.card-title {
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--sauce); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ing {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 10px; padding: 7px 0; border-bottom: 1px dashed rgba(160,110,40,.18);
+  font-size: .93rem; font-weight: 500;
+}
+.ing:last-of-type { border-bottom: none; }
+.amt { font-weight: 700; color: var(--crust-deep); white-space: nowrap; font-size: .88rem; }
+.sub { font-size: .8rem; color: var(--muted); margin: 3px 0 6px; display: block; font-weight: 400; }
+
+/* ── SHOPPING LIST ── */
+.shop {
+  list-style: none; background: #fff; border-radius: 20px;
+  box-shadow: 0 8px 26px var(--shadow); border: 1px solid rgba(200,132,31,.14);
+  overflow: hidden;
+}
+.shop li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 20px; border-bottom: 1px solid rgba(160,110,40,.1);
+  font-size: .93rem; font-weight: 500;
+}
+.shop li:last-child { border-bottom: none; }
+.shop li:nth-child(even) { background: var(--cream-2); }
+.shop .qty { font-weight: 700; color: var(--crust-deep); font-size: .88rem; }
+.shop em { color: var(--muted); font-style: italic; font-weight: 400; }
+.shop-note { font-size: .85rem; color: var(--muted); margin-top: 10px; font-weight: 500; }
+
+/* ── STAGES ── */
+.stage {
+  background: linear-gradient(145deg, #fff, var(--cream-2));
+  border-radius: 20px; padding: 26px 30px; margin-bottom: 18px;
+  box-shadow: 0 6px 22px var(--shadow); border-right: 5px solid var(--crust-deep);
+}
+.stage-title {
+  font-size: 1.12rem; font-weight: 900; color: var(--char);
+  margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.time-pill {
+  font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: #fff; background: var(--basil); padding: 3px 12px; border-radius: 20px;
+}
+.steps { counter-reset: s; list-style: none; margin-top: 14px; }
+.steps li {
+  counter-increment: s; position: relative;
+  padding: 10px 44px 10px 0; font-size: .95rem; font-weight: 400;
+  border-bottom: 1px solid rgba(160,110,40,.1);
+}
+.steps li:last-child { border-bottom: none; }
+.steps li::before {
+  content: counter(s); position: absolute; right: 0; top: 10px;
+  width: 30px; height: 30px; border-radius: 9px;
+  background: var(--sauce); color: #fff;
+  font-weight: 700; font-size: .82rem; display: grid; place-items: center;
+}
+.steps li b { color: var(--sauce-deep); font-weight: 700; }
+.why { display: block; color: var(--muted); font-size: .85rem; font-style: italic; margin-top: 3px; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--char); color: var(--cream);
+  border-radius: 18px; padding: 22px 26px; margin: 18px 0; position: relative; overflow: hidden;
+}
+.callout::before { content: "⏳"; position: absolute; left: -8px; top: -12px; font-size: 5.5rem; opacity: .08; }
+.callout h4 { font-size: 1rem; font-weight: 700; margin-bottom: 7px; color: var(--crust); }
+.callout p { font-size: .93rem; color: rgba(253,246,233,.88); line-height: 1.8; }
+.callout b { color: var(--crust); }
+.callout-green { background: var(--basil); }
+.callout-green::before { content: "🍳"; }
+.callout-green h4 { color: #fff; }
+.callout-green p { color: rgba(238,245,234,.92); }
+.callout-green b { color: #fff; }
+
+/* ── SCIENCE ── */
+.science-wrap {
+  background: linear-gradient(155deg, rgba(61,107,50,.93), rgba(38,66,30,.96));
+  border-radius: 24px; padding: 36px 32px; color: #eaf3e4;
+}
+.science-wrap .sec-head { margin-top: 0; }
+.science-wrap .sec-num { background: rgba(255,255,255,.15); color: #fff; }
+.science-wrap h2 { color: #fff; }
+.sci-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 4px; }
+.sci-item {
+  background: rgba(255,255,255,.1); border-radius: 16px; padding: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.sci-item h4 { font-size: .92rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.sci-item p { font-size: .84rem; color: rgba(234,243,228,.82); line-height: 1.75; }
+
+/* ── SECRETS ── */
+.secrets { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.secret {
+  background: var(--cream-2); border-radius: 16px; padding: 18px 22px;
+  border-right: 4px solid var(--crust); font-size: .9rem; color: #4a3018; line-height: 1.7;
+}
+.secret b { display: block; font-weight: 900; color: var(--char); margin-bottom: 4px; }
+
+/* ── PROSE ── */
+.prose p { font-size: .95rem; color: #5a3a20; line-height: 1.9; margin-bottom: 14px; }
+.pair-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.pair-list li {
+  background: #fff; border-radius: 14px; padding: 14px 18px;
+  font-size: .93rem; color: #5a3a20; line-height: 1.7;
+  box-shadow: 0 4px 14px var(--shadow); border-right: 4px solid var(--crust-deep);
+}
+.pair-list b { color: var(--char); font-weight: 700; }
+
+/* ── TOOLS ── */
+.tools-box {
+  background: var(--primary); border-radius: 22px; padding: 34px 38px;
+  color: #fff; position: relative; overflow: hidden;
+}
+.tools-box::after {
+  content: '🌡️'; position: absolute; left: 18px; bottom: -10px;
+  font-size: 7rem; opacity: .1; line-height: 1;
+}
+.tools-box h2 { font-size: 1.3rem; font-weight: 900; color: var(--crust); margin-bottom: 10px; }
+.tools-box p { font-size: .93rem; color: rgba(255,255,255,.82); line-height: 1.85; margin-bottom: 20px; max-width: 580px; }
+.store-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--crust); color: var(--char); text-decoration: none;
+  font-weight: 900; font-size: .92rem; padding: 12px 24px; border-radius: 14px;
+  transition: transform .2s, box-shadow .2s;
+}
+.store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.22); }
+
+/* ── COST TABLE ── */
+.cost-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px var(--shadow); }
+.cost-table td { padding: 13px 22px; font-size: .92rem; border-bottom: 1px solid rgba(160,110,40,.1); }
+.cost-table tr:nth-child(even) td { background: var(--cream-2); }
+.cost-table tr:last-child td { font-weight: 900; font-size: 1.05rem; color: var(--char); background: var(--cream-2); border-bottom: none; }
+.cost-table td:last-child { font-weight: 700; color: var(--crust-deep); text-align: left; direction: ltr; }
+.cost-note { text-align: center; font-size: .83rem; color: var(--muted); margin-top: 10px; font-style: italic; }
+
+/* ── FOOTER ── */
+.foot {
+  text-align: center; font-size: 1.15rem; font-weight: 700;
+  color: var(--sauce-deep); margin-top: 56px;
+  padding: 28px 32px; background: var(--cream-2); border-radius: 18px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .hero { height: 400px; }
+  .hero-content { padding: 28px 20px; }
+  .hero h1 { font-size: 2.4rem; }
+  .intro-card { padding: 24px; }
+  .stage { padding: 18px 20px; }
+  .tools-box { padding: 24px; }
+  .science-wrap { padding: 24px 20px; }
+  nav { flex-wrap: wrap; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://abdulrhmantriesh.com" class="nav-logo"><span>عبدالرحمن</span> طريش</a>
+  <ul class="nav-links">
+    <li><a href="https://abdulrhmantriesh.com">الرئيسية</a></li>
+    <li><a href="https://abdulrhmantriesh.com/recipes">الوصفات</a></li>
+    <li><a href="https://abdulrhmantriesh.com/store">المتجر</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-emoji">🍕</div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Detroit Style</div>
+    <h1>بيتزا ديترويت</h1>
+    <p class="hero-desc">قاعدة ذهبية مقرمشة مثل الشيبس، أطراف جبن فريكو، وقلب طري مليان هواء.</p>
+    <div class="hero-badges">
+      <div class="badge">👥 6–8 أشخاص</div>
+      <div class="badge">⏱ 4–5 ساعات</div>
+      <div class="badge">🍳 مقلاة 30 سم</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <p>بيتزا سميكة بقاعدة تتحمّر في الزيت حتى تصير <strong>ذهبية ومقرمشة مثل الشيبس</strong>، وأطراف من الجبن المقرمش — حلقة الـ"فريكو" الشهيرة — وقلب طري ومليان هواء. صلصة طماطم طازجة، موزاريلا وشيدر ذايبة، ولحم مفروم متبّل بالثوم والزعتر والشمر. <strong>والأحلى: العجينة تجهز نفس اليوم.</strong></p>
+  </div>
+
+  <!-- INGREDIENTS -->
+  <div class="sec-head"><div class="sec-num">1</div><h2>المكوّنات</h2></div>
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-title">🫓 العجينة</div>
+      <div class="ing"><span>دقيق خبز</span><span class="amt">400 غ</span></div>
+      <span class="sub">بديل: الدقيق متعدد الاستعمالات يشتغل كمان.</span>
+      <div class="ing"><span>ماء دافئ (~35°م)</span><span class="amt">300 غ</span></div>
+      <div class="ing"><span>خميرة فورية</span><span class="amt">7 غ (كيس)</span></div>
+      <div class="ing"><span>ملح</span><span class="amt">8 غ</span></div>
+      <div class="ing"><span>سكر</span><span class="amt">5 غ</span></div>
+      <div class="ing"><span>زيت زيتون (للعجينة)</span><span class="amt">15 غ</span></div>
+      <div class="ing"><span>زيت زيتون (للمقلاة)</span><span class="amt">30–40 غ</span></div>
+      <span class="sub">لا تقلّل زيت المقلاة — هو اللي يقلي القاعدة.</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🍅 صلصة الطماطم</div>
+      <div class="ing"><span>طماطم طازجة ناضجة</span><span class="amt">600 غ</span></div>
+      <span class="sub">نسوّيها بنفسنا — بدون صلصة معلّبة.</span>
+      <div class="ing"><span>معجون طماطم</span><span class="amt">30 غ</span></div>
+      <div class="ing"><span>ثوم مبشور</span><span class="amt">3 فصوص</span></div>
+      <div class="ing"><span>زيت زيتون</span><span class="amt">20 غ</span></div>
+      <div class="ing"><span>زعتر مجفف</span><span class="amt">3 غ</span></div>
+      <div class="ing"><span>ملح</span><span class="amt">¾ م.ص</span></div>
+      <div class="ing"><span>سكر</span><span class="amt">½ م.ص</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🥩 اللحم المتبّل</div>
+      <div class="ing"><span>لحم مفروم (دهن 15–20٪)</span><span class="amt">350 غ</span></div>
+      <div class="ing"><span>بصل مفروم ناعم</span><span class="amt">½ حبة</span></div>
+      <div class="ing"><span>ثوم مفروم</span><span class="amt">2 فص</span></div>
+      <div class="ing"><span>بذور شمر مجروشة</span><span class="amt">2 غ</span></div>
+      <span class="sub">سر طعم "النقانق الإيطالية". بديل: بذور اليانسون.</span>
+      <div class="ing"><span>زعتر مجفف</span><span class="amt">¾ م.ص</span></div>
+      <div class="ing"><span>فلفل أحمر مجروش</span><span class="amt">½ م.ص</span></div>
+      <div class="ing"><span>ملح وفلفل أسود</span><span class="amt">حسب الذوق</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🧀 الجبن</div>
+      <div class="ing"><span>موزاريلا قليلة الرطوبة</span><span class="amt">250 غ</span></div>
+      <div class="ing"><span>شيدر مبشور</span><span class="amt">150 غ</span></div>
+      <span class="sub">الشيدر يعطي التحمير والحدّة والأطراف المقرمشة.</span>
+      <div class="ing"><span>ريحان طازج (للتزيين)</span><span class="amt">بعض الأوراق</span></div>
+    </div>
+
+  </div>
+
+  <!-- SHOPPING LIST -->
+  <div class="sec-head"><div class="sec-num">2</div><h2>قائمة التسوّق السريعة</h2></div>
+  <p class="shop-note">كل اللي تحتاجه بنظرة وحدة — جهّزه كله قبل ما تبدأ.</p>
+  <br>
+  <ul class="shop">
+    <li><span>دقيق خبز <em>(أو متعدد الاستعمالات)</em></span><span class="qty">400 غ</span></li>
+    <li><span>خميرة فورية</span><span class="qty">كيس (7 غ)</span></li>
+    <li><span>زيت زيتون</span><span class="qty">~100 غ</span></li>
+    <li><span>طماطم طازجة ناضجة</span><span class="qty">600 غ</span></li>
+    <li><span>معجون طماطم</span><span class="qty">30 غ</span></li>
+    <li><span>لحم مفروم <em>(دهن 15–20٪)</em></span><span class="qty">350 غ</span></li>
+    <li><span>بصل</span><span class="qty">½ حبة</span></li>
+    <li><span>ثوم</span><span class="qty">5 فصوص</span></li>
+    <li><span>موزاريلا قليلة الرطوبة</span><span class="qty">250 غ</span></li>
+    <li><span>جبن شيدر</span><span class="qty">150 غ</span></li>
+    <li><span>ريحان طازج</span><span class="qty">بعض الأوراق</span></li>
+    <li><span>بذور شمر</span><span class="qty">½ م.ص</span></li>
+    <li><span>زعتر مجفف</span><span class="qty">~2 م.ص</span></li>
+    <li><span>فلفل أحمر مجروش</span><span class="qty">½ م.ص</span></li>
+    <li><span>ملح وسكر وفلفل أسود</span><span class="qty">من المطبخ</span></li>
+  </ul>
+
+  <!-- STEPS -->
+  <div class="sec-head"><div class="sec-num">3</div><h2>خطوة بخطوة</h2></div>
+
+  <div class="stage">
+    <div class="stage-title">المرحلة 1 · العجينة <span class="time-pill">10 دقائق + 4–5 ساعات راحة</span></div>
+    <ol class="steps">
+      <li>اخلط <b>الماء الدافئ (35°م) والخميرة والسكر.</b> اتركها <b>5 دقائق</b> حتى ترغي. <span class="why">استخدم ميزان الحرارة — الماء فوق 40°م يقتل الخميرة.</span></li>
+      <li>أضف <b>الدقيق والملح و1 م.ك زيت.</b> اخلط <b>دقيقتين</b> حتى ما يبقى دقيق جاف. العجينة لزجة وخشنة — وهذا صحيح.</li>
+      <li>اتركها <b>15 دقيقة.</b> بعدها اسحب واطوي العجينة في الوعاء 4 مرات (30 ثانية). يبني القوة بدون عجن.</li>
+      <li>غطّها واتركها ترتفع في <b>مكان دافئ 4–5 ساعات</b>، حتى تتضاعف وتمتلئ فقاقيع.</li>
+    </ol>
+  </div>
+
+  <div class="callout">
+    <h4>⏳ لأصحاب الصبر / المتقدمين</h4>
+    <p>عندك وقت؟ استخدم <b>2 غ (½ م.ص) خميرة بس</b> وخزّن العجينة في الثلاجة <b>24–72 ساعة.</b> التخمير البطيء البارد يعطي نكهة أعمق تقارب العجين المخمّر، وفقاقيع أكبر. الطريقتين موجودتين في الوصفة — اختر مستواك.</p>
+  </div>
+
+  <div class="stage">
+    <div class="stage-title">المرحلة 2 · اللحم <span class="time-pill">10 دقائق</span></div>
+    <ol class="steps">
+      <li>سخّن 1 م.ك زيت على نار متوسطة-عالية. اطبخ <b>البصل دقيقتين</b> حتى يطرى.</li>
+      <li>أضف <b>اللحم المفروم.</b> فتّته وحمّره منيح <b>6–7 دقائق.</b> التحمير الحقيقي = نكهة حقيقية.</li>
+      <li>أضف <b>الثوم والزعتر والشمر المجروش والفلفل والملح.</b> حرّك <b>دقيقة.</b></li>
+      <li><b>صفّي الدهن</b> من خلال مصفاة. <span class="why">خطوة مهمة — تمنع البيتزا السميكة من أن تصير طرية ومبللة.</span></li>
+    </ol>
+  </div>
+
+  <div class="stage">
+    <div class="stage-title">المرحلة 3 · صلصة الطماطم الطازجة <span class="time-pill">15 دقيقة</span></div>
+    <ol class="steps">
+      <li><b>ابشر الطماطم:</b> قسّمها نصفين وافرك الوجه المقطوع على مبشرة. اللب ينزل والقشرة تبقى في يدك — ارمِ القشور. صار عندك هريس طماطم طازج.</li>
+      <li>سخّن <b>20 غ زيت</b>، أضف <b>الثوم المبشور</b>، اطبخ <b>30 ثانية</b> (بدون تحمير).</li>
+      <li>أضف <b>معجون الطماطم</b>، اقليه <b>دقيقة</b> ليعمّق اللون ويزيل الطعم النيء.</li>
+      <li>أضف <b>الطماطم المبشورة والزعتر والملح والسكر.</b> اتركها تغلي على نار هادئة <b>8–10 دقائق</b> حتى تثخن. <span class="why">الطماطم الطازجة مائية — نطبخ الماء حتى تبقى القاعدة مقرمشة.</span></li>
+      <li><b>برّدها</b> قبل الاستخدام. <span class="why">الصلصة الباردة ما تخلي العجينة لزجة.</span></li>
+    </ol>
+  </div>
+
+  <div class="stage">
+    <div class="stage-title">المرحلة 4 · التشكيل والتخمير الثاني <span class="time-pill">45 دقيقة</span></div>
+    <ol class="steps">
+      <li>صبّ <b>30–40 غ زيت</b> في مقلاة الـ30 سم، ووزّعه على القاع والأطراف.</li>
+      <li>ضع العجينة في المنتصف. زيّت أطراف أصابعك واضغط للخارج. <b>راح ترجع للداخل — طبيعي.</b> غطّها وارتاح <b>15 دقيقة.</b></li>
+      <li>اضغط مرة ثانية — الحين توصل للأطراف بسهولة. غطّها واتركها ترتفع في المقلاة <b>30 دقيقة</b> حتى تنتفخ.</li>
+    </ol>
+  </div>
+
+  <div class="stage">
+    <div class="stage-title">المرحلة 5 · التركيب والخَبز <span class="time-pill">15–18 دقيقة</span></div>
+    <ol class="steps">
+      <li>سخّن الفرن على <b>أقصى درجة (250°م)</b>، والرف في <b>الثلث السفلي</b>، لمدة 20 دقيقة.</li>
+      <li>رتّب بهذا الترتيب: <b>الصلصة أولاً ← الجبن حتى الأطراف ← اللحم المتبّل فوق.</b> اكبس جبن إضافي على جدران المقلاة للحلقة المقرمشة.</li>
+      <li>اخبز <b>15–18 دقيقة</b> حتى تفور وتصير أطراف الجبن ذهبية غامقة.</li>
+      <li><b>الخطوة الحاسمة:</b> مرّر سكين حول الأطراف وانقل البيتزا على شبك تبريد خلال <b>1–2 دقيقة.</b> <span class="why">بقاؤها في المقلاة يبخّر القاعدة ويطرّيها — الشبك يخليها مقرمشة جداً.</span></li>
+    </ol>
+  </div>
+
+  <div class="callout callout-green">
+    <h4>🍳 ما عندك مقلاة حديد؟ استخدم صينية.</h4>
+    <p>صينية معدنية سميكة وغامقة ومستطيلة توصّلك لـ<b>85–90٪ من النتيجة.</b> زيّتها بسخاء وسخّن الفرن كامل. تجنّب الصواني الألمنيوم الرفيعة اللامعة — ما تحمّر منيح.</p>
+  </div>
+
+  <!-- SCIENCE -->
+  <div class="science-wrap">
+    <div class="sec-head"><div class="sec-num">4</div><h2>العلم وراء الوصفة</h2></div>
+    <div class="sci-grid">
+      <div class="sci-item"><h4>ليش خميرة أكثر + دفء = عجينة سريعة</h4><p>نشاط الخميرة يتضاعف تقريباً مع كل ارتفاع 10°م في الحرارة. كيس كامل في تخمير دافئ 4–5 ساعات يعطي غاز كافٍ لقشرة خفيفة بدون انتظار 24 ساعة.</p></div>
+      <div class="sci-item"><h4>ليش نبشر الطماطم الطازجة ونطبخها</h4><p>الطماطم الطازجة ~94٪ ماء. البشر يفصل اللب عن القشرة فوراً، والغليان يبخّر الماء فتتركّز الصلصة. الصلصة المائية تبخّر العجينة وتفسد القرمشة.</p></div>
+      <div class="sci-item"><h4>ليش الزيت في المقلاة مهم</h4><p>الـ30–40 غ مو بس لمنع الالتصاق — هو يقلي العجينة من الأسفل بالتوصيل الحراري. الحديد يحفظ حرارة قوية وموزّعة، فالقاعدة تصير ذهبية.</p></div>
+      <div class="sci-item"><h4>ليش نصفّي دهن اللحم</h4><p>الدهن سائل، والسائل على بيتزا سميكة يعني قلب مبلل. التصفية تحافظ على القوام المقرمش وتبقي كل نكهة البهارات في اللحم.</p></div>
+      <div class="sci-item"><h4>ليش الجبن حتى الأطراف</h4><p>لما يلمس الجبن جدار المعدن الساخن، تتحمّر البروتينات وسكريات الحليب (تفاعل ميّار) — فيتكوّن الـ"فريكو"، القشرة المقرمشة اللي تميّز بيتزا ديترويت.</p></div>
+      <div class="sci-item"><h4>ليش نطلّعها فوراً</h4><p>البخار المحتبس يطرّي القاعدة خلال دقائق. شبك التبريد يسمح للبخار يطلع ويثبّت القرمشة.</p></div>
+    </div>
+  </div>
+
+  <!-- SECRETS -->
+  <div class="sec-head"><div class="sec-num">5</div><h2>أسرار الشيف</h2></div>
+  <div class="secrets">
+    <div class="secret"><b>فعّل الشمر</b>اجرش البذور قبل إضافتها — يطلق الزيوت اللي تعطي اللحم طعم إيطالي أصيل.</div>
+    <div class="secret"><b>صلصة باردة، فرن حار</b>لا تحط صلصة دافئة على عجينة نيّة؛ تخلي القاعدة لزجة.</div>
+    <div class="secret"><b>احترم راحة الـ15 دقيقة</b>خلّ الغلوتين يرتاح قبل الضغط — العجينة تبطّل تقاومك وتوصل الأطراف.</div>
+    <div class="secret"><b>جبن على الجدران</b>كوّم جبن إضافي على الأطراف لحلقة فريكو أعلى وأقرمش — لحظة "الواو" قدام الكاميرا.</div>
+    <div class="secret"><b>أنصت لها</b>لما تطلّعها، انقر القاعدة — القشرة الرائعة صوتها مجوّف ومقرمش.</div>
+    <div class="secret"><b>ركّز، لا تستعجل</b>لو الصلصة لسه سايلة، غلّها أكثر. الصبر هنا = قشرة مقرمشة بعدين.</div>
+  </div>
+
+  <!-- PLATING -->
+  <div class="sec-head"><div class="sec-num">6</div><h2>التقديم والعرض</h2></div>
+  <div class="prose">
+    <p>انقل البيتزا كاملة على لوح خشب غامق. قطّعها <b>مربعات</b> (قطعة بيتزا ديترويت الكلاسيكية) بسكين قوية أو كاشطة عجين لأطراف نظيفة.</p>
+    <p>انثر بعض <b>أوراق الريحان الطازج</b> ورشّة زعتر خفيفة للون يتباين مع الأحمر والذهبي. للقطة الكاميرا المميزة: ارفع مربع من الزاوية ببطء لتظهر مطّة الجبن والقاعدة الذهبية المقرمشة. <b>رشّة زيت زيتون</b> أخيرة تعطي لمعة على الفيديو.</p>
+  </div>
+
+  <!-- PAIRING -->
+  <div class="sec-head"><div class="sec-num">7</div><h2>الصلصات والأطباق الجانبية</h2></div>
+  <ul class="pair-list">
+    <li><b>غموس الثوم والأعشاب:</b> زبادي أو لبنة مع ثوم مبشور ونعناع مجفف وليمون وزيت زيتون — تباين بارد منعش مع البيتزا الدسمة.</li>
+    <li><b>رشّة هريسة حارة</b> على الجنب لمحبي الحرارة — مناسبة جداً للذوق الليبي.</li>
+    <li><b>سلطة خضراء بسيطة:</b> جرجير وليمون وزيت زيتون وجبن صلب مبشور لتخفيف الدسامة.</li>
+  </ul>
+
+  <!-- TOOLS -->
+  <div class="sec-head"><div class="sec-num">8</div><h2>أدوات استخدمتها</h2></div>
+  <div class="tools-box">
+    <h2>🌡️ ميزان الحرارة</h2>
+    <p>ضروري في هذه الوصفة لقياس حرارة الماء عند تنشيط الخميرة — الماء الأسخن من 40°م يقتل الخميرة والعجينة ما ترتفع. استخدمه عند خطوة الماء الدافئ، وكمان للتأكد من نضج اللحم المفروم بأمان للمبتدئين.</p>
+    <a href="https://abdulrhmantriesh.com/store" class="store-btn">🛒 متوفر في متجري</a>
+  </div>
+
+  <!-- COST -->
+  <div class="sec-head"><div class="sec-num">9</div><h2>التكلفة التقديرية (ليبيا)</h2></div>
+  <table class="cost-table">
+    <tr><td>دقيق وخميرة وزيت</td><td>8–10 د.ل</td></tr>
+    <tr><td>طماطم طازجة ومعجون وبهارات</td><td>7–9 د.ل</td></tr>
+    <tr><td>لحم مفروم (350 غ)</td><td>18–22 د.ل</td></tr>
+    <tr><td>موزاريلا + شيدر (400 غ)</td><td>25–35 د.ل</td></tr>
+    <tr><td>المجموع</td><td>≈ 60–75 د.ل</td></tr>
+  </table>
+  <p class="cost-note">تكفي 6–8 أشخاص بسخاء — أرخص بكثير من بيتزا توصيل واحدة.</p>
+
+  <div class="foot">مقلاة واحدة كبيرة. أطراف مقرمشة. والعائلة كلها حول الطاولة. 🍕</div>
+
+</div>
+</body>
+</html>
