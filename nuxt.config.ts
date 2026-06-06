@@ -1,9 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // devServer: {
-  //   port: 3000, // Change this to your desired port
-  //   host: '192.168.1.27'
-  // },
   modules: [
     '@nuxt/content',
     '@nuxt/icon',
@@ -14,6 +10,14 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: false },
   compatibilityDate: '2024-04-03',
+  nitro: {
+    publicAssets: [
+      { dir: 'public', maxAge: 0 }
+    ]
+  },
+  routeRules: {
+    '/detroit-pizza.html': { ssr: false }
+  },
   tailwindcss: {
     config: {
       theme: {
@@ -25,7 +29,6 @@ export default defineNuxtConfig({
           'accent': '#F9F4F3',
           'hardwhite': '#FFFFFF',
           'graytext': '#BABABA'
-
         },
         fontFamily: {
           alex: ['Alexandria', 'sans-serif'],
@@ -34,16 +37,16 @@ export default defineNuxtConfig({
           'fade-in-up-custom': {
             '0%': {
               opacity: '0',
-              transform: 'translateY(20px)', // Starts 20px down
+              transform: 'translateY(20px)',
             },
             '100%': {
               opacity: '1',
-              transform: 'translateY(0)', // Ends at original position
+              transform: 'translateY(0)',
             },
           },
         },
         animation: {
-          'fade-in-up-custom': 'fade-in-up 0.5s ease-out forwards', // 0.5s duration, ease-out timing, stays at the end state
+          'fade-in-up-custom': 'fade-in-up 0.5s ease-out forwards',
         },
       }
     }
@@ -65,7 +68,7 @@ export default defineNuxtConfig({
     customCollections: [
       {
         prefix: 'tresh-icon',
-        dir: './app/assets/tresh-icon', 
+        dir: './app/assets/tresh-icon',
       },
     ]
   },
@@ -73,7 +76,7 @@ export default defineNuxtConfig({
     families: {
       Alexandria: [100, 200, 300, 400, 500, 600, 700, 800, 900]
     },
-    display: 'swap', // Recommended for performance
+    display: 'swap',
     download: true,
   },
 })
