@@ -2,51 +2,35 @@
 // Fetching using the Collections API
 const { data: recipes } = await useAsyncData('recipes', () => {
   return queryCollection('recipes')
-    .order('date', 'DESC') // Sort by date in descending order
+    .order('date', 'DESC')
     .all()
 })
-
-
 
 const searchQuery = ref('');
 const selectedCategory = ref('الكل');
 const isFilterOpen = ref(false);
 
-// Filter States
 const filters = ref({
   maxPrepTime: 240,
-  servings: 0, // 0 means any
+  servings: 0,
   difficulty: 'الكل'
 });
 
-// Extract unique categories
 const categories = computed(() => {
   if (!recipes.value) return [];
   const allCats = recipes.value.map(r => r.meta?.category).filter(Boolean);
   return ['الكل', ...new Set(allCats)];
 });
 
-// Advanced Filter logic
 const filteredRecipes = computed(() => {
   if (!recipes.value) return [];
   return recipes.value.filter(recipe => {
     const meta = recipe.meta || {};
-
-    // Search Title
     const matchesSearch = (recipe.title || '').toLowerCase().includes(searchQuery.value.toLowerCase());
-
-    // Category
     const matchesCategory = selectedCategory.value === 'الكل' || meta.category === selectedCategory.value;
-
-    // Prep Time (if recipe time is less than or equal to filter)
     const matchesTime = meta.prepTime <= filters.value.maxPrepTime;
-
-    // Servings (if 0, ignore, else match exactly)
     const matchesServings = filters.value.servings === 0 || meta.servings === filters.value.servings;
-
-    // Difficulty
     const matchesDifficulty = filters.value.difficulty === 'الكل' || meta.difficulty === filters.value.difficulty;
-
     return matchesSearch && matchesCategory && matchesTime && matchesServings && matchesDifficulty;
   });
 });
@@ -97,7 +81,7 @@ const toggleFilter = () => {
       <!-- Quick Category Tabs -->
       <div class="mt-4 pr-4 flex gap-3 overflow-x-auto sm:no-scrollbar whitespace-nowrap pb-2 md:overflow-x-scroll">
         <button v-for="cat in categories" :key="cat" @click="selectedCategory = cat" :class="[
-          'px-5 py-2 rounded-md text-sm transition-all duration-300  border-2 border-accent shadow-sm',
+          'px-5 py-2 rounded-md text-sm transition-all duration-300 border-2 border-accent shadow-sm',
           selectedCategory === cat
             ? 'bg-primary text-hardwhite border-primary'
             : 'bg-hardwhite border-2 text-primary border-gray-100 font-normal hover:border-primary'
@@ -116,12 +100,10 @@ const toggleFilter = () => {
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
-       <component
-  :is="recipe.meta?.redirectUrl ? 'a' : resolveComponent('NuxtLink')"
-  v-for="recipe in filteredRecipes"
-  :key="recipe.id"
-  :href="recipe.meta?.redirectUrl || undefined"
-  :to="recipe.meta?.redirectUrl ? undefined : recipe.path"
+        
+          v-for="recipe in filteredRecipes"
+          :key="recipe.id"
+          :href="recipe.meta?.redirectUrl || recipe.path"
           class="bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.08)] flex flex-col h-[300px] transition-transform duration-300 hover:translate-y-[-4px]">
           <div class="h-[60%] w-full relative">
             <NuxtImg :src="recipe.meta?.image" :alt="recipe.title" width="400" height="240" format="webp" quality="80"
@@ -148,7 +130,7 @@ const toggleFilter = () => {
               </div>
             </div>
           </div>
-        </NuxtLink>
+        </a>
       </div>
     </div>
 
@@ -199,10 +181,7 @@ const toggleFilter = () => {
             </div>
           </div>
 
-
-
-
-          <!-- Prep Time Section -->
+          <!-- Servings Section -->
           <div class="space-y-4">
             <div class="flex justify-between items-center">
               <label class="block text-sm font-bold text-gray-700">عدد الأشخاص (الكمية)</label>
@@ -216,13 +195,12 @@ const toggleFilter = () => {
             </div>
           </div>
 
-
         </div>
 
         <!-- Drawer Footer -->
         <div class="p-6 border-t bg-hardwhite flex gap-4">
           <button @click="isFilterOpen = false"
-            class="flex-[2] bg-primary text-hardwhite py-4 rounded-md font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all hover:bg-accent hover:text-primary hover:border-primary border-2 border-transparent ">
+            class="flex-[2] bg-primary text-hardwhite py-4 rounded-md font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all hover:bg-accent hover:text-primary hover:border-primary border-2 border-transparent">
             عرض النتائج
           </button>
           <button @click="resetFilters"
@@ -239,46 +217,34 @@ const toggleFilter = () => {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-/* Transitions */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
-
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .slide-enter-from {
   transform: translateX(-100%);
 }
-
-/* Slide from Right for RTL or Left depending on preference */
 .slide-leave-to {
   transform: translateX(-100%);
 }
-
 @media (max-width: 768px) {
-
   .slide-enter-from,
   .slide-leave-to {
     transform: translateY(100%);
   }
 }
-
-/* Custom Range Styling */
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 20px;
@@ -286,13 +252,9 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50%;
   background: #ffffff;
   border: 4px solid #F05A28;
-  /* Assuming primary color */
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-
-/* Custom animations */
 .animate-fade-in-up {
   animation-fill-mode: both;
   will-change: transform, opacity;
@@ -300,5 +262,4 @@ input[type=range]::-webkit-slider-thumb {
 .animate-fade-in-up {
   animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
 </style>
