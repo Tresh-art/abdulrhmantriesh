@@ -116,7 +116,12 @@ const toggleFilter = () => {
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
-       <NuxtLink v-for="recipe in filteredRecipes" :key="recipe.id" :to="recipe.meta?.redirectUrl || recipe.path"
+       <component
+  :is="recipe.meta?.redirectUrl ? 'a' : resolveComponent('NuxtLink')"
+  v-for="recipe in filteredRecipes"
+  :key="recipe.id"
+  :href="recipe.meta?.redirectUrl || undefined"
+  :to="recipe.meta?.redirectUrl ? undefined : recipe.path"
           class="bg-hardwhite rounded-[12px] overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.08)] flex flex-col h-[300px] transition-transform duration-300 hover:translate-y-[-4px]">
           <div class="h-[60%] w-full relative">
             <NuxtImg :src="recipe.meta?.image" :alt="recipe.title" width="400" height="240" format="webp" quality="80"
