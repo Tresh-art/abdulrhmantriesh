@@ -6,7 +6,7 @@ videoUrl: ""
 prepTime: 240
 servings: 8
 difficulty: "متوسط"
-image: "/food-images/Beef In Oven.jpg"
+image: "/food-images/Detroit.png"
 date: "2026-06-06"
 redirectUrl: "/detroit-pizza.html"
 
