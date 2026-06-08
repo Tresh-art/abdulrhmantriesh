@@ -5,284 +5,171 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بيتزا ديترويت — عبدالرحمن طريش</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --crust: #e8b863;
-  --crust-deep: #c8841f;
-  --sauce: #b8341f;
-  --sauce-deep: #8a1f10;
-  --char: #2b1810;
-  --cream: #fdf6e9;
-  --cream-2: #f7ebd5;
-  --basil: #3d6b32;
-  --ink: #221208;
-  --muted: #8a6a45;
-  --shadow: rgba(90,40,10,.14);
-  --primary: #3D5A50;
+  --bg: #f3ece1;
+  --bg-soft: #efe6d8;
+  --bg-warm: #ece0cd;
+  --paper: #fbf6ee;
+  --paper-2: #f6efe3;
+  --sauce: #b5402e;
+  --sauce-deep: #8f2f20;
+  --crust: #c08433;
+  --crust-deep: #a86d22;
+  --cocoa: #6b5444;
+  --cocoa-deep: #4a3a2d;
+  --char: #3a2e24;
+  --ink: #3a2e24;
+  --muted: #9c8a74;
+  --line: #e3d5bf;
+  --line-soft: #ece1cf;
+  --basil: #5c7d44;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Cairo', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.8;
-  direction: rtl;
-}
-
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(253,246,233,.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(200,132,31,.18);
-  padding: 12px 28px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.nav-logo { font-size: 1rem; font-weight: 900; color: var(--char); text-decoration: none; }
-.nav-logo span { color: var(--crust-deep); }
-.nav-links { display: flex; gap: 20px; list-style: none; }
-.nav-links a { text-decoration: none; color: var(--muted); font-size: .88rem; font-weight: 600; transition: color .2s; }
+body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.85; direction: rtl; }
+nav { position: sticky; top: 0; z-index: 100; background: rgba(243,236,225,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-size: 1.05rem; font-weight: 900; color: var(--char); text-decoration: none; }
+.nav-logo span { color: var(--sauce); }
+.nav-links { display: flex; gap: 22px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--cocoa); font-size: .9rem; font-weight: 600; transition: color .2s; }
 .nav-links a:hover { color: var(--sauce); }
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  height: 480px;
-  background: linear-gradient(135deg, #1a0d06 0%, #3d1a08 45%, #2b1810 100%);
-  display: flex; align-items: flex-end; overflow: hidden;
+.print-btn { background: none; border: 1.5px solid var(--line); color: var(--cocoa); font-family: 'Cairo', sans-serif; font-weight: 700; font-size: .88rem; padding: 7px 18px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all .2s; }
+.print-btn:hover { border-color: var(--sauce); color: var(--sauce); }
+.article { max-width: 760px; margin: 0 auto; padding: 0 22px; }
+.post-head { text-align: center; padding: 46px 0 26px; }
+.post-cat { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--sauce); margin-bottom: 14px; }
+.post-head h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 900; color: var(--char); line-height: 1.15; margin-bottom: 14px; }
+.post-serves { color: var(--cocoa); font-size: .95rem; font-weight: 600; }
+.post-serves b { color: var(--char); font-weight: 800; }
+.hero-photo { position: relative; width: 100%; aspect-ratio: 4/3; border-radius: 20px; overflow: hidden; margin-bottom: 24px; background: linear-gradient(135deg, #c9a875, #8a6b4a); box-shadow: 0 20px 54px rgba(90,55,20,.2); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.hero-photo .placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 8rem; opacity: .3; }
+.desc { font-size: 1.05rem; line-height: 1.9; color: #5a4a3a; text-align: center; max-width: 600px; margin: 0 auto 34px; }
+.desc strong { color: var(--sauce-deep); font-weight: 700; }
+.recipe-card { border: 1px solid var(--line); border-radius: 22px; overflow: hidden; margin: 0 0 40px; background: var(--paper); box-shadow: 0 16px 46px rgba(90,55,20,.12); }
+.rc-head { background: linear-gradient(135deg, var(--paper-2), var(--bg-warm)); color: var(--char); padding: 30px; text-align: center; border-bottom: 1px solid var(--line); position: relative; }
+.rc-head::after { content: '🍕'; position: absolute; left: 22px; bottom: -8px; font-size: 4.5rem; opacity: .07; }
+.rc-head .rc-cat { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--crust-deep); font-weight: 700; }
+.rc-head h2 { font-size: 1.6rem; font-weight: 900; color: var(--char); margin: 8px 0 10px; }
+.rc-head p { font-size: .92rem; color: var(--cocoa); line-height: 1.7; max-width: 480px; margin: 0 auto; }
+.rc-meta { display: flex; flex-wrap: wrap; background: var(--paper-2); border-bottom: 1px solid var(--line); }
+.rc-meta .m { flex: 1; min-width: 90px; text-align: center; padding: 16px 8px; border-left: 1px solid var(--line); }
+.rc-meta .m:last-child { border-left: none; }
+.rc-meta .m .l { font-size: .68rem; color: var(--muted); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.rc-meta .m .v { font-size: .95rem; color: var(--char); font-weight: 800; margin-top: 3px; }
+.rc-body { padding: 32px 30px; }
+.rc-block-title { font-size: 1.15rem; font-weight: 900; color: var(--char); padding-bottom: 8px; margin-bottom: 14px; border-bottom: 2px solid var(--crust); display: inline-block; }
+.ing-hint { font-size: .8rem; color: var(--muted); margin-bottom: 18px; }
+.ing-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 6px; }
+.serv-control { display: flex; align-items: center; gap: 10px; }
+.serv-control .serv-label { font-size: .82rem; color: var(--cocoa); font-weight: 700; }
+.mult-group { display: inline-flex; background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 2px; }
+.mult-btn { border: none; background: transparent; cursor: pointer; font-family: 'Cairo', sans-serif; font-weight: 800; font-size: .88rem; color: var(--crust-deep); padding: 6px 16px; border-radius: 999px; transition: all .18s; }
+.mult-btn:hover { background: var(--bg-warm); }
+.mult-btn.active { background: var(--sauce); color: #fff; box-shadow: 0 3px 10px rgba(181,64,46,.3); }
+.serv-now { font-size: .85rem; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+.serv-now b { color: var(--char); font-weight: 800; }
+.ing-group { margin-bottom: 22px; }
+.ing-group:last-child { margin-bottom: 0; }
+.ing-group h4 { font-size: .8rem; font-weight: 700; color: var(--sauce); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.ing-list { list-style: none; }
+.ing-list li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 8px; font-size: .96rem; line-height: 1.6; border-bottom: 1px solid var(--line-soft); cursor: pointer; border-radius: 8px; transition: background .15s; user-select: none; }
+.ing-list li:last-child { border-bottom: none; }
+.ing-list li:hover { background: var(--bg-warm); }
+.ing-list li .check { flex-shrink: 0; width: 20px; height: 20px; margin-top: 3px; border-radius: 6px; border: 2px solid var(--crust); background: transparent; display: grid; place-items: center; transition: all .15s; }
+.ing-list li .check::after { content: '✓'; color: #fff; font-size: .8rem; font-weight: 900; opacity: 0; transition: opacity .15s; }
+.ing-list li.done .check { background: var(--basil); border-color: var(--basil); }
+.ing-list li.done .check::after { opacity: 1; }
+.ing-list li.done .txt { text-decoration: line-through; color: var(--muted); }
+.ing-list .q { font-weight: 800; color: var(--sauce-deep); }
+.ing-list li.done .q { color: var(--muted); }
+.rc-instructions { margin-top: 34px; }
+.inst-list { list-style: none; counter-reset: inst; }
+.inst-list li { counter-increment: inst; position: relative; padding: 0 50px 28px 0; font-size: .98rem; line-height: 1.85; }
+.inst-list li:last-child { padding-bottom: 0; }
+.inst-list li::before { content: counter(inst); position: absolute; right: 0; top: -2px; width: 34px; height: 34px; border-radius: 50%; background: var(--sauce); color: #fff; font-weight: 800; font-size: .95rem; display: grid; place-items: center; }
+.inst-list li::after { content: ''; position: absolute; right: 16px; top: 36px; bottom: 8px; width: 2px; background: var(--line); }
+.inst-list li:last-child::after { display: none; }
+.inst-list b { color: var(--sauce-deep); font-weight: 700; }
+.inst-note { display: block; color: var(--muted); font-size: .86rem; margin-top: 6px; padding-right: 12px; border-right: 3px solid var(--crust-deep); }
+.rc-notes { background: var(--paper-2); padding: 24px 30px; border-top: 1px solid var(--line); }
+.rc-notes h4 { font-size: .95rem; font-weight: 800; color: var(--char); margin-bottom: 8px; }
+.rc-notes ul { list-style: none; }
+.rc-notes li { font-size: .9rem; color: #5a4a3a; line-height: 1.7; padding-right: 18px; position: relative; margin-bottom: 6px; }
+.rc-notes li::before { content: '•'; position: absolute; right: 0; color: var(--crust); font-weight: 900; }
+.store-cta { background: linear-gradient(135deg, var(--cocoa-deep), #5a4636); border-radius: 20px; padding: 30px 34px; color: #fff; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin: 40px 0; box-shadow: 0 14px 40px rgba(90,55,20,.16); }
+.store-cta .ico { font-size: 3rem; }
+.store-cta .txt { flex: 1; min-width: 220px; }
+.store-cta h4 { font-size: 1.15rem; font-weight: 900; color: var(--crust); margin-bottom: 5px; }
+.store-cta p { font-size: .9rem; color: rgba(255,255,255,.78); line-height: 1.7; }
+.store-cta a { background: var(--crust); color: #3a2e24; text-decoration: none; font-weight: 800; font-size: .9rem; padding: 12px 24px; border-radius: 12px; white-space: nowrap; transition: transform .2s; }
+.store-cta a:hover { transform: translateY(-2px); }
+details.cost { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 8px 26px rgba(90,55,20,.08); }
+details.cost summary { cursor: pointer; padding: 18px 24px; font-weight: 800; color: var(--char); font-size: .98rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+details.cost summary::-webkit-details-marker { display: none; }
+details.cost summary::after { content: '+'; color: var(--sauce); font-weight: 900; font-size: 1.2rem; }
+details.cost[open] summary::after { content: '\2212'; }
+.cost-table { width: 100%; border-collapse: collapse; }
+.cost-table td { padding: 12px 24px; font-size: .92rem; border-top: 1px solid var(--line); }
+.cost-table tr:last-child td { font-weight: 900; color: var(--char); background: var(--paper-2); }
+.cost-table td:last-child { font-weight: 800; color: var(--sauce-deep); text-align: left; direction: ltr; }
+.foot { text-align: center; font-size: 1.15rem; font-weight: 700; color: var(--sauce-deep); margin: 20px 0 70px; line-height: 1.7; }
+@media (max-width: 600px) {
+  .post-head { padding: 32px 0 20px; }
+  .rc-body { padding: 24px 20px; }
+  .rc-head { padding: 24px 20px; }
+  .store-cta { padding: 24px; }
+  nav { padding: 12px 16px; }
+  .nav-links { gap: 14px; }
 }
-.hero-emoji {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14rem; opacity: .07; user-select: none;
-  line-height: 1;
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fbf6ee !important; color: #3a2e24 !important; font-family: 'Cairo', sans-serif; direction: rtl; }
+  nav, .print-btn, .no-print, .store-cta, details.cost, .mult-group, .serv-control,
+  .ing-list li .check, .foot { display: none !important; }
+  .article { max-width: 100% !important; padding: 0 !important; }
+  .print-header { display: flex !important; justify-content: space-between; align-items: flex-end;
+    padding: 0 0 18px; border-bottom: 3px solid #b5402e; margin-bottom: 28px; }
+  .print-header h1 { font-size: 2.2rem; font-weight: 900; color: #3a2e24; line-height: 1.1; }
+  .print-header .print-meta { text-align: left; font-size: .85rem; color: #9c8a74; line-height: 1.8; }
+  .print-header .print-meta b { color: #3a2e24; }
+  .print-header .print-brand { font-size: .9rem; font-weight: 800; color: #b5402e; }
+  .post-head, .post-cat, .post-serves, .desc { display: none !important; }
+  .hero-photo { border-radius: 14px !important; aspect-ratio: 16/7 !important;
+    margin-bottom: 22px !important; box-shadow: none !important; page-break-inside: avoid; }
+  .recipe-card { border: 2px solid #e3d5bf !important; box-shadow: none !important;
+    border-radius: 16px !important; page-break-inside: avoid; }
+  .rc-head { background: #f6efe3 !important; border-bottom: 1px solid #e3d5bf !important; padding: 20px 24px !important; }
+  .rc-head h2 { font-size: 1.3rem !important; }
+  .rc-head p { font-size: .85rem !important; }
+  .rc-head::after { display: none !important; }
+  .rc-meta { background: #ece0cd !important; }
+  .rc-meta .m { padding: 10px 6px !important; }
+  .rc-body { padding: 22px 24px !important; }
+  .ing-top { display: flex !important; }
+  .serv-now { display: block !important; }
+  .ing-hint { display: none !important; }
+  .ing-group h4 { font-size: .78rem !important; }
+  .ing-list li { padding: 6px 8px !important; cursor: default; border-radius: 0 !important; }
+  .ing-list li:hover { background: transparent !important; }
+  .ing-list li.done .txt { text-decoration: none !important; color: #3a2e24 !important; }
+  .ing-list li.done .q { color: #8f2f20 !important; }
+  .inst-list li { padding-bottom: 18px !important; font-size: .92rem !important; }
+  .inst-list li::before { background: #b5402e !important; color: #fff !important; width: 28px !important; height: 28px !important; font-size: .82rem !important; }
+  .inst-list li::after { background: #e3d5bf !important; }
+  .inst-note { color: #9c8a74 !important; font-size: .8rem !important; }
+  .rc-notes { background: #f6efe3 !important; }
+  .print-footer { display: block !important; text-align: center; font-size: .8rem;
+    color: #9c8a74; border-top: 1px solid #e3d5bf; padding-top: 14px; margin-top: 28px; }
+  .rc-instructions { page-break-before: auto; }
+  .rc-notes { page-break-inside: avoid; }
 }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(34,18,8,.92) 0%, rgba(34,18,8,.2) 65%, transparent 100%);
-}
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 40px 48px;
-  width: 100%; max-width: 920px; margin: 0 auto;
-}
-.hero-tag {
-  display: inline-block;
-  background: var(--sauce); color: #fff;
-  font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-  padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
-}
-.hero h1 {
-  font-size: clamp(2.8rem, 7vw, 4.8rem);
-  font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 10px;
-}
-.hero-desc {
-  font-size: 1rem; color: rgba(255,255,255,.65); font-weight: 400;
-  max-width: 520px; margin-bottom: 24px; line-height: 1.7;
-}
-.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
-.badge {
-  display: flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
-  backdrop-filter: blur(6px); border-radius: 10px;
-  padding: 7px 14px; color: #fff; font-size: .82rem; font-weight: 600;
-}
-
-/* ── WRAP ── */
-.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
-
-/* ── INTRO ── */
-.intro-card {
-  background: var(--char); color: var(--cream);
-  border-radius: 22px; padding: 34px 38px; margin: 44px 0;
-  position: relative; overflow: hidden;
-}
-.intro-card::after {
-  content: '🍕'; position: absolute; left: 20px; bottom: -10px;
-  font-size: 7rem; opacity: .06; line-height: 1;
-}
-.intro-card p { font-size: 1.08rem; line-height: 2; color: rgba(253,246,233,.88); }
-.intro-card strong { color: var(--crust); font-weight: 700; }
-
-/* ── SECTION HEADER ── */
-.sec-head { display: flex; align-items: center; gap: 14px; margin: 56px 0 24px; }
-.sec-num {
-  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-  background: var(--char); color: var(--crust);
-  display: grid; place-items: center;
-  font-size: 1.1rem; font-weight: 900;
-}
-.sec-head h2 { font-size: 1.75rem; font-weight: 900; color: var(--char); }
-
-/* ── INGREDIENT CARDS ── */
-.cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.card {
-  background: #fff; border-radius: 20px; padding: 22px 22px 16px;
-  box-shadow: 0 8px 26px var(--shadow); border: 1px solid rgba(200,132,31,.14);
-}
-.card-title {
-  font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--sauce); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.ing {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 10px; padding: 7px 0; border-bottom: 1px dashed rgba(160,110,40,.18);
-  font-size: .93rem; font-weight: 500;
-}
-.ing:last-of-type { border-bottom: none; }
-.amt { font-weight: 700; color: var(--crust-deep); white-space: nowrap; font-size: .88rem; }
-.sub { font-size: .8rem; color: var(--muted); margin: 3px 0 6px; display: block; font-weight: 400; }
-
-/* ── SHOPPING LIST ── */
-.shop {
-  list-style: none; background: #fff; border-radius: 20px;
-  box-shadow: 0 8px 26px var(--shadow); border: 1px solid rgba(200,132,31,.14);
-  overflow: hidden;
-}
-.shop li {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 11px 20px; border-bottom: 1px solid rgba(160,110,40,.1);
-  font-size: .93rem; font-weight: 500;
-}
-.shop li:last-child { border-bottom: none; }
-.shop li:nth-child(even) { background: var(--cream-2); }
-.shop .qty { font-weight: 700; color: var(--crust-deep); font-size: .88rem; }
-.shop em { color: var(--muted); font-style: italic; font-weight: 400; }
-.shop-note { font-size: .85rem; color: var(--muted); margin-top: 10px; font-weight: 500; }
-
-/* ── STAGES ── */
-.stage {
-  background: linear-gradient(145deg, #fff, var(--cream-2));
-  border-radius: 20px; padding: 26px 30px; margin-bottom: 18px;
-  box-shadow: 0 6px 22px var(--shadow); border-right: 5px solid var(--crust-deep);
-}
-.stage-title {
-  font-size: 1.12rem; font-weight: 900; color: var(--char);
-  margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-}
-.time-pill {
-  font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: #fff; background: var(--basil); padding: 3px 12px; border-radius: 20px;
-}
-.steps { counter-reset: s; list-style: none; margin-top: 14px; }
-.steps li {
-  counter-increment: s; position: relative;
-  padding: 10px 44px 10px 0; font-size: .95rem; font-weight: 400;
-  border-bottom: 1px solid rgba(160,110,40,.1);
-}
-.steps li:last-child { border-bottom: none; }
-.steps li::before {
-  content: counter(s); position: absolute; right: 0; top: 10px;
-  width: 30px; height: 30px; border-radius: 9px;
-  background: var(--sauce); color: #fff;
-  font-weight: 700; font-size: .82rem; display: grid; place-items: center;
-}
-.steps li b { color: var(--sauce-deep); font-weight: 700; }
-.why { display: block; color: var(--muted); font-size: .85rem; font-style: italic; margin-top: 3px; }
-
-/* ── CALLOUT ── */
-.callout {
-  background: var(--char); color: var(--cream);
-  border-radius: 18px; padding: 22px 26px; margin: 18px 0; position: relative; overflow: hidden;
-}
-.callout::before { content: "⏳"; position: absolute; left: -8px; top: -12px; font-size: 5.5rem; opacity: .08; }
-.callout h4 { font-size: 1rem; font-weight: 700; margin-bottom: 7px; color: var(--crust); }
-.callout p { font-size: .93rem; color: rgba(253,246,233,.88); line-height: 1.8; }
-.callout b { color: var(--crust); }
-.callout-green { background: var(--basil); }
-.callout-green::before { content: "🍳"; }
-.callout-green h4 { color: #fff; }
-.callout-green p { color: rgba(238,245,234,.92); }
-.callout-green b { color: #fff; }
-
-/* ── SCIENCE ── */
-.science-wrap {
-  background: linear-gradient(155deg, rgba(61,107,50,.93), rgba(38,66,30,.96));
-  border-radius: 24px; padding: 36px 32px; color: #eaf3e4;
-}
-.science-wrap .sec-head { margin-top: 0; }
-.science-wrap .sec-num { background: rgba(255,255,255,.15); color: #fff; }
-.science-wrap h2 { color: #fff; }
-.sci-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 4px; }
-.sci-item {
-  background: rgba(255,255,255,.1); border-radius: 16px; padding: 20px;
-  border: 1px solid rgba(255,255,255,.12);
-}
-.sci-item h4 { font-size: .92rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.sci-item p { font-size: .84rem; color: rgba(234,243,228,.82); line-height: 1.75; }
-
-/* ── SECRETS ── */
-.secrets { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.secret {
-  background: var(--cream-2); border-radius: 16px; padding: 18px 22px;
-  border-right: 4px solid var(--crust); font-size: .9rem; color: #4a3018; line-height: 1.7;
-}
-.secret b { display: block; font-weight: 900; color: var(--char); margin-bottom: 4px; }
-
-/* ── PROSE ── */
-.prose p { font-size: .95rem; color: #5a3a20; line-height: 1.9; margin-bottom: 14px; }
-.pair-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.pair-list li {
-  background: #fff; border-radius: 14px; padding: 14px 18px;
-  font-size: .93rem; color: #5a3a20; line-height: 1.7;
-  box-shadow: 0 4px 14px var(--shadow); border-right: 4px solid var(--crust-deep);
-}
-.pair-list b { color: var(--char); font-weight: 700; }
-
-/* ── TOOLS ── */
-.tools-box {
-  background: var(--primary); border-radius: 22px; padding: 34px 38px;
-  color: #fff; position: relative; overflow: hidden;
-}
-.tools-box::after {
-  content: '🌡️'; position: absolute; left: 18px; bottom: -10px;
-  font-size: 7rem; opacity: .1; line-height: 1;
-}
-.tools-box h2 { font-size: 1.3rem; font-weight: 900; color: var(--crust); margin-bottom: 10px; }
-.tools-box p { font-size: .93rem; color: rgba(255,255,255,.82); line-height: 1.85; margin-bottom: 20px; max-width: 580px; }
-.store-btn {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--crust); color: var(--char); text-decoration: none;
-  font-weight: 900; font-size: .92rem; padding: 12px 24px; border-radius: 14px;
-  transition: transform .2s, box-shadow .2s;
-}
-.store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.22); }
-
-/* ── COST TABLE ── */
-.cost-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px var(--shadow); }
-.cost-table td { padding: 13px 22px; font-size: .92rem; border-bottom: 1px solid rgba(160,110,40,.1); }
-.cost-table tr:nth-child(even) td { background: var(--cream-2); }
-.cost-table tr:last-child td { font-weight: 900; font-size: 1.05rem; color: var(--char); background: var(--cream-2); border-bottom: none; }
-.cost-table td:last-child { font-weight: 700; color: var(--crust-deep); text-align: left; direction: ltr; }
-.cost-note { text-align: center; font-size: .83rem; color: var(--muted); margin-top: 10px; font-style: italic; }
-
-/* ── FOOTER ── */
-.foot {
-  text-align: center; font-size: 1.15rem; font-weight: 700;
-  color: var(--sauce-deep); margin-top: 56px;
-  padding: 28px 32px; background: var(--cream-2); border-radius: 18px;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 640px) {
-  .hero { height: 400px; }
-  .hero-content { padding: 28px 20px; }
-  .hero h1 { font-size: 2.4rem; }
-  .intro-card { padding: 24px; }
-  .stage { padding: 18px 20px; }
-  .tools-box { padding: 24px; }
-  .science-wrap { padding: 24px 20px; }
-  nav { flex-wrap: wrap; gap: 10px; }
-}
+.print-header, .print-footer { display: none; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="https://abdulrhmantriesh.com" class="nav-logo"><span>عبدالرحمن</span> طريش</a>
   <ul class="nav-links">
@@ -290,227 +177,251 @@ nav {
     <li><a href="https://abdulrhmantriesh.com/recipes">الوصفات</a></li>
     <li><a href="https://abdulrhmantriesh.com/store">المتجر</a></li>
   </ul>
+  <button class="print-btn no-print" onclick="window.print()">🖨 طباعة / PDF</button>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-emoji">🍕</div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Detroit Style</div>
+<article class="article">
+
+  <div class="print-header">
+    <div>
+      <h1>بيتزا ديترويت</h1>
+      <div style="font-size:.8rem;color:#9c8a74;margin-top:4px;">وجبات رئيسية · Detroit Style</div>
+    </div>
+    <div class="print-meta">
+      <div><b>التحضير:</b> 30 دقيقة + راحة 4–5 ساعات</div>
+      <div><b>الخبز:</b> 15–18 دقيقة</div>
+      <div><b>تكفي:</b> 6–8 أشخاص</div>
+      <div class="print-brand" style="margin-top:6px;">abdulrhmantriesh.com</div>
+    </div>
+  </div>
+
+  <div class="post-head">
+    <span class="post-cat">وجبات رئيسية · Detroit Style</span>
     <h1>بيتزا ديترويت</h1>
-    <p class="hero-desc">قاعدة ذهبية مقرمشة مثل الشيبس، أطراف جبن فريكو، وقلب طري مليان هواء.</p>
-    <div class="hero-badges">
-      <div class="badge">👥 6–8 أشخاص</div>
-      <div class="badge">⏱ 4–5 ساعات</div>
-      <div class="badge">🍳 مقلاة 30 سم</div>
-    </div>
-  </div>
-</div>
-
-<div class="wrap">
-
-  <!-- INTRO -->
-  <div class="intro-card">
-    <p>بيتزا سميكة بقاعدة تتحمّر في الزيت حتى تصير <strong>ذهبية ومقرمشة مثل الشيبس</strong>، وأطراف من الجبن المقرمش — حلقة الـ"فريكو" الشهيرة — وقلب طري ومليان هواء. صلصة طماطم طازجة، موزاريلا وشيدر ذايبة، ولحم مفروم متبّل بالثوم والزعتر والشمر. <strong>والأحلى: العجينة تجهز نفس اليوم.</strong></p>
+    <div class="post-serves">تكفي <b>6–8 أشخاص</b></div>
   </div>
 
-  <!-- INGREDIENTS -->
-  <div class="sec-head"><div class="sec-num">1</div><h2>المكوّنات</h2></div>
-  <div class="cards">
+  <div class="hero-photo">
+    <img src="/food-images/Detroit.png" alt="بيتزا ديترويت بقاعدة ذهبية مقرمشة"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="placeholder" style="display:none;">🍕</div>
+  </div>
 
-    <div class="card">
-      <div class="card-title">🫓 العجينة</div>
-      <div class="ing"><span>دقيق خبز</span><span class="amt">400 غ</span></div>
-      <span class="sub">بديل: الدقيق متعدد الاستعمالات يشتغل كمان.</span>
-      <div class="ing"><span>ماء دافئ (~35°م)</span><span class="amt">300 غ</span></div>
-      <div class="ing"><span>خميرة فورية</span><span class="amt">7 غ (كيس)</span></div>
-      <div class="ing"><span>ملح</span><span class="amt">8 غ</span></div>
-      <div class="ing"><span>سكر</span><span class="amt">5 غ</span></div>
-      <div class="ing"><span>زيت زيتون (للعجينة)</span><span class="amt">15 غ</span></div>
-      <div class="ing"><span>زيت زيتون (للمقلاة)</span><span class="amt">30–40 غ</span></div>
-      <span class="sub">لا تقلّل زيت المقلاة — هو اللي يقلي القاعدة.</span>
+  <p class="desc">
+    بيتزا سميكة بقاعدة ذهبية مقرمشة كرقائق البطاطس، وأطراف من الجبن المقرمش، وقلب طري مليء بالهواء.
+    صلصة طماطم طازجة وجبن ذائب ولحم متبّل، <strong>والعجينة تُحضَّر في اليوم نفسه</strong>.
+  </p>
+
+  <div class="recipe-card">
+    <div class="rc-head">
+      <div class="rc-cat">بيتزا · ديترويت ستايل</div>
+      <h2>بيتزا ديترويت بالقاعدة المقرمشة</h2>
+      <p>قاعدة ذهبية كرقائق البطاطس، أطراف جبن مقرمشة، صلصة طماطم طازجة، ولحم متبّل.</p>
     </div>
 
-    <div class="card">
-      <div class="card-title">🍅 صلصة الطماطم</div>
-      <div class="ing"><span>طماطم طازجة ناضجة</span><span class="amt">600 غ</span></div>
-      <span class="sub">نسوّيها بنفسنا — بدون صلصة معلّبة.</span>
-      <div class="ing"><span>معجون طماطم</span><span class="amt">30 غ</span></div>
-      <div class="ing"><span>ثوم مبشور</span><span class="amt">3 فصوص</span></div>
-      <div class="ing"><span>زيت زيتون</span><span class="amt">20 غ</span></div>
-      <div class="ing"><span>زعتر مجفف</span><span class="amt">3 غ</span></div>
-      <div class="ing"><span>ملح</span><span class="amt">¾ م.ص</span></div>
-      <div class="ing"><span>سكر</span><span class="amt">½ م.ص</span></div>
+    <div class="rc-meta">
+      <div class="m"><div class="l">التحضير</div><div class="v">30 د + راحة</div></div>
+      <div class="m"><div class="l">الخبز</div><div class="v">15–18 د</div></div>
+      <div class="m"><div class="l">الإجمالي</div><div class="v">~5 ساعات</div></div>
+      <div class="m"><div class="l">تكفي</div><div class="v">6–8</div></div>
     </div>
 
-    <div class="card">
-      <div class="card-title">🥩 اللحم المتبّل</div>
-      <div class="ing"><span>لحم مفروم (دهن 15–20٪)</span><span class="amt">350 غ</span></div>
-      <div class="ing"><span>بصل مفروم ناعم</span><span class="amt">½ حبة</span></div>
-      <div class="ing"><span>ثوم مفروم</span><span class="amt">2 فص</span></div>
-      <div class="ing"><span>بذور شمر مجروشة</span><span class="amt">2 غ</span></div>
-      <span class="sub">سر طعم "النقانق الإيطالية". بديل: بذور اليانسون.</span>
-      <div class="ing"><span>زعتر مجفف</span><span class="amt">¾ م.ص</span></div>
-      <div class="ing"><span>فلفل أحمر مجروش</span><span class="amt">½ م.ص</span></div>
-      <div class="ing"><span>ملح وفلفل أسود</span><span class="amt">حسب الذوق</span></div>
+    <div class="rc-body">
+      <div class="ing-top">
+        <div class="rc-block-title" style="margin-bottom:0;">المكوّنات</div>
+        <div class="serv-control no-print">
+          <span class="serv-label">الكمية:</span>
+          <div class="mult-group" id="multGroup">
+            <button class="mult-btn active" data-mult="1">1×</button>
+            <button class="mult-btn" data-mult="2">2×</button>
+            <button class="mult-btn" data-mult="3">3×</button>
+          </div>
+        </div>
+      </div>
+      <p class="serv-now">تكفي <b id="servCount">6–8</b> أشخاص</p>
+      <p class="ing-hint">اضغط على أي مكوّن لتعليمه عند تجهيزه ✓</p>
+
+      <div class="ing-group">
+        <h4>🫓 العجينة</h4>
+        <ul class="ing-list">
+          <li><span class="check"></span><span class="txt"><span class="q">400 غ</span> دقيق خبز (أو متعدد الاستعمالات)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">300 غ</span> ماء دافئ (حوالي 35°م)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">7 غ</span> خميرة فورية (كيس)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">8 غ</span> ملح · <span class="q">5 غ</span> سكر</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">15 غ</span> زيت زيتون (للعجينة)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">30–40 غ</span> زيت زيتون (للمقلاة)</span></li>
+        </ul>
+      </div>
+
+      <div class="ing-group">
+        <h4>🍅 صلصة الطماطم</h4>
+        <ul class="ing-list">
+          <li><span class="check"></span><span class="txt"><span class="q">600 غ</span> طماطم طازجة ناضجة</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">30 غ</span> معجون طماطم</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">3 فصوص</span> ثوم مفروم ناعماً</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">1 ملعقة كبيرة</span> زيت زيتون · زعتر · ريحان مجفف · ملح · سكر</span></li>
+        </ul>
+      </div>
+
+      <div class="ing-group">
+        <h4>🥩 اللحم المتبّل</h4>
+        <ul class="ing-list">
+          <li><span class="check"></span><span class="txt"><span class="q">350 غ</span> لحم مفروم (دهن 15–20٪)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">½ حبة</span> بصل مفروم ناعماً</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">2 فص</span> ثوم مفروم</span></li>
+          <li><span class="check"></span><span class="txt">ملح · فلفل أسود · فلفل أحمر مجروش</span></li>
+        </ul>
+      </div>
+
+      <div class="ing-group">
+        <h4>🧀 الجبن</h4>
+        <ul class="ing-list">
+          <li><span class="check"></span><span class="txt"><span class="q">250 غ</span> موزاريلا قليلة الرطوبة (مبشورة طازجاً)</span></li>
+          <li><span class="check"></span><span class="txt"><span class="q">150 غ</span> جبن شيدر مبشور طازجاً</span></li>
+          <li><span class="check"></span><span class="txt">ريحان طازج للتزيين</span></li>
+        </ul>
+      </div>
+
+      <div class="rc-instructions">
+        <div class="rc-block-title">طريقة التحضير</div>
+        <ol class="inst-list">
+
+          <li>
+            <b>تنشيط الخميرة:</b> سخّن 300 غ من الماء حتى تصل درجة حرارته إلى ما بين 30 و35°م. في وعاء العجن، اخلط الدقيق والملح والسكر والخميرة، ثم أضف الماء الدافئ.
+            <span class="inst-note">الماء الأسخن من 40°م يقتل الخميرة — استخدم ميزان حرارة للدقة.</span>
+          </li>
+
+          <li>
+            <b>العجن الأول:</b> اخلط على سرعة منخفضة دقيقتين حتى تتجمع العجينة، ثم ارفع السرعة للمتوسطة وأضف 15 غ زيت زيتون تدريجياً. إذا بدت العجينة لزجة جداً، أضف الدقيق ملعقة ملعقة حتى تتماسك. أكمل العجن من 6 إلى 8 دقائق حتى تصبح ناعمة ومرنة.
+            <span class="inst-note">إذا لم يكن عندك عجّانة: اخلط كل المكوّنات بالملعقة حتى تتجمع، ثم اعجن باليد.</span>
+          </li>
+
+          <li>
+            <b>الطي والراحة:</b> على سطح مرشوش بالدقيق خفيفاً، طبّق تقنية الشد والطي: اسحب العجينة من جهة واطوِها على نفسها، دوّرها 90 درجة، وكرّر 4 مرات حتى تتشكّل كرة مضبوطة. ضعها في وعاء مدهون بالزيت، غطّها بالنايلون، واتركها تتخمّر في مكان دافئ <b>4–5 ساعات</b> حتى يتضاعف حجمها.
+            <span class="inst-note">للنكهة الأعمق: استخدم نصف كمية الخميرة وخمّر العجينة في الثلاجة 24–72 ساعة.</span>
+          </li>
+
+          <li>
+            <b>صلصة الطماطم:</b> قطّع الطماطم من المنتصف وابشرها على المبشرة — اللب ينزل والقشرة تبقى في يدك. في طنجرة، اقلِ الثوم في زيت الزيتون 30 ثانية، أضف معجون الطماطم ودقيقة، ثم أضف الطماطم المبشورة والبهارات. اتركها تغلي على نار هادئة مع تغطية جزئية <b>6–8 دقائق</b> حتى يتبخر الماء وتثخن الصلصة. <b>برّدها تماماً قبل الاستخدام.</b>
+            <span class="inst-note">الصلصة المائية أو الدافئة تطرّي القاعدة وتفسد قرمشتها.</span>
+          </li>
+
+          <li>
+            <b>اللحم المتبّل:</b> في مقلاة على نار متوسطة-عالية، حمّر البصل المفروم دقيقتين. أضف اللحم المفروم وفتّته وحمّره جيداً <b>6–7 دقائق</b> حتى يصبح بنياً مقرمشاً. أضف الثوم والبهارات وحرّك 3–5 دقائق. <b>صفِّ الدهن تماماً</b> إذا كان اللحم رطباً.
+            <span class="inst-note">يجب أن تكون الحشوة جافة تماماً — أي رطوبة تبلّل العجينة.</span>
+          </li>
+
+          <li>
+            <b>ابشر الجبن طازجاً:</b> ابشر الموزاريلا والشيدر من القطعة مباشرة. الجبن المبشور مسبقاً يفقد طعمه بسبب تعرضه للثلاجة ويذوب بشكل أقل جودة.
+          </li>
+
+          <li>
+            <b>التشكيل والتخمير الثاني:</b> صبّ <b>30–40 غ زيت زيتون</b> في مقلاة قطرها 30 سم ووزّعه جيداً. ضع العجينة في المركز، دهن أصابعك بالزيت وافردها برفق نحو الأطراف دون تفقيع الفقاعات. غطّها وارتاح <b>30 دقيقة</b> حتى تتخمّر وتنتفخ.
+            <span class="inst-note">الزيت الوفير في القاع هو سر القاعدة الذهبية المقلية — لا تقلّصه.</span>
+          </li>
+
+          <li>
+            <b>التركيب والخبز:</b> سخّن الفرن إلى أقصى درجة (230–250°م). رتّب المكوّنات بهذا الترتيب: <b>الجبن أولاً حتى الأطراف ← اللحم ← الصلصة فوقه.</b> اضغط الجبن على جدران المقلاة للحصول على حافة الفريكو المقرمشة. اخبز <b>15–18 دقيقة</b> حتى تذهب الأطراف ويصبح الجبن ذهبياً.
+            <span class="inst-note">الفريكو هو الجبن المحروق على الجدران — هو ما يميّز بيتزا ديترويت.</span>
+          </li>
+
+          <li>
+            <b>الإخراج الفوري:</b> بمجرد خروجها من الفرن، مرّر سكيناً أو ملعقة حول الأطراف لفكّها، ثم انقلها فوراً إلى شبك تبريد خلال دقيقة أو دقيقتين. اتركها <b>3–5 دقائق</b> قبل التقطيع.
+            <span class="inst-note">بقاؤها في المقلاة يحبس البخار تحتها ويطرّي القاعدة — الشبك يحفظ القرمشة.</span>
+          </li>
+
+        </ol>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-title">🧀 الجبن</div>
-      <div class="ing"><span>موزاريلا قليلة الرطوبة</span><span class="amt">250 غ</span></div>
-      <div class="ing"><span>شيدر مبشور</span><span class="amt">150 غ</span></div>
-      <span class="sub">الشيدر يعطي التحمير والحدّة والأطراف المقرمشة.</span>
-      <div class="ing"><span>ريحان طازج (للتزيين)</span><span class="amt">بعض الأوراق</span></div>
-    </div>
-
-  </div>
-
-  <!-- SHOPPING LIST -->
-  <div class="sec-head"><div class="sec-num">2</div><h2>قائمة التسوّق السريعة</h2></div>
-  <p class="shop-note">كل اللي تحتاجه بنظرة وحدة — جهّزه كله قبل ما تبدأ.</p>
-  <br>
-  <ul class="shop">
-    <li><span>دقيق خبز <em>(أو متعدد الاستعمالات)</em></span><span class="qty">400 غ</span></li>
-    <li><span>خميرة فورية</span><span class="qty">كيس (7 غ)</span></li>
-    <li><span>زيت زيتون</span><span class="qty">~100 غ</span></li>
-    <li><span>طماطم طازجة ناضجة</span><span class="qty">600 غ</span></li>
-    <li><span>معجون طماطم</span><span class="qty">30 غ</span></li>
-    <li><span>لحم مفروم <em>(دهن 15–20٪)</em></span><span class="qty">350 غ</span></li>
-    <li><span>بصل</span><span class="qty">½ حبة</span></li>
-    <li><span>ثوم</span><span class="qty">5 فصوص</span></li>
-    <li><span>موزاريلا قليلة الرطوبة</span><span class="qty">250 غ</span></li>
-    <li><span>جبن شيدر</span><span class="qty">150 غ</span></li>
-    <li><span>ريحان طازج</span><span class="qty">بعض الأوراق</span></li>
-    <li><span>بذور شمر</span><span class="qty">½ م.ص</span></li>
-    <li><span>زعتر مجفف</span><span class="qty">~2 م.ص</span></li>
-    <li><span>فلفل أحمر مجروش</span><span class="qty">½ م.ص</span></li>
-    <li><span>ملح وسكر وفلفل أسود</span><span class="qty">من المطبخ</span></li>
-  </ul>
-
-  <!-- STEPS -->
-  <div class="sec-head"><div class="sec-num">3</div><h2>خطوة بخطوة</h2></div>
-
-  <div class="stage">
-    <div class="stage-title">المرحلة 1 · العجينة <span class="time-pill">10 دقائق + 4–5 ساعات راحة</span></div>
-    <ol class="steps">
-      <li>اخلط <b>الماء الدافئ (35°م) والخميرة والسكر.</b> اتركها <b>5 دقائق</b> حتى ترغي. <span class="why">استخدم ميزان الحرارة — الماء فوق 40°م يقتل الخميرة.</span></li>
-      <li>أضف <b>الدقيق والملح و1 م.ك زيت.</b> اخلط <b>دقيقتين</b> حتى ما يبقى دقيق جاف. العجينة لزجة وخشنة — وهذا صحيح.</li>
-      <li>اتركها <b>15 دقيقة.</b> بعدها اسحب واطوي العجينة في الوعاء 4 مرات (30 ثانية). يبني القوة بدون عجن.</li>
-      <li>غطّها واتركها ترتفع في <b>مكان دافئ 4–5 ساعات</b>، حتى تتضاعف وتمتلئ فقاقيع.</li>
-    </ol>
-  </div>
-
-  <div class="callout">
-    <h4>⏳ لأصحاب الصبر / المتقدمين</h4>
-    <p>عندك وقت؟ استخدم <b>2 غ (½ م.ص) خميرة بس</b> وخزّن العجينة في الثلاجة <b>24–72 ساعة.</b> التخمير البطيء البارد يعطي نكهة أعمق تقارب العجين المخمّر، وفقاقيع أكبر. الطريقتين موجودتين في الوصفة — اختر مستواك.</p>
-  </div>
-
-  <div class="stage">
-    <div class="stage-title">المرحلة 2 · اللحم <span class="time-pill">10 دقائق</span></div>
-    <ol class="steps">
-      <li>سخّن 1 م.ك زيت على نار متوسطة-عالية. اطبخ <b>البصل دقيقتين</b> حتى يطرى.</li>
-      <li>أضف <b>اللحم المفروم.</b> فتّته وحمّره منيح <b>6–7 دقائق.</b> التحمير الحقيقي = نكهة حقيقية.</li>
-      <li>أضف <b>الثوم والزعتر والشمر المجروش والفلفل والملح.</b> حرّك <b>دقيقة.</b></li>
-      <li><b>صفّي الدهن</b> من خلال مصفاة. <span class="why">خطوة مهمة — تمنع البيتزا السميكة من أن تصير طرية ومبللة.</span></li>
-    </ol>
-  </div>
-
-  <div class="stage">
-    <div class="stage-title">المرحلة 3 · صلصة الطماطم الطازجة <span class="time-pill">15 دقيقة</span></div>
-    <ol class="steps">
-      <li><b>ابشر الطماطم:</b> قسّمها نصفين وافرك الوجه المقطوع على مبشرة. اللب ينزل والقشرة تبقى في يدك — ارمِ القشور. صار عندك هريس طماطم طازج.</li>
-      <li>سخّن <b>20 غ زيت</b>، أضف <b>الثوم المبشور</b>، اطبخ <b>30 ثانية</b> (بدون تحمير).</li>
-      <li>أضف <b>معجون الطماطم</b>، اقليه <b>دقيقة</b> ليعمّق اللون ويزيل الطعم النيء.</li>
-      <li>أضف <b>الطماطم المبشورة والزعتر والملح والسكر.</b> اتركها تغلي على نار هادئة <b>8–10 دقائق</b> حتى تثخن. <span class="why">الطماطم الطازجة مائية — نطبخ الماء حتى تبقى القاعدة مقرمشة.</span></li>
-      <li><b>برّدها</b> قبل الاستخدام. <span class="why">الصلصة الباردة ما تخلي العجينة لزجة.</span></li>
-    </ol>
-  </div>
-
-  <div class="stage">
-    <div class="stage-title">المرحلة 4 · التشكيل والتخمير الثاني <span class="time-pill">45 دقيقة</span></div>
-    <ol class="steps">
-      <li>صبّ <b>30–40 غ زيت</b> في مقلاة الـ30 سم، ووزّعه على القاع والأطراف.</li>
-      <li>ضع العجينة في المنتصف. زيّت أطراف أصابعك واضغط للخارج. <b>راح ترجع للداخل — طبيعي.</b> غطّها وارتاح <b>15 دقيقة.</b></li>
-      <li>اضغط مرة ثانية — الحين توصل للأطراف بسهولة. غطّها واتركها ترتفع في المقلاة <b>30 دقيقة</b> حتى تنتفخ.</li>
-    </ol>
-  </div>
-
-  <div class="stage">
-    <div class="stage-title">المرحلة 5 · التركيب والخَبز <span class="time-pill">15–18 دقيقة</span></div>
-    <ol class="steps">
-      <li>سخّن الفرن على <b>أقصى درجة (250°م)</b>، والرف في <b>الثلث السفلي</b>، لمدة 20 دقيقة.</li>
-      <li>رتّب بهذا الترتيب: <b>الصلصة أولاً ← الجبن حتى الأطراف ← اللحم المتبّل فوق.</b> اكبس جبن إضافي على جدران المقلاة للحلقة المقرمشة.</li>
-      <li>اخبز <b>15–18 دقيقة</b> حتى تفور وتصير أطراف الجبن ذهبية غامقة.</li>
-      <li><b>الخطوة الحاسمة:</b> مرّر سكين حول الأطراف وانقل البيتزا على شبك تبريد خلال <b>1–2 دقيقة.</b> <span class="why">بقاؤها في المقلاة يبخّر القاعدة ويطرّيها — الشبك يخليها مقرمشة جداً.</span></li>
-    </ol>
-  </div>
-
-  <div class="callout callout-green">
-    <h4>🍳 ما عندك مقلاة حديد؟ استخدم صينية.</h4>
-    <p>صينية معدنية سميكة وغامقة ومستطيلة توصّلك لـ<b>85–90٪ من النتيجة.</b> زيّتها بسخاء وسخّن الفرن كامل. تجنّب الصواني الألمنيوم الرفيعة اللامعة — ما تحمّر منيح.</p>
-  </div>
-
-  <!-- SCIENCE -->
-  <div class="science-wrap">
-    <div class="sec-head"><div class="sec-num">4</div><h2>العلم وراء الوصفة</h2></div>
-    <div class="sci-grid">
-      <div class="sci-item"><h4>ليش خميرة أكثر + دفء = عجينة سريعة</h4><p>نشاط الخميرة يتضاعف تقريباً مع كل ارتفاع 10°م في الحرارة. كيس كامل في تخمير دافئ 4–5 ساعات يعطي غاز كافٍ لقشرة خفيفة بدون انتظار 24 ساعة.</p></div>
-      <div class="sci-item"><h4>ليش نبشر الطماطم الطازجة ونطبخها</h4><p>الطماطم الطازجة ~94٪ ماء. البشر يفصل اللب عن القشرة فوراً، والغليان يبخّر الماء فتتركّز الصلصة. الصلصة المائية تبخّر العجينة وتفسد القرمشة.</p></div>
-      <div class="sci-item"><h4>ليش الزيت في المقلاة مهم</h4><p>الـ30–40 غ مو بس لمنع الالتصاق — هو يقلي العجينة من الأسفل بالتوصيل الحراري. الحديد يحفظ حرارة قوية وموزّعة، فالقاعدة تصير ذهبية.</p></div>
-      <div class="sci-item"><h4>ليش نصفّي دهن اللحم</h4><p>الدهن سائل، والسائل على بيتزا سميكة يعني قلب مبلل. التصفية تحافظ على القوام المقرمش وتبقي كل نكهة البهارات في اللحم.</p></div>
-      <div class="sci-item"><h4>ليش الجبن حتى الأطراف</h4><p>لما يلمس الجبن جدار المعدن الساخن، تتحمّر البروتينات وسكريات الحليب (تفاعل ميّار) — فيتكوّن الـ"فريكو"، القشرة المقرمشة اللي تميّز بيتزا ديترويت.</p></div>
-      <div class="sci-item"><h4>ليش نطلّعها فوراً</h4><p>البخار المحتبس يطرّي القاعدة خلال دقائق. شبك التبريد يسمح للبخار يطلع ويثبّت القرمشة.</p></div>
+    <div class="rc-notes">
+      <h4>📝 ملاحظات الشيف</h4>
+      <ul>
+        <li>لا تملك مقلاة حديد؟ صينية معدنية سميكة وداكنة توصلك إلى 85–90٪ من النتيجة — تجنّب الصواني الألمنيوم اللامعة.</li>
+        <li>ابشر الجبن دائماً من القطعة مباشرة — الجبن المبشور مسبقاً أقل ذوباناً وطعماً.</li>
+        <li>الصلصة الباردة على العجينة النيّة ضرورية — الدافئة تجعل القاعدة لزجة.</li>
+        <li>معظم وقت هذه الوصفة هو انتظار فقط، وليس عملاً حقيقياً — الصبر هو المكوّن الأساسي.</li>
+      </ul>
     </div>
   </div>
 
-  <!-- SECRETS -->
-  <div class="sec-head"><div class="sec-num">5</div><h2>أسرار الشيف</h2></div>
-  <div class="secrets">
-    <div class="secret"><b>فعّل الشمر</b>اجرش البذور قبل إضافتها — يطلق الزيوت اللي تعطي اللحم طعم إيطالي أصيل.</div>
-    <div class="secret"><b>صلصة باردة، فرن حار</b>لا تحط صلصة دافئة على عجينة نيّة؛ تخلي القاعدة لزجة.</div>
-    <div class="secret"><b>احترم راحة الـ15 دقيقة</b>خلّ الغلوتين يرتاح قبل الضغط — العجينة تبطّل تقاومك وتوصل الأطراف.</div>
-    <div class="secret"><b>جبن على الجدران</b>كوّم جبن إضافي على الأطراف لحلقة فريكو أعلى وأقرمش — لحظة "الواو" قدام الكاميرا.</div>
-    <div class="secret"><b>أنصت لها</b>لما تطلّعها، انقر القاعدة — القشرة الرائعة صوتها مجوّف ومقرمش.</div>
-    <div class="secret"><b>ركّز، لا تستعجل</b>لو الصلصة لسه سايلة، غلّها أكثر. الصبر هنا = قشرة مقرمشة بعدين.</div>
+  <div class="store-cta no-print">
+    <div class="ico">🌡️</div>
+    <div class="txt">
+      <h4>ميزان الحرارة — أداتي في هذه الوصفة</h4>
+      <p>لقياس حرارة الماء عند تنشيط الخميرة، وللتأكد من نضج اللحم بأمان. الماء الأسخن من 40°م يقتل الخميرة.</p>
+    </div>
+    <a href="https://abdulrhmantriesh.com/store">🛒 من متجري</a>
   </div>
 
-  <!-- PLATING -->
-  <div class="sec-head"><div class="sec-num">6</div><h2>التقديم والعرض</h2></div>
-  <div class="prose">
-    <p>انقل البيتزا كاملة على لوح خشب غامق. قطّعها <b>مربعات</b> (قطعة بيتزا ديترويت الكلاسيكية) بسكين قوية أو كاشطة عجين لأطراف نظيفة.</p>
-    <p>انثر بعض <b>أوراق الريحان الطازج</b> ورشّة زعتر خفيفة للون يتباين مع الأحمر والذهبي. للقطة الكاميرا المميزة: ارفع مربع من الزاوية ببطء لتظهر مطّة الجبن والقاعدة الذهبية المقرمشة. <b>رشّة زيت زيتون</b> أخيرة تعطي لمعة على الفيديو.</p>
+  <details class="cost no-print">
+    <summary>💰 التكلفة التقديرية (ليبيا) — حوالي 40–60 د.ل</summary>
+    <table class="cost-table">
+      <tr><td>دقيق وخميرة وزيت</td><td>8–10 د.ل</td></tr>
+      <tr><td>طماطم ومعجون وبهارات</td><td>7–9 د.ل</td></tr>
+      <tr><td>لحم مفروم (350 غ)</td><td>12–14 د.ل</td></tr>
+      <tr><td>موزاريلا وشيدر (400 غ)</td><td>15–20 د.ل</td></tr>
+      <tr><td>المجموع</td><td>حوالي 40–60 د.ل</td></tr>
+    </table>
+  </details>
+
+  <div class="foot no-print">مقلاة واحدة كبيرة، وأطراف مقرمشة،<br>والعائلة كلها حول الطاولة. 🍕</div>
+
+  <div class="print-footer">
+    عبدالرحمن طريش · abdulrhmantriesh.com · جميع الحقوق محفوظة
   </div>
 
-  <!-- PAIRING -->
-  <div class="sec-head"><div class="sec-num">7</div><h2>الصلصات والأطباق الجانبية</h2></div>
-  <ul class="pair-list">
-    <li><b>غموس الثوم والأعشاب:</b> زبادي أو لبنة مع ثوم مبشور ونعناع مجفف وليمون وزيت زيتون — تباين بارد منعش مع البيتزا الدسمة.</li>
-    <li><b>رشّة هريسة حارة</b> على الجنب لمحبي الحرارة — مناسبة جداً للذوق الليبي.</li>
-    <li><b>سلطة خضراء بسيطة:</b> جرجير وليمون وزيت زيتون وجبن صلب مبشور لتخفيف الدسامة.</li>
-  </ul>
+</article>
 
-  <!-- TOOLS -->
-  <div class="sec-head"><div class="sec-num">8</div><h2>أدوات استخدمتها</h2></div>
-  <div class="tools-box">
-    <h2>🌡️ ميزان الحرارة</h2>
-    <p>ضروري في هذه الوصفة لقياس حرارة الماء عند تنشيط الخميرة — الماء الأسخن من 40°م يقتل الخميرة والعجينة ما ترتفع. استخدمه عند خطوة الماء الدافئ، وكمان للتأكد من نضج اللحم المفروم بأمان للمبتدئين.</p>
-    <a href="https://abdulrhmantriesh.com/store" class="store-btn">🛒 متوفر في متجري</a>
-  </div>
+<script>
+  document.querySelectorAll('.ing-list li').forEach(function (li) {
+    li.addEventListener('click', function () { li.classList.toggle('done'); });
+  });
 
-  <!-- COST -->
-  <div class="sec-head"><div class="sec-num">9</div><h2>التكلفة التقديرية (ليبيا)</h2></div>
-  <table class="cost-table">
-    <tr><td>دقيق وخميرة وزيت</td><td>8–10 د.ل</td></tr>
-    <tr><td>طماطم طازجة ومعجون وبهارات</td><td>7–9 د.ل</td></tr>
-    <tr><td>لحم مفروم (350 غ)</td><td>18–22 د.ل</td></tr>
-    <tr><td>موزاريلا + شيدر (400 غ)</td><td>25–35 د.ل</td></tr>
-    <tr><td>المجموع</td><td>≈ 60–75 د.ل</td></tr>
-  </table>
-  <p class="cost-note">تكفي 6–8 أشخاص بسخاء — أرخص بكثير من بيتزا توصيل واحدة.</p>
+  (function () {
+    var fractionMap = { '½': 0.5, '⅓': 1/3, '⅔': 2/3, '¼': 0.25, '¾': 0.75 };
 
-  <div class="foot">مقلاة واحدة كبيرة. أطراف مقرمشة. والعائلة كلها حول الطاولة. 🍕</div>
+    function pretty(n) {
+      var rounded = Math.round(n * 100) / 100;
+      var whole = Math.floor(rounded);
+      var frac = rounded - whole;
+      var fracStr = '';
+      if (Math.abs(frac - 0.25) < 0.04) fracStr = '¼';
+      else if (Math.abs(frac - 0.5) < 0.04) fracStr = '½';
+      else if (Math.abs(frac - 0.75) < 0.04) fracStr = '¾';
+      else if (Math.abs(frac - 1/3) < 0.04) fracStr = '⅓';
+      else if (Math.abs(frac - 2/3) < 0.04) fracStr = '⅔';
+      else if (frac > 0.04) return String(Math.round(rounded * 10) / 10);
+      if (fracStr) return whole > 0 ? (whole + fracStr) : fracStr;
+      return String(whole);
+    }
 
-</div>
+    function scale(text, mult) {
+      var result = text.replace(/\d+(\.\d+)?/g, function (m) {
+        return '\u0000' + pretty(parseFloat(m) * mult) + '\u0000';
+      });
+      Object.keys(fractionMap).forEach(function (sym) {
+        if (result.indexOf(sym) !== -1) result = result.split(sym).join(pretty(fractionMap[sym] * mult));
+      });
+      return result.replace(/\u0000/g, '');
+    }
+
+    var qSpans = document.querySelectorAll('.ing-list .q');
+    qSpans.forEach(function (sp) { sp.setAttribute('data-base', sp.textContent); });
+
+    var servEl = document.getElementById('servCount');
+    var baseServ = servEl ? servEl.textContent : '';
+
+    document.querySelectorAll('#multGroup .mult-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var mult = parseInt(btn.getAttribute('data-mult'), 10);
+        document.querySelectorAll('#multGroup .mult-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        qSpans.forEach(function (sp) { sp.textContent = scale(sp.getAttribute('data-base'), mult); });
+        if (servEl) servEl.textContent = scale(baseServ, mult);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
