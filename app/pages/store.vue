@@ -13,14 +13,57 @@
       </svg>
     </a>
 
+    <!-- SITE HEADER (shown on all views) -->
+    <header class="w-full bg-white border-b border-[#E5E0DA] shadow-sm sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        <!-- Logo + Icon -->
+        <div class="flex items-center gap-3 cursor-pointer" @click="view = 'home'">
+          <!-- Kitchen icon: frying pan SVG -->
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background-color: #3D5A50;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Pan body -->
+              <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
+              <!-- Pan handle -->
+              <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
+              <!-- Steam wisps -->
+              <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="text-right">
+            <div class="font-black text-lg text-[#333] leading-none">أدوات المطبخ</div>
+            <div class="text-xs text-[#3D5A50] font-medium opacity-70 mt-0.5">أدوات ذكية لطهي احترافي</div>
+          </div>
+        </div>
+
+        <!-- Phone number -->
+        <a href="tel:+905013681310"
+          class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] bg-[#F0F7F4] border border-[#C8DDD8] px-4 py-2 rounded-full hover:bg-[#E0F0EB] transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="#3D5A50"/>
+          </svg>
+          <span dir="ltr">+905013681310</span>
+        </a>
+
+      </div>
+    </header>
+
     <!-- HOME VIEW -->
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
 
-      <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
+      <!-- About line -->
+      <div class="pt-10 md:pt-16 px-6 text-center max-w-2xl mx-auto">
         <p class="text-lg md:text-xl leading-relaxed text-[#3D5A50] font-medium opacity-80">
           نوفر لك أحدث أدوات المطبخ الذكية لتجربة طهي احترافية وسهلة.
         </p>
-      </nav>
+        <div class="mt-4 flex flex-wrap justify-center gap-3 text-sm text-[#555]">
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🚚 توصيل لجميع مدن ليبيا</span>
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">✅ منتجات موثوقة</span>
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🔄 ضمان استرجاع 7 أيام</span>
+        </div>
+      </div>
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
         <div class="group">
@@ -279,6 +322,49 @@
         </div>
       </section>
     </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-[#E5E0DA]">
+    <div class="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style="background-color: #3D5A50;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
+            <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
+            <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="text-right">
+          <div class="font-black text-base text-[#333]">أدوات المطبخ</div>
+          <div class="text-xs text-[#777] mt-0.5">أدوات ذكية لطهي احترافي</div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <p class="text-sm text-[#777] max-w-sm leading-relaxed">
+        نتخصص في توفير أدوات مطبخ ذكية وعملية لكل بيت ليبي. توصيل سريع لجميع مدن ليبيا عبر درب السبيل.
+      </p>
+
+      <!-- Contact -->
+      <div class="flex flex-col items-center md:items-end gap-2">
+        <a href="tel:+905013681310" class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] hover:underline" dir="ltr">
+          📞 +905013681310
+        </a>
+        <a href="https://wa.me/905013681310" target="_blank" class="flex items-center gap-2 text-sm font-bold hover:underline" style="color:#25D366">
+          💬 تواصل عبر واتساب
+        </a>
+      </div>
+
+    </div>
+    <div class="border-t border-[#E5E0DA] py-4 text-center text-xs text-[#AAA]">
+      جميع الحقوق محفوظة © {{ new Date().getFullYear() }} — أدوات المطبخ
+    </div>
+  </footer>
+
   </div>
 </template>
 
