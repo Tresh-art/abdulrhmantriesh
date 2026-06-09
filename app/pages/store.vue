@@ -13,32 +13,24 @@
       </svg>
     </a>
 
-    <!-- SITE HEADER (shown on all views) -->
+    <!-- SITE HEADER -->
     <header class="w-full bg-white border-b border-[#E5E0DA] shadow-sm sticky top-0 z-40">
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-
-        <!-- Logo + Icon -->
         <div class="flex items-center gap-3 cursor-pointer" @click="view = 'home'">
-          <!-- Kitchen icon: frying pan SVG -->
           <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background-color: #3D5A50;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Pan body -->
               <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
-              <!-- Pan handle -->
               <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
-              <!-- Steam wisps -->
               <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
               <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
               <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
             </svg>
           </div>
           <div class="text-right">
-            <div class="font-black text-lg text-[#333] leading-none">أدوات المطبخ</div>
-            <div class="text-xs text-[#3D5A50] font-medium opacity-70 mt-0.5">أدوات ذكية لطهي احترافي</div>
+            <div class="font-black text-lg text-[#333] leading-none">المتجر</div>
+            <div class="text-xs text-[#3D5A50] font-medium opacity-70 mt-0.5">ميزان حرارة احترافي</div>
           </div>
         </div>
-
-        <!-- Phone number -->
         <a href="tel:+905013681310"
           class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] bg-[#F0F7F4] border border-[#C8DDD8] px-4 py-2 rounded-full hover:bg-[#E0F0EB] transition-colors">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,24 +38,22 @@
           </svg>
           <span dir="ltr">+905013681310</span>
         </a>
-
       </div>
     </header>
 
     <!-- HOME VIEW -->
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
 
-      <!-- About line -->
-      <div class="pt-10 md:pt-16 px-6 text-center max-w-2xl mx-auto">
+      <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
         <p class="text-lg md:text-xl leading-relaxed text-[#3D5A50] font-medium opacity-80">
-          نوفر لك أحدث أدوات المطبخ الذكية لتجربة طهي احترافية وسهلة.
+          ميزان حرارة احترافي — دقيق، سريع، ومثالي للحوم والحلويات.
         </p>
         <div class="mt-4 flex flex-wrap justify-center gap-3 text-sm text-[#555]">
           <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🚚 توصيل لجميع مدن ليبيا</span>
-          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">✅ منتجات موثوقة</span>
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">✅ جودة مضمونة</span>
           <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🔄 ضمان استرجاع 7 أيام</span>
         </div>
-      </div>
+      </nav>
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
         <div class="group">
@@ -74,23 +64,6 @@
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               مقاوم للماء، قراءة فورية، مثالي للحوم والشواء والحلويات.
-            </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
-              استكشف المنتج
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('product-two')">
-        <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
-            <img src="/footer/678910.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
-          </div>
-          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان حرارة البداية</h2>
-            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
-              أول خطوة في رحلتك مع الطبخ الاحترافي. سهل، دقيق، بسعر مناسب.
             </p>
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
@@ -136,7 +109,7 @@
               </ul>
             </div>
 
-            <!-- REVIEWS SECTION -->
+            <!-- REVIEWS -->
             <div class="mt-10 md:mt-16">
               <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">آراء العملاء</h3>
               <div class="flex flex-col gap-4">
@@ -246,7 +219,6 @@
                     autocomplete="off"
                     class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg"
                   />
-                  <!-- Shipping badge shown when city is selected -->
                   <div v-if="selectedCity && shippingCost > 0"
                     class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#3D5A50] text-white text-sm font-bold px-3 py-1 rounded-xl">
                     🚚 {{ shippingCost }} د.ل
@@ -278,7 +250,6 @@
 
                 <!-- QUANTITY + PRICE BREAKDOWN -->
                 <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-5 text-lg">
-                  <!-- Quantity -->
                   <div class="flex justify-between items-center">
                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
                       <button type="button" @click="quantity++" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
@@ -287,20 +258,16 @@
                     </div>
                     <span class="font-bold">الكمية</span>
                   </div>
-
                   <div class="border-t border-[#E5E0DA] pt-4 space-y-3">
-                    <!-- Product subtotal -->
                     <div class="flex justify-between items-center text-base text-[#555]">
                       <span class="font-semibold">{{ productSubtotal }} د.ل</span>
                       <span>سعر المنتج</span>
                     </div>
-                    <!-- Shipping cost -->
                     <div class="flex justify-between items-center text-base">
                       <span v-if="shippingCost > 0" class="font-semibold text-[#555]">{{ shippingCost }} د.ل</span>
                       <span v-else class="text-gray-400 text-sm">اختر مدينتك أولاً</span>
                       <span class="text-[#555]">رسوم التوصيل 🚚</span>
                     </div>
-                    <!-- Grand total -->
                     <div class="flex justify-between items-center pt-3 border-t border-[#E5E0DA]">
                       <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">
                         {{ shippingCost > 0 ? grandTotal + ' د.ل' : productSubtotal + ' د.ل +🚚' }}
@@ -323,47 +290,40 @@
       </section>
     </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-white border-t border-[#E5E0DA]">
-    <div class="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
-
-      <!-- Brand -->
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style="background-color: #3D5A50;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
-            <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
-            <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
-            <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
-            <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
-          </svg>
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-[#E5E0DA]">
+      <div class="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style="background-color: #3D5A50;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
+              <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
+              <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="text-right">
+            <div class="font-black text-base text-[#333]">المتجر</div>
+            <div class="text-xs text-[#777] mt-0.5">ميزان حرارة احترافي</div>
+          </div>
         </div>
-        <div class="text-right">
-          <div class="font-black text-base text-[#333]">أدوات المطبخ</div>
-          <div class="text-xs text-[#777] mt-0.5">أدوات ذكية لطهي احترافي</div>
+        <p class="text-sm text-[#777] max-w-sm leading-relaxed">
+          توصيل سريع لجميع مدن ليبيا عبر درب السبيل.
+        </p>
+        <div class="flex flex-col items-center md:items-end gap-2">
+          <a href="tel:+905013681310" class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] hover:underline" dir="ltr">
+            📞 +905013681310
+          </a>
+          <a href="https://wa.me/905013681310" target="_blank" class="flex items-center gap-2 text-sm font-bold hover:underline" style="color:#25D366">
+            💬 تواصل عبر واتساب
+          </a>
         </div>
       </div>
-
-      <!-- About -->
-      <p class="text-sm text-[#777] max-w-sm leading-relaxed">
-        نتخصص في توفير أدوات مطبخ ذكية وعملية لكل بيت ليبي. توصيل سريع لجميع مدن ليبيا عبر درب السبيل.
-      </p>
-
-      <!-- Contact -->
-      <div class="flex flex-col items-center md:items-end gap-2">
-        <a href="tel:+905013681310" class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] hover:underline" dir="ltr">
-          📞 +905013681310
-        </a>
-        <a href="https://wa.me/905013681310" target="_blank" class="flex items-center gap-2 text-sm font-bold hover:underline" style="color:#25D366">
-          💬 تواصل عبر واتساب
-        </a>
+      <div class="border-t border-[#E5E0DA] py-4 text-center text-xs text-[#AAA]">
+        جميع الحقوق محفوظة © {{ new Date().getFullYear() }}
       </div>
-
-    </div>
-    <div class="border-t border-[#E5E0DA] py-4 text-center text-xs text-[#AAA]">
-      جميع الحقوق محفوظة © {{ new Date().getFullYear() }} — أدوات المطبخ
-    </div>
-  </footer>
+    </footer>
 
   </div>
 </template>
@@ -383,23 +343,26 @@ const phoneError = ref(false)
 const formError = ref('')
 const isSubmitting = ref(false)
 
-// City search state
+// City search
 const citySearch = ref('')
 const selectedCity = ref('')
 const shippingCost = ref(0)
 const showCityDropdown = ref(false)
 const cityError = ref(false)
 
-// ─────────────────────────────────────────────
-// DARB AL SABIL — Full price list (from images)
-// ─────────────────────────────────────────────
+// Darb Al Sabil prices
 const allCities = [
-  // داخل طرابلس
   { name: 'داخل طرابلس', price: 15 },
-
-  // ضواحي طرابلس
   { name: 'انجيلة', price: 20 },
   { name: 'الكريمية', price: 20 },
+  { name: 'الماية', price: 20 },
+  { name: 'الزاوية', price: 20 },
+  { name: 'المطرد', price: 20 },
+  { name: 'القره بولي', price: 20 },
+  { name: 'قماطة', price: 20 },
+  { name: 'قصر خيار', price: 20 },
+  { name: 'الخمس', price: 20 },
+  { name: 'زليتن', price: 20 },
   { name: 'السواني', price: 25 },
   { name: 'الزهراء', price: 25 },
   { name: 'الساعدية', price: 25 },
@@ -411,15 +374,10 @@ const allCities = [
   { name: 'وادي الربيع', price: 25 },
   { name: 'الباعيش', price: 25 },
   { name: 'سوق السبت', price: 25 },
-  { name: 'ورشفانة', price: 30 },
-
-  // طرابلس (منطقة)
   { name: 'طرابلس', price: 25 },
-
-  // غرب طرابلس
-  { name: 'الماية', price: 20 },
-  { name: 'الزاوية', price: 20 },
-  { name: 'المطرد', price: 20 },
+  { name: 'مسلاتة', price: 25 },
+  { name: 'غريان', price: 25 },
+  { name: 'ورشفانة', price: 30 },
   { name: 'صرمان', price: 30 },
   { name: 'صبراتة', price: 30 },
   { name: 'زوارة', price: 30 },
@@ -427,78 +385,57 @@ const allCities = [
   { name: 'الجميل', price: 30 },
   { name: 'راقدالين', price: 30 },
   { name: 'زلطن', price: 30 },
-  { name: 'راس أجدير', price: 40 },
-
-  // شرق طرابلس
-  { name: 'القره بولي', price: 20 },
-  { name: 'قماطة', price: 20 },
-  { name: 'قصر خيار', price: 20 },
-  { name: 'الخمس', price: 20 },
-  { name: 'زليتن', price: 20 },
-  { name: 'مسلاتة', price: 25 },
-
-  // جنوب طرابلس
   { name: 'ترهونة', price: 30 },
   { name: 'بني وليد', price: 30 },
-
-  // المنطقة الوسطى
   { name: 'سرت', price: 30 },
   { name: 'هراوة', price: 30 },
   { name: 'النوفلية', price: 30 },
   { name: 'بن جواد', price: 30 },
   { name: 'راس لانوف', price: 30 },
   { name: 'اجدابيا', price: 30 },
+  { name: 'بنغازي', price: 30 },
   { name: 'هون', price: 35 },
   { name: 'سوكنة', price: 35 },
   { name: 'الودان', price: 35 },
   { name: 'الجفرة', price: 35 },
-  { name: 'زلة', price: 40 },
-
-  // المنطقة الشرقية
-  { name: 'بنغازي', price: 30 },
   { name: 'توكرة', price: 35 },
   { name: 'المرج', price: 35 },
   { name: 'البيضاء', price: 35 },
   { name: 'قمينس', price: 35 },
   { name: 'سلوق', price: 35 },
-  { name: 'شحات', price: 40 },
-  { name: 'سوسة', price: 40 },
-  { name: 'درنة', price: 40 },
-  { name: 'القبة', price: 40 },
-  { name: 'طبرق', price: 40 },
-  { name: 'امساعد', price: 50 },
-
-  // الجبل الغربي
-  { name: 'غريان', price: 25 },
   { name: 'الاصابعة', price: 35 },
   { name: 'الرابطة', price: 35 },
   { name: 'القواليش', price: 35 },
   { name: 'العوينة', price: 35 },
   { name: 'القلعة', price: 35 },
   { name: 'يفرن', price: 35 },
-  { name: 'الرجبان', price: 40 },
-  { name: 'جادو', price: 40 },
-  { name: 'كاباو', price: 40 },
-  { name: 'الرقيعات', price: 40 },
-  { name: 'تيجي', price: 45 },
-  { name: 'بدر', price: 45 },
-  { name: 'الجوش', price: 45 },
-
-  // المنطقة الجنوبية
   { name: 'مزدة', price: 35 },
   { name: 'الشويرف', price: 35 },
   { name: 'الفريات', price: 35 },
   { name: 'سبها', price: 35 },
+  { name: 'راس أجدير', price: 40 },
+  { name: 'زلة', price: 40 },
+  { name: 'شحات', price: 40 },
+  { name: 'سوسة', price: 40 },
+  { name: 'درنة', price: 40 },
+  { name: 'القبة', price: 40 },
+  { name: 'طبرق', price: 40 },
+  { name: 'الرجبان', price: 40 },
+  { name: 'جادو', price: 40 },
+  { name: 'كاباو', price: 40 },
+  { name: 'الرقيعات', price: 40 },
   { name: 'براك', price: 40 },
   { name: 'الشاطي', price: 40 },
+  { name: 'تيجي', price: 45 },
+  { name: 'بدر', price: 45 },
+  { name: 'الجوش', price: 45 },
   { name: 'أوباري', price: 45 },
   { name: 'ام الارانب', price: 45 },
   { name: 'وادي عتبة', price: 45 },
   { name: 'مرزق', price: 45 },
   { name: 'القطرون', price: 45 },
+  { name: 'امساعد', price: 50 },
   { name: 'غات', price: 50 },
-
-  // الجنوب الشرقي
   { name: 'جالو', price: 50 },
   { name: 'اوجلة', price: 50 },
   { name: 'الواحات', price: 50 },
@@ -523,15 +460,9 @@ const handleCityBlur = () => {
   setTimeout(() => { showCityDropdown.value = false }, 150)
 }
 
-// ─────────────────────────────────────────────
-// Price computeds
-// ─────────────────────────────────────────────
 const productSubtotal = computed(() => quantity.value * activeProductData.value.price)
 const grandTotal = computed(() => productSubtotal.value + shippingCost.value)
 
-// ─────────────────────────────────────────────
-// Products
-// ─────────────────────────────────────────────
 const products = {
   thermometer: {
     title: 'ميزان الحرارة الاحترافي',
@@ -548,23 +479,6 @@ const products = {
       { name: 'فاطمة المنصوري', text: 'منتج ممتاز! دقيق جداً ومريح الاستخدام. اشتريته للمطبخ المنزلي وما خذلني. التوصيل كان سريع والتغليف محترم.' },
       { name: 'أحمد الزروق', text: 'جربت ميزانات حرارة كثيرة وهذا الأفضل بفرق. يقرأ الحرارة في ثانية واحدة والشاشة واضحة. أنصح فيه بشدة.' },
       { name: 'مريم البوسيفي', text: 'اشتريته لتحضير الشوكولاتة والحلويات. دقته عالية ومناسب جداً للاستخدام الاحترافي في المنزل. شكراً جزيلاً!' }
-    ]
-  },
-  'product-two': {
-    title: 'ميزان حرارة البداية',
-    description: 'أول خطوة في رحلتك مع الطبخ الاحترافي. سهل الاستخدام، دقيق، ومدى قياسه من -50 إلى 300 درجة. مناسب للحوم، الحليب، الزيت، والحلويات. كل ما تحتاجه بسعر في متناول الجميع.',
-    price: 35,
-    photos: ['/footer/678910.avif', '/footer/12345.avif'],
-    forWho: [
-      'تبدأ لأول مرة باستخدام ميزان الحرارة في الطبخ',
-      'تريد تجربة الفرق قبل الاستثمار في أداة أغلى',
-      'تطبخ بشكل عرضي ولا تحتاج ميزان احترافي',
-      'تريد هدية عملية بسعر مناسب'
-    ],
-    reviews: [
-      { name: 'سارة العبيدي', text: 'منتج رائع وجودة عالية. سعيدة جداً بالشراء وسأطلب مرة أخرى بالتأكيد.' },
-      { name: 'خالد الورفلي', text: 'تجربة شراء ممتازة والمنتج يستحق سعره. التوصيل في الوقت المحدد.' },
-      { name: 'نور الهداج', text: 'أفضل من توقعاتي! الجودة ممتازة والتغليف احترافي. شكراً لكم.' }
     ]
   }
 }
