@@ -13,41 +13,57 @@
       </svg>
     </a>
 
+    <!-- SITE HEADER -->
+    <header class="w-full bg-white border-b border-[#E5E0DA] shadow-sm sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3 cursor-pointer" @click="view = 'home'">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center" style="background-color: #3D5A50;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
+              <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
+              <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="text-right">
+            <div class="font-black text-lg text-[#333] leading-none">المتجر</div>
+            <div class="text-xs text-[#3D5A50] font-medium opacity-70 mt-0.5">ميزان حرارة احترافي</div>
+          </div>
+        </div>
+        <a href="tel:+905013681310"
+          class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] bg-[#F0F7F4] border border-[#C8DDD8] px-4 py-2 rounded-full hover:bg-[#E0F0EB] transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="#3D5A50"/>
+          </svg>
+          <span dir="ltr">+905013681310</span>
+        </a>
+      </div>
+    </header>
+
     <!-- HOME VIEW -->
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
-      
+
       <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
         <p class="text-lg md:text-xl leading-relaxed text-[#3D5A50] font-medium opacity-80">
-          نوفر لك أحدث أدوات المطبخ الذكية لتجربة طهي احترافية وسهلة.
+          ميزان حرارة احترافي — دقيق، سريع، ومثالي للحوم والحلويات.
         </p>
+        <div class="mt-4 flex flex-wrap justify-center gap-3 text-sm text-[#555]">
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🚚 توصيل لجميع مدن ليبيا</span>
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">✅ جودة مضمونة</span>
+          <span class="bg-white border border-[#E5E0DA] rounded-full px-4 py-1.5 font-medium">🔄 ضمان استرجاع 7 أيام</span>
+        </div>
       </nav>
 
       <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
         <div class="group">
           <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
-            <img src="/footer/pro-1.jpg.jpg" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+            <img src="/footer/12345.avif" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
             <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
             <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
               مقاوم للماء، قراءة فورية، مثالي للحوم والشواء والحلويات.
-            </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
-              استكشف المنتج
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('product-two')">
-        <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
-            <img src="/footer/basic-1.jpg.jpg" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
-          </div>
-          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان حرارة البداية</h2>
-            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
-              أول خطوة في رحلتك مع الطبخ الاحترافي. سهل، دقيق، بسعر مناسب.
             </p>
             <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
@@ -68,24 +84,14 @@
 
       <section class="max-w-7xl mx-auto pt-4 md:pt-6 px-6 pb-24">
         <div class="flex flex-col lg:flex-row items-start gap-12 md:gap-24">
-          
+
           <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
-            <div 
-              class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group"
-              @touchstart="touchStart"
-              @touchend="touchEnd"
-            >
-              <transition name="slide-fade">
-                <img 
-                  :key="currentIndex"
-                  :src="activeProductData.photos[currentIndex]" 
-                  class="absolute inset-0 w-full h-full object-cover" 
-                />
-              </transition>
-              <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10">❯</button>
-              <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10">❮</button>
-              <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3 z-10">
+            <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
+              <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
+              <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
+              <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
+              <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3">
                 <button v-for="(_, i) in activeProductData.photos" :key="i" @click="currentIndex = i"
                   class="h-1.5 rounded-full transition-all duration-500"
                   :class="currentIndex === i ? 'bg-[#3D5A50] w-8 md:w-10' : 'bg-gray-300 w-2 md:w-3'"></button>
@@ -102,28 +108,38 @@
                 </li>
               </ul>
             </div>
+
+            <!-- REVIEWS -->
+            <div class="mt-10 md:mt-16">
+              <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">آراء العملاء</h3>
+              <div class="flex flex-col gap-4">
+                <div v-for="review in activeProductData.reviews" :key="review.name"
+                  class="bg-white rounded-3xl p-6 md:p-8 border border-[#E5E0DA] shadow-sm">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-lg text-[#333]">{{ review.name }}</span>
+                    <span class="text-yellow-400 text-xl">★★★★★</span>
+                  </div>
+                  <p class="text-[#555] leading-relaxed">{{ review.text }}</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- PRODUCT INFO -->
           <div class="w-full lg:w-2/5 text-right">
             <h1 class="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-[#333] leading-relaxed">{{ activeProductData.title }}</h1>
             <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-2 md:mb-3">{{ activeProductData.price }} د.ل</div>
-            
-            <!-- SHIPPING BADGE -->
-            <div class="inline-block bg-orange-50 border border-orange-200 rounded-xl px-4 py-2 mb-6 text-right">
-              <span class="text-orange-600 font-bold text-sm">⚠️ السعر لا يشمل رسوم التوصيل</span>
-            </div>
 
             <!-- TRUST BADGES -->
             <div class="flex flex-wrap gap-3 mb-6 md:mb-8 justify-end">
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>🚚</span> توصيل خلال 2-3 أيام
+                <span>🚚</span> توصيل خلال 2-5 أيام
               </div>
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>💵</span> الدفع عند الاستلام
+                <span>🔄</span> ضمان استرجاع 7 أيام
               </div>
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
-                <span>📞</span> دعم مباشر على واتساب
+                <span>✅</span> جودة مضمونة
               </div>
             </div>
 
@@ -131,91 +147,140 @@
 
             <!-- ORDER FORM -->
             <div id="order-section" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA]">
-              
+
               <!-- SUCCESS STATE -->
-              <transition name="fade">
-                <div v-if="submitted" class="text-center py-6">
-                  <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
-                  <h2 class="text-2xl md:text-3xl font-bold mb-2">تم استلام طلبك!</h2>
-                  <p class="text-[#555] mb-6">سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب والاتفاق على التوصيل.</p>
-                  <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
-                    <div class="flex justify-between">
-                      <span class="text-[#3D5A50] font-bold">{{ activeProductData.price * quantity }} د.ل</span>
-                      <span class="text-[#555]">الإجمالي (بدون توصيل)</span>
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="font-bold">{{ quantity }}</span>
-                      <span class="text-[#555]">الكمية</span>
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="font-bold">{{ activeProductData.title }}</span>
-                      <span class="text-[#555]">المنتج</span>
-                    </div>
+              <div v-if="submitted" class="text-center py-6">
+                <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">تم استلام طلبك!</h2>
+                <div class="bg-[#F8F6F4] rounded-3xl p-6 text-right space-y-3 mb-6">
+                  <div class="flex justify-between">
+                    <span class="font-bold text-[#3D5A50]">{{ activeProductData.price * quantity }} د.ل</span>
+                    <span class="text-[#555]">سعر المنتج</span>
                   </div>
-                  <a href="https://wa.me/905013681310" target="_blank"
-                    class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white font-bold text-lg"
-                    style="background-color: #25D366">
-                    تواصل معنا على واتساب
-                  </a>
+                  <div class="flex justify-between">
+                    <span class="font-bold text-[#3D5A50]">{{ shippingCost }} د.ل</span>
+                    <span class="text-[#555]">رسوم التوصيل</span>
+                  </div>
+                  <div class="flex justify-between pt-3 border-t border-[#E5E0DA]">
+                    <span class="font-black text-xl text-[#333]">{{ activeProductData.price * quantity + shippingCost }} د.ل</span>
+                    <span class="font-bold text-[#333]">الإجمالي</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-bold">{{ quantity }}</span>
+                    <span class="text-[#555]">الكمية</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-bold">{{ activeProductData.title }}</span>
+                    <span class="text-[#555]">المنتج</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-bold">{{ selectedCity }}</span>
+                    <span class="text-[#555]">المدينة</span>
+                  </div>
+                  <div class="pt-3 border-t border-[#E5E0DA] text-sm text-[#777] text-center">
+                    سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب
+                  </div>
                 </div>
-              </transition>
+                <a href="https://wa.me/905013681310" target="_blank"
+                  class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl text-white font-bold text-lg"
+                  style="background-color: #25D366">
+                  تواصل معنا على واتساب
+                </a>
+              </div>
 
               <!-- FORM -->
-              <form v-if="!submitted" @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
+              <form v-else @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
-                
-                <input required v-model="formName" type="text" placeholder="الاسم بالكامل" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
-                
-                <input 
-                  required 
+
+                <input required v-model="formName" type="text" placeholder="الاسم بالكامل"
+                  class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg">
+
+                <input
+                  required
                   v-model="formPhone"
-                  type="tel" 
-                  dir="ltr" 
-                  placeholder="رقم الهاتف (10 أرقام على الأقل)" 
+                  type="tel"
+                  dir="ltr"
+                  placeholder="رقم الهاتف (10 أرقام على الأقل)"
                   minlength="10"
                   pattern="[0-9+\s\-]{10,}"
                   class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg text-right"
                 >
                 <p v-if="phoneError" class="text-red-500 text-sm text-right -mt-4">رقم الهاتف يجب أن يحتوي على 10 أرقام على الأقل</p>
-                
-                <select required v-model="selectedCity" class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg appearance-none cursor-pointer">
-                  <option value="" disabled>اختر المدينة</option>
-                  <option value="طرابلس">طرابلس</option>
-                  <option value="بنغازي">بنغازي</option>
-                  <option value="مصراتة">مصراتة</option>
-                  <option value="مدينة أخرى">مدينة أخرى</option>
-                </select>
 
-                <div v-if="selectedCity === 'مدينة أخرى'">
-                  <input v-model="customCity" type="text" required class="w-full p-5 md:p-6 bg-white border-2 border-[#3D5A50]/20 rounded-2xl" placeholder="اكتب مدينتك هنا...">
+                <!-- CITY SEARCHABLE DROPDOWN -->
+                <div class="relative">
+                  <input
+                    v-model="citySearch"
+                    type="text"
+                    placeholder="ابحث عن مدينتك..."
+                    @focus="showCityDropdown = true"
+                    @blur="handleCityBlur"
+                    @input="selectedCity = ''; shippingCost = 0"
+                    autocomplete="off"
+                    class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg"
+                  />
+                  <div v-if="selectedCity && shippingCost > 0"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#3D5A50] text-white text-sm font-bold px-3 py-1 rounded-xl">
+                    🚚 {{ shippingCost }} د.ل
+                  </div>
+                  <div
+                    v-if="showCityDropdown && filteredCities.length"
+                    class="absolute z-50 w-full mt-2 bg-white border border-[#E5E0DA] rounded-2xl shadow-xl max-h-56 overflow-y-auto"
+                  >
+                    <div
+                      v-for="item in filteredCities"
+                      :key="item.name"
+                      @mousedown.prevent="selectCity(item)"
+                      class="flex items-center justify-between px-6 py-4 text-lg cursor-pointer hover:bg-[#F8F6F4] transition-colors border-b border-[#F0EDE8] last:border-none"
+                    >
+                      <span class="text-[#3D5A50] font-bold text-sm bg-[#F0F7F4] px-2 py-0.5 rounded-lg">{{ item.price }} د.ل</span>
+                      <span>{{ item.name }}</span>
+                    </div>
+                  </div>
+                  <p v-if="cityError" class="text-red-500 text-sm mt-2 text-right">يرجى اختيار مدينة من القائمة</p>
                 </div>
 
-                <textarea 
-                  required 
+                <textarea
+                  required
                   v-model="formAddress"
-                  placeholder="العنوان بالتفصيل — المنطقة، الشارع، أقرب معلم" 
+                  placeholder="العنوان بالتفصيل — المنطقة، الشارع، أقرب معلم"
                   rows="3"
                   class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg resize-none"
                 ></textarea>
 
-                <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-6 text-lg">
+                <!-- QUANTITY + PRICE BREAKDOWN -->
+                <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-5 text-lg">
                   <div class="flex justify-between items-center">
-                    <span class="font-bold">الكمية</span>
                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
                       <button type="button" @click="quantity++" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">+</button>
                       <span class="w-12 md:w-14 text-center font-bold">{{ quantity }}</span>
                       <button type="button" @click="quantity > 1 ? quantity-- : null" class="w-12 md:w-14 h-12 md:h-14 text-xl md:text-2xl hover:bg-gray-50 active:bg-gray-100 transition-all">-</button>
                     </div>
+                    <span class="font-bold">الكمية</span>
                   </div>
-                  <div class="flex justify-between items-center pt-4 md:pt-6 border-t border-[#E5E0DA]">
-                    <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">{{ totalPrice }} د.ل</span>
-                    <span class="font-bold text-gray-400">الإجمالي (بدون توصيل)</span>
+                  <div class="border-t border-[#E5E0DA] pt-4 space-y-3">
+                    <div class="flex justify-between items-center text-base text-[#555]">
+                      <span class="font-semibold">{{ productSubtotal }} د.ل</span>
+                      <span>سعر المنتج</span>
+                    </div>
+                    <div class="flex justify-between items-center text-base">
+                      <span v-if="shippingCost > 0" class="font-semibold text-[#555]">{{ shippingCost }} د.ل</span>
+                      <span v-else class="text-gray-400 text-sm">اختر مدينتك أولاً</span>
+                      <span class="text-[#555]">رسوم التوصيل 🚚</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-[#E5E0DA]">
+                      <span class="text-3xl md:text-4xl font-black text-[#3D5A50]">
+                        {{ shippingCost > 0 ? grandTotal + ' د.ل' : productSubtotal + ' د.ل +🚚' }}
+                      </span>
+                      <span class="font-bold text-[#333]">الإجمالي</span>
+                    </div>
                   </div>
                 </div>
 
                 <p v-if="formError" class="text-red-500 text-sm text-center">{{ formError }}</p>
 
-                <button type="submit" :disabled="isSubmitting" class="w-full bg-[#3D5A50] text-white py-6 md:py-8 rounded-[2rem] text-xl md:text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300 disabled:opacity-50">
+                <button type="submit" :disabled="isSubmitting"
+                  class="w-full bg-[#3D5A50] text-white py-6 md:py-8 rounded-[2rem] text-xl md:text-2xl font-black hover:shadow-2xl active:scale-95 transition-all duration-300 disabled:opacity-50">
                   {{ isSubmitting ? 'جاري الإرسال...' : 'تأكيد الطلب الآن' }}
                 </button>
               </form>
@@ -224,6 +289,42 @@
         </div>
       </section>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-[#E5E0DA]">
+      <div class="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0" style="background-color: #3D5A50;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="10" cy="14" rx="7" ry="5" fill="white" opacity="0.95"/>
+              <rect x="16.5" y="13" width="6" height="2.2" rx="1.1" fill="white" opacity="0.95"/>
+              <path d="M7 8 Q7.5 6.5 7 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M10 7.5 Q10.5 6 10 4.5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M13 8 Q13.5 6.5 13 5" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="text-right">
+            <div class="font-black text-base text-[#333]">المتجر</div>
+            <div class="text-xs text-[#777] mt-0.5">ميزان حرارة احترافي</div>
+          </div>
+        </div>
+        <p class="text-sm text-[#777] max-w-sm leading-relaxed">
+          توصيل سريع لجميع مدن ليبيا عبر درب السبيل.
+        </p>
+        <div class="flex flex-col items-center md:items-end gap-2">
+          <a href="tel:+905013681310" class="flex items-center gap-2 text-sm font-bold text-[#3D5A50] hover:underline" dir="ltr">
+            📞 +905013681310
+          </a>
+          <a href="https://wa.me/905013681310" target="_blank" class="flex items-center gap-2 text-sm font-bold hover:underline" style="color:#25D366">
+            💬 تواصل عبر واتساب
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-[#E5E0DA] py-4 text-center text-xs text-[#AAA]">
+        جميع الحقوق محفوظة © {{ new Date().getFullYear() }}
+      </div>
+    </footer>
+
   </div>
 </template>
 
@@ -235,57 +336,154 @@ const activeProduct = ref('thermometer')
 const submitted = ref(false)
 const currentIndex = ref(0)
 const quantity = ref(1)
-const selectedCity = ref('')
-const customCity = ref('')
 const formName = ref('')
 const formPhone = ref('')
 const formAddress = ref('')
 const phoneError = ref(false)
 const formError = ref('')
 const isSubmitting = ref(false)
-const touchStartX = ref(0)
+
+// City search
+const citySearch = ref('')
+const selectedCity = ref('')
+const shippingCost = ref(0)
+const showCityDropdown = ref(false)
+const cityError = ref(false)
+
+// Darb Al Sabil prices
+const allCities = [
+  { name: 'داخل طرابلس', price: 15 },
+  { name: 'انجيلة', price: 20 },
+  { name: 'الكريمية', price: 20 },
+  { name: 'الماية', price: 20 },
+  { name: 'الزاوية', price: 20 },
+  { name: 'المطرد', price: 20 },
+  { name: 'القره بولي', price: 20 },
+  { name: 'قماطة', price: 20 },
+  { name: 'قصر خيار', price: 20 },
+  { name: 'الخمس', price: 20 },
+  { name: 'زليتن', price: 20 },
+  { name: 'السواني', price: 25 },
+  { name: 'الزهراء', price: 25 },
+  { name: 'الساعدية', price: 25 },
+  { name: 'العزيزية', price: 25 },
+  { name: 'السبيعة', price: 25 },
+  { name: 'قصر بن غشير', price: 25 },
+  { name: 'سوق الخميس مسبحل', price: 25 },
+  { name: 'حلة الفرجان', price: 25 },
+  { name: 'وادي الربيع', price: 25 },
+  { name: 'الباعيش', price: 25 },
+  { name: 'سوق السبت', price: 25 },
+  { name: 'طرابلس', price: 25 },
+  { name: 'مسلاتة', price: 25 },
+  { name: 'غريان', price: 25 },
+  { name: 'ورشفانة', price: 30 },
+  { name: 'صرمان', price: 30 },
+  { name: 'صبراتة', price: 30 },
+  { name: 'زوارة', price: 30 },
+  { name: 'العجيلات', price: 30 },
+  { name: 'الجميل', price: 30 },
+  { name: 'راقدالين', price: 30 },
+  { name: 'زلطن', price: 30 },
+  { name: 'ترهونة', price: 30 },
+  { name: 'بني وليد', price: 30 },
+  { name: 'سرت', price: 30 },
+  { name: 'هراوة', price: 30 },
+  { name: 'النوفلية', price: 30 },
+  { name: 'بن جواد', price: 30 },
+  { name: 'راس لانوف', price: 30 },
+  { name: 'اجدابيا', price: 30 },
+  { name: 'بنغازي', price: 30 },
+  { name: 'هون', price: 35 },
+  { name: 'سوكنة', price: 35 },
+  { name: 'الودان', price: 35 },
+  { name: 'الجفرة', price: 35 },
+  { name: 'توكرة', price: 35 },
+  { name: 'المرج', price: 35 },
+  { name: 'البيضاء', price: 35 },
+  { name: 'قمينس', price: 35 },
+  { name: 'سلوق', price: 35 },
+  { name: 'الاصابعة', price: 35 },
+  { name: 'الرابطة', price: 35 },
+  { name: 'القواليش', price: 35 },
+  { name: 'العوينة', price: 35 },
+  { name: 'القلعة', price: 35 },
+  { name: 'يفرن', price: 35 },
+  { name: 'مزدة', price: 35 },
+  { name: 'الشويرف', price: 35 },
+  { name: 'الفريات', price: 35 },
+  { name: 'سبها', price: 35 },
+  { name: 'راس أجدير', price: 40 },
+  { name: 'زلة', price: 40 },
+  { name: 'شحات', price: 40 },
+  { name: 'سوسة', price: 40 },
+  { name: 'درنة', price: 40 },
+  { name: 'القبة', price: 40 },
+  { name: 'طبرق', price: 40 },
+  { name: 'الرجبان', price: 40 },
+  { name: 'جادو', price: 40 },
+  { name: 'كاباو', price: 40 },
+  { name: 'الرقيعات', price: 40 },
+  { name: 'براك', price: 40 },
+  { name: 'الشاطي', price: 40 },
+  { name: 'تيجي', price: 45 },
+  { name: 'بدر', price: 45 },
+  { name: 'الجوش', price: 45 },
+  { name: 'أوباري', price: 45 },
+  { name: 'ام الارانب', price: 45 },
+  { name: 'وادي عتبة', price: 45 },
+  { name: 'مرزق', price: 45 },
+  { name: 'القطرون', price: 45 },
+  { name: 'امساعد', price: 50 },
+  { name: 'غات', price: 50 },
+  { name: 'جالو', price: 50 },
+  { name: 'اوجلة', price: 50 },
+  { name: 'الواحات', price: 50 },
+  { name: 'الكفرة', price: 50 },
+]
+
+const filteredCities = computed(() => {
+  const q = citySearch.value.trim()
+  if (!q) return allCities
+  return allCities.filter(c => c.name.includes(q))
+})
+
+const selectCity = (item) => {
+  selectedCity.value = item.name
+  shippingCost.value = item.price
+  citySearch.value = item.name
+  showCityDropdown.value = false
+  cityError.value = false
+}
+
+const handleCityBlur = () => {
+  setTimeout(() => { showCityDropdown.value = false }, 150)
+}
+
+const productSubtotal = computed(() => quantity.value * activeProductData.value.price)
+const grandTotal = computed(() => productSubtotal.value + shippingCost.value)
 
 const products = {
   thermometer: {
     title: 'ميزان الحرارة الاحترافي',
     description: 'مقاوم للماء بالكامل IP67 — يمكن غسله تحت الماء مباشرة. مسبار من الفولاذ المقاوم للصدأ آمن تماماً للطعام. قراءة فورية في 2-4 ثواني بدقة ±1 درجة. مدى قياس واسع من -50 إلى 300 درجة يغطي كل احتياجاتك — من الشواء والحوم إلى الحلويات والشوكولاتة والقلي العميق. تصميم قابل للطي يحمي المسبار ويدوم طويلاً.',
     price: 75,
-    photos: [
-      '/footer/pro-1.jpg.jpg',
-      '/footer/pro-2.jpg.jpg',
-      '/footer/pro-3.jpg.jpg',
-      '/footer/pro-4.jpg.jpg',
-      '/footer/pro-5.jpg.jpg'
-    ],
+    photos: ['/footer/12345.avif', '/footer/678910.avif', '/footer/1112131415.avif'],
     forWho: [
       'تهتم بطهي اللحوم بالدرجة الصحيحة',
       'تحضر الحلويات والشوكولاتة وتحتاج دقة عالية',
       'تريد أداة احترافية تدوم لسنوات',
       'تطبخ بشكل منتظم وتريد الأفضل'
-    ]
-  },
-  'product-two': {
-    title: 'ميزان حرارة البداية',
-    description: 'أول خطوة في رحلتك مع الطبخ الاحترافي. سهل الاستخدام، دقيق، ومدى قياسه من -50 إلى 300 درجة. مناسب للحوم، الحليب، الزيت، والحلويات. كل ما تحتاجه بسعر في متناول الجميع.',
-    price: 35,
-    photos: [
-      '/footer/basic-1.jpg.jpg',
-      '/footer/basic-2.jpg.jpg',
-      '/footer/basic-3.jpg.jpg',
-      '/footer/basic-4.jpg.jpg',
-      '/footer/basic-5.jpg.jpg'
     ],
-    forWho: [
-      'تبدأ لأول مرة باستخدام ميزان الحرارة في الطبخ',
-      'تريد تجربة الفرق قبل الاستثمار في أداة أغلى',
-      'تطبخ بشكل عرضي ولا تحتاج ميزان احترافي',
-      'تريد هدية عملية بسعر مناسب'
+    reviews: [
+      { name: 'فاطمة المنصوري', text: 'منتج ممتاز! دقيق جداً ومريح الاستخدام. اشتريته للمطبخ المنزلي وما خذلني. التوصيل كان سريع والتغليف محترم.' },
+      { name: 'أحمد الزروق', text: 'جربت ميزانات حرارة كثيرة وهذا الأفضل بفرق. يقرأ الحرارة في ثانية واحدة والشاشة واضحة. أنصح فيه بشدة.' },
+      { name: 'مريم البوسيفي', text: 'اشتريته لتحضير الشوكولاتة والحلويات. دقته عالية ومناسب جداً للاستخدام الاحترافي في المنزل. شكراً جزيلاً!' }
     ]
   }
 }
 
 const activeProductData = computed(() => products[activeProduct.value])
-const totalPrice = computed(() => quantity.value * activeProductData.value.price)
 
 const openProduct = (id) => {
   activeProduct.value = id
@@ -296,9 +494,11 @@ const openProduct = (id) => {
   formName.value = ''
   formPhone.value = ''
   formAddress.value = ''
+  citySearch.value = ''
   selectedCity.value = ''
-  customCity.value = ''
+  shippingCost.value = 0
   phoneError.value = false
+  cityError.value = false
   formError.value = ''
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -310,18 +510,9 @@ const prevSlide = () => {
   currentIndex.value = currentIndex.value === 0 ? activeProductData.value.photos.length - 1 : currentIndex.value - 1
 }
 
-const touchStart = (e) => {
-  touchStartX.value = e.touches[0].clientX
-}
-const touchEnd = (e) => {
-  const diff = touchStartX.value - e.changedTouches[0].clientX
-  if (Math.abs(diff) > 50) {
-    diff > 0 ? nextSlide() : prevSlide()
-  }
-}
-
 const handleSubmit = async () => {
   phoneError.value = false
+  cityError.value = false
   formError.value = ''
 
   const cleanPhone = formPhone.value.replace(/[\s\-]/g, '')
@@ -330,7 +521,11 @@ const handleSubmit = async () => {
     return
   }
 
-  const city = selectedCity.value === 'مدينة أخرى' ? customCity.value : selectedCity.value
+  if (!selectedCity.value) {
+    cityError.value = true
+    return
+  }
+
   isSubmitting.value = true
 
   try {
@@ -340,16 +535,19 @@ const handleSubmit = async () => {
       body: JSON.stringify({
         الاسم: formName.value,
         الهاتف: formPhone.value,
-        المدينة: city,
+        المدينة: selectedCity.value,
         العنوان: formAddress.value,
         المنتج: activeProductData.value.title,
         الكمية: quantity.value,
-        الإجمالي: `${totalPrice.value} د.ل (بدون توصيل)`
+        'سعر المنتج': `${productSubtotal.value} د.ل`,
+        'رسوم التوصيل': `${shippingCost.value} د.ل`,
+        'الإجمالي الكامل': `${grandTotal.value} د.ل`
       })
     })
 
     if (response.ok) {
       submitted.value = true
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       formError.value = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.'
     }
@@ -368,23 +566,5 @@ const handleSubmit = async () => {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
