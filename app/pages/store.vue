@@ -27,38 +27,38 @@
         </div>
       </nav>
 
-      <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('thermometer')">
-        <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
-            <img :src="'/footer/pro-1.jpg.jpg'" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+      <div class="w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+
+        <div class="cursor-pointer group" @click="openProduct('thermometer')">
+          <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
+            <NuxtImg src="/footer/pro-1.jpg.jpg" alt="ميزان الحرارة الاحترافي" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
-          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
-            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
+          <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
+            <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
+            <p class="text-base md:text-lg text-[#555] opacity-70 mb-5 md:mb-7 font-medium leading-relaxed">
               مقاوم للماء، قراءة فورية، مثالي للحوم والشواء والحلويات.
             </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
+            <div class="px-10 md:px-14 py-3 md:py-4 bg-white border border-[#E5E0DA] rounded-2xl text-base md:text-lg font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="w-full max-w-6xl mx-auto px-6 cursor-pointer" @click="openProduct('product-two')">
-        <div class="group">
-          <div class="w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA] bg-white">
-            <img :src="'/footer/basic-1.jpg.jpg'" class="w-full h-auto object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+        <div class="cursor-pointer group" @click="openProduct('product-two')">
+          <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
+            <NuxtImg src="/footer/basic-1.jpg.jpg" alt="ميزان حرارة البداية" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
-          <div class="mt-4 md:mt-12 text-center flex flex-col items-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-1 md:mb-4 text-[#333] leading-tight">ميزان حرارة البداية</h2>
-            <p class="text-lg md:text-2xl text-[#555] opacity-70 mb-6 md:mb-10 font-medium leading-relaxed max-w-2xl">
+          <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
+            <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان حرارة البداية</h2>
+            <p class="text-base md:text-lg text-[#555] opacity-70 mb-5 md:mb-7 font-medium leading-relaxed">
               أول خطوة في رحلتك مع الطبخ الاحترافي. سهل، دقيق، بسعر مناسب.
             </p>
-            <div class="px-12 md:px-20 py-4 md:py-6 bg-white border border-[#E5E0DA] rounded-2xl text-lg md:text-xl font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
+            <div class="px-10 md:px-14 py-3 md:py-4 bg-white border border-[#E5E0DA] rounded-2xl text-base md:text-lg font-bold text-[#333] shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 active:scale-95 group-hover:bg-gray-50">
               استكشف المنتج
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
@@ -77,7 +77,7 @@
           <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
             <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
-              <img :src="activeProductData.photos[currentIndex]" class="w-full h-full object-cover transition-opacity duration-700" />
+              <NuxtImg :src="activeProductData.photos[currentIndex]" alt="صورة المنتج" width="800" format="webp" quality="85" class="w-full h-full object-cover transition-opacity duration-700" />
               <button @click="prevSlide" class="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❯</button>
               <button @click="nextSlide" class="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">❮</button>
               <div class="absolute bottom-6 md:bottom-10 left-0 right-0 flex justify-center gap-3">
@@ -504,8 +504,10 @@ const handleSubmit = async () => {
   cityError.value = false
   formError.value = ''
 
-  const cleanPhone = formPhone.value.replace(/[\s\-]/g, '')
-  if (cleanPhone.length < 10) {
+  const cleanPhone = formPhone.value.replace(/[\s\-+]/g, '')
+  // must be at least 9 digits, all numeric, and not all the same digit
+  const isAllSame = /^(\d)\1+$/.test(cleanPhone)
+  if (cleanPhone.length < 9 || !/^\d+$/.test(cleanPhone) || isAllSame) {
     phoneError.value = true
     return
   }
@@ -518,10 +520,13 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    const response = await fetch('https://formspree.io/f/mredrbwn', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
+        access_key: 'aec1084b-17ee-4867-8abc-7bcaa8d580b0',
+        subject: `طلب جديد: ${activeProductData.value.title}`,
+        from_name: 'متجر عبدالرحمن طريش',
         الاسم: formName.value,
         الهاتف: formPhone.value,
         المدينة: selectedCity.value,
