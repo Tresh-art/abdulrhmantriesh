@@ -321,7 +321,7 @@ const shippingCost = ref(0)
 const showCityDropdown = ref(false)
 const cityError = ref(false)
 
-// Darb Al Sabil prices
+// All city data... (kept same as your original)
 const allCities = [
   { name: 'داخل طرابلس', price: 15 },
   { name: 'انجيلة', price: 20 },
@@ -505,7 +505,6 @@ const handleSubmit = async () => {
   formError.value = ''
 
   const cleanPhone = formPhone.value.replace(/[\s\-+]/g, '')
-  // must be at least 9 digits, all numeric, and not all the same digit
   const isAllSame = /^(\d)\1+$/.test(cleanPhone)
   if (cleanPhone.length < 9 || !/^\d+$/.test(cleanPhone) || isAllSame) {
     phoneError.value = true
@@ -552,13 +551,3 @@ const handleSubmit = async () => {
   }
 }
 </script>
-
-<style scoped>
-.animate-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
