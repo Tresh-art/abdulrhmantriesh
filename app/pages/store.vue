@@ -1,7 +1,6 @@
 <template>
   <div class="bg-[#F8F6F4] min-h-screen font-sans text-[#333]" dir="rtl">
 
-    <!-- WhatsApp Floating Button -->
     <a
       href="https://wa.me/905013681310"
       target="_blank"
@@ -13,7 +12,6 @@
       </svg>
     </a>
 
-    <!-- HOME VIEW -->
     <div v-if="view === 'home'" class="flex flex-col gap-12 md:gap-32 pb-40">
 
       <nav class="pt-12 md:pt-20 px-6 text-center max-w-4xl mx-auto">
@@ -31,7 +29,7 @@
 
         <div class="cursor-pointer group" @click="openProduct('thermometer')">
           <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
-            <NuxtImg src="/footer/pro-1.jpg.jpg" alt="ميزان الحرارة الاحترافي" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+            <NuxtImg src="/footer/pro-1.jpg" alt="ميزان الحرارة الاحترافي" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
             <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
@@ -46,7 +44,7 @@
 
         <div class="cursor-pointer group" @click="openProduct('product-two')">
           <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
-            <NuxtImg src="/footer/basic-1.jpg.jpg" alt="ميزان حرارة البداية" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+            <NuxtImg src="/footer/basic-1.jpg" alt="ميزان حرارة البداية" width="700" format="webp" quality="80" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
             <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان حرارة البداية</h2>
@@ -63,7 +61,6 @@
 
     </div>
 
-    <!-- PRODUCT VIEW -->
     <div v-else-if="view === 'product'" class="animate-in">
       <nav class="p-6 md:p-8 flex justify-start items-center max-w-7xl mx-auto">
         <button @click="view = 'home'" class="text-[#3D5A50] font-bold text-base md:text-lg flex items-center gap-3 hover:gap-5 transition-all p-3 px-6 md:px-8 rounded-full bg-white shadow-sm border border-[#E5E0DA]">
@@ -74,7 +71,6 @@
       <section class="max-w-7xl mx-auto pt-4 md:pt-6 px-6 pb-24">
         <div class="flex flex-col lg:flex-row items-start gap-12 md:gap-24">
 
-          <!-- PHOTOS -->
           <div class="w-full lg:w-3/5">
             <div class="relative w-full aspect-[4/5] bg-white rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-[#E5E0DA] group">
               <NuxtImg :src="activeProductData.photos[currentIndex]" alt="صورة المنتج" width="800" format="webp" quality="85" class="w-full h-full object-cover transition-opacity duration-700" />
@@ -87,7 +83,6 @@
               </div>
             </div>
 
-            <!-- WHO IS THIS FOR -->
             <div class="mt-10 md:mt-16 bg-white rounded-3xl p-6 md:p-8 border border-[#E5E0DA] shadow-sm">
               <h3 class="text-2xl md:text-3xl font-black mb-6 text-[#333]">هذا المنتج مناسب لك إذا...</h3>
               <ul class="flex flex-col gap-3">
@@ -99,12 +94,10 @@
             </div>
           </div>
 
-          <!-- PRODUCT INFO -->
           <div class="w-full lg:w-2/5 text-right">
             <h1 class="text-4xl md:text-6xl font-black mb-4 md:mb-6 text-[#333] leading-relaxed">{{ activeProductData.title }}</h1>
             <div class="text-3xl md:text-5xl font-extrabold text-[#3D5A50] mb-2 md:mb-3">{{ activeProductData.price }} د.ل</div>
 
-            <!-- TRUST BADGES -->
             <div class="flex flex-wrap gap-3 mb-6 md:mb-8 justify-end">
               <div class="flex items-center gap-2 bg-white border border-[#E5E0DA] rounded-2xl px-4 py-2 text-sm font-medium text-[#555]">
                 <span>🚚</span> توصيل خلال 2-5 أيام
@@ -119,10 +112,8 @@
 
             <p class="text-xl md:text-2xl leading-relaxed text-[#555] mb-10 md:mb-12 font-medium">{{ activeProductData.description }}</p>
 
-            <!-- ORDER FORM -->
             <div id="order-section" class="bg-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-xl border border-[#E5E0DA]">
 
-              <!-- SUCCESS STATE -->
               <div v-if="submitted" class="text-center py-6">
                 <div class="w-20 md:w-24 h-20 md:h-24 bg-[#A7F3D0] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl md:text-4xl">✓</div>
                 <h2 class="text-2xl md:text-3xl font-bold mb-6">تم استلام طلبك!</h2>
@@ -162,7 +153,6 @@
                 </a>
               </div>
 
-              <!-- FORM -->
               <form v-else @submit.prevent="handleSubmit" class="space-y-6 md:space-y-8">
                 <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">بيانات التوصيل</h3>
 
@@ -181,7 +171,6 @@
                 >
                 <p v-if="phoneError" class="text-red-500 text-sm text-right -mt-4">رقم الهاتف يجب أن يحتوي على 10 أرقام على الأقل</p>
 
-                <!-- CITY SEARCHABLE DROPDOWN -->
                 <div class="relative">
                   <input
                     v-model="citySearch"
@@ -222,7 +211,6 @@
                   class="w-full p-5 md:p-6 bg-[#F8F6F4] rounded-2xl border-none focus:ring-2 focus:ring-[#3D5A50] outline-none text-lg resize-none"
                 ></textarea>
 
-                <!-- QUANTITY + PRICE BREAKDOWN -->
                 <div class="bg-[#F8F6F4] p-6 md:p-8 rounded-3xl space-y-4 md:space-y-5 text-lg">
                   <div class="flex justify-between items-center">
                     <div class="flex items-center bg-white rounded-xl border border-[#E5E0DA] overflow-hidden shadow-sm">
@@ -264,7 +252,6 @@
       </section>
     </div>
 
-    <!-- FOOTER -->
     <footer class="bg-white border-t border-[#E5E0DA]">
       <div class="max-w-6xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
         <div class="flex items-center gap-3">
@@ -321,7 +308,7 @@ const shippingCost = ref(0)
 const showCityDropdown = ref(false)
 const cityError = ref(false)
 
-// All city data... (kept same as your original)
+// Darb Al Sabil prices
 const allCities = [
   { name: 'داخل طرابلس', price: 15 },
   { name: 'انجيلة', price: 20 },
@@ -437,11 +424,11 @@ const products = {
     description: 'مقاوم للماء بالكامل IP67 — يمكن غسله تحت الماء مباشرة. مسبار من الفولاذ المقاوم للصدأ آمن تماماً للطعام. قراءة فورية في 2-4 ثواني بدقة ±1 درجة. مدى قياس واسع من -50 إلى 300 درجة يغطي كل احتياجاتك — من الشواء والحوم إلى الحلويات والشوكولاتة والقلي العميق. تصميم قابل للطي يحمي المسبار ويدوم طويلاً.',
     price: 75,
     photos: [
-      '/footer/pro-1.jpg.jpg',
-      '/footer/pro-2.jpg.jpg',
-      '/footer/pro-3.jpg.jpg',
-      '/footer/pro-4.jpg.jpg',
-      '/footer/pro-5.jpg.jpg'
+      '/footer/pro-1.jpg',
+      '/footer/pro-2.jpg',
+      '/footer/pro-3.jpg',
+      '/footer/pro-4.jpg',
+      '/footer/pro-5.jpg'
     ],
     forWho: [
       'تهتم بطهي اللحوم بالدرجة الصحيحة',
@@ -455,11 +442,11 @@ const products = {
     description: 'أول خطوة في رحلتك مع الطبخ الاحترافي. سهل الاستخدام، دقيق، ومدى قياسه من -50 إلى 300 درجة. مناسب للحوم، الحليب، الزيت، والحلويات. كل ما تحتاجه بسعر في متناول الجميع.',
     price: 35,
     photos: [
-      '/footer/basic-1.jpg.jpg',
-      '/footer/basic-2.jpg.jpg',
-      '/footer/basic-3.jpg.jpg',
-      '/footer/basic-4.jpg.jpg',
-      '/footer/basic-5.jpg.jpg'
+      '/footer/basic-1.jpg',
+      '/footer/basic-2.jpg',
+      '/footer/basic-3.jpg',
+      '/footer/basic-4.jpg',
+      '/footer/basic-5.jpg'
     ],
     forWho: [
       'تبدأ لأول مرة باستخدام ميزان الحرارة في الطبخ',
@@ -505,6 +492,7 @@ const handleSubmit = async () => {
   formError.value = ''
 
   const cleanPhone = formPhone.value.replace(/[\s\-+]/g, '')
+  // must be at least 9 digits, all numeric, and not all the same digit
   const isAllSame = /^(\d)\1+$/.test(cleanPhone)
   if (cleanPhone.length < 9 || !/^\d+$/.test(cleanPhone) || isAllSame) {
     phoneError.value = true
@@ -551,3 +539,13 @@ const handleSubmit = async () => {
   }
 }
 </script>
+
+<style scoped>
+.animate-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
