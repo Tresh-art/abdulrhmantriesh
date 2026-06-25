@@ -31,7 +31,7 @@
 
         <div class="cursor-pointer group" @click="openProduct('thermometer')">
           <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
-            <img src="/footer/pro-1.jpg.jpg" alt="ميزان الحرارة الاحترافي" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+            <img :src="'/footer/pro-1.jpg.jpg'" alt="ميزان الحرارة الاحترافي" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
             <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان الحرارة الاحترافي</h2>
@@ -46,7 +46,7 @@
 
         <div class="cursor-pointer group" @click="openProduct('product-two')">
           <div class="w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-[#E5E0DA] bg-white aspect-square">
-            <img src="/footer/basic-1.jpg.jpg" alt="ميزان حرارة البداية" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
+            <img :src="'/footer/basic-1.jpg.jpg'" alt="ميزان حرارة البداية" loading="lazy" class="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-105" />
           </div>
           <div class="mt-5 md:mt-8 text-center flex flex-col items-center">
             <h2 class="text-2xl md:text-4xl font-black mb-2 md:mb-3 text-[#333] leading-tight">ميزان حرارة البداية</h2>
