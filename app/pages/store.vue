@@ -199,13 +199,13 @@
                   </div>
                   <div
                     v-if="showCityDropdown && filteredCities.length"
-                    class="absolute z-50 w-full mt-2 bg-white border border-[#E5E0DA] rounded-2xl shadow-xl max-h-56 overflow-y-auto"
+                    class="absolute z-[100] w-full mt-2 bg-white border border-[#E5E0DA] rounded-2xl shadow-2xl max-h-56 overflow-y-auto"
                   >
                     <div
                       v-for="item in filteredCities"
                       :key="item.name"
                       @mousedown.prevent="selectCity(item)"
-                      class="flex items-center justify-between px-6 py-4 text-lg cursor-pointer hover:bg-[#F8F6F4] transition-colors border-b border-[#F0EDE8] last:border-none"
+                      class="flex items-center justify-between px-6 py-4 text-lg cursor-pointer bg-white hover:bg-[#F8F6F4] transition-colors border-b border-[#F0EDE8] last:border-none"
                     >
                       <span class="text-[#3D5A50] font-bold text-sm bg-[#F0F7F4] px-2 py-0.5 rounded-lg">{{ item.price }} د.ل</span>
                       <span>{{ item.name }}</span>
@@ -300,7 +300,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 
 const view = ref('home')
 const activeProduct = ref('thermometer')
@@ -541,7 +541,11 @@ const handleSubmit = async () => {
 
     if (response.ok) {
       submitted.value = true
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      // scroll to the confirmation message so the customer sees it (not the top of the page)
+      nextTick(() => {
+        const el = document.getElementById('order-section')
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      })
     } else {
       formError.value = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.'
     }
